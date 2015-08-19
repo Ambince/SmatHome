@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/title_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="记录号列表" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/cooklist_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text"
+                android:padding="10dp"
+                android:text="记录号" />
+
+            <TextView
+                style="@style/cooklist_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text"
+                android:padding="10dp"
+                android:text="总时长" />
+
+            <TextView
+                style="@style/cooklist_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text"
+                android:padding="10dp"
+                android:text="节点数" />
+
+            <TextView
+                style="@style/cooklist_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text"
+                android:padding="10dp"
+                android:text="备注" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/recordstep_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1" >
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp" >
+
+            <TextView
+                style="@style/cooklist_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="请选择记录号" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/recordstep_ok_btn"
+                style="@style/cooklist_text_style"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@layout/btnstyle"
+                android:padding="4dp"
+                android:text="导入程序" />
+
+            <Button
+                android:id="@+id/recordstep_back_btn"
+                style="@style/cooklist_text_style"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@layout/btnstyle"
+                android:padding="4dp"
+                android:text="返回" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

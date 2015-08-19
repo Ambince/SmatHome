@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/dvinfolistitem_dvname_txt"
+        style="@style/cooklist_text_style"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:hint="电磁炉"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/dvinfolistitem_state_txt"
+        style="@style/cooklist_text_style"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:hint="on"
+        android:padding="10dp" />
+
+</LinearLayout><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/dvinfolistitem.xml -->

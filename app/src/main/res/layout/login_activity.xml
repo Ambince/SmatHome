@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:baselineAligned="false"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:background="#eeeeee"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"
+            android:background="@drawable/login_default_avatar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="13dip" >
+
+            <RelativeLayout
+                android:id="@+id/input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="150dip"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/login_input"
+                android:paddingTop="20dip" >
+
+                <LinearLayout
+                    android:id="@+id/input_ui_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:paddingLeft="15dip" >
+
+                    <TextView
+                        android:layout_width="60dip"
+                        android:layout_height="wrap_content"
+                        android:text="用户名"
+                        android:textColor="#cccccc" />
+
+                    <EditText
+                        android:id="@+id/input_ui_id_edt"
+                        android:layout_width="0dip"
+                        android:layout_height="40dip"
+                        android:layout_weight="1"
+                        android:background="@null"
+                         />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/input_center_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:layout_below="@id/input_ui_id"
+                    android:background="@drawable/qb_tenpay_trans_records_open" />
+
+                <LinearLayout
+                    android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:layout_below="@id/input_center_line"
+                    android:paddingLeft="15dip" >
+
+                    <TextView
+                        android:layout_width="60dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/password"
+                        android:textColor="#cccccc" />
+
+                    <EditText
+                        android:id="@+id/input_password_edt"
+                        android:layout_width="0dip"
+                        android:layout_height="40dip"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:inputType="textPassword" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/input_center_line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:layout_below="@id/input_password"
+                    android:background="@drawable/qb_tenpay_trans_records_open" />
+
+                <LinearLayout
+                    android:id="@+id/input_server_ip"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:layout_below="@id/input_center_line2"
+                    android:paddingLeft="15dip" >
+
+                    <TextView
+                        android:layout_width="60dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/server_ip"
+                        android:textColor="#cccccc" />
+
+                    <EditText
+                        android:id="@+id/input_server_ip_edt"
+                        android:layout_width="0dip"
+                        android:layout_height="40dip"
+                        android:layout_weight="1"
+                        android:background="@null" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/input_edit_text"
+                android:layout_marginTop="20dip"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/login_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:background="@drawable/login_button_nor"
+                    android:text="@string/login_button" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </LinearLayout>
+
+</LinearLayout>

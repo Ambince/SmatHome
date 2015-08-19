@@ -1,0 +1,172 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:scrollbars="none" >
+
+            <com.xiaye.smarthome.view.CategoryView
+                android:id="@+id/header_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:id="@+id/xiaye_fragment"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_marginLeft="8dip"
+            android:layout_weight="1"
+            android:background="@drawable/bg1" >
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/shortcut_lay1"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btn1"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+
+                <Button
+                    android:id="@+id/btn3"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+
+                <Button
+                    android:id="@+id/btn4"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+
+                <Button
+                    android:id="@+id/btn5"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shortcut_lay2"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btn6"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+
+                <Button
+                    android:id="@+id/btn7"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+
+                <Button
+                    android:id="@+id/btn8"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+
+                <Button
+                    android:id="@+id/btn9"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+
+                <Button
+                    android:id="@+id/btn10"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@layout/btnstyle" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dip"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <com.xiaye.smarthome.view.CategoryView
+                android:id="@+id/view_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl" />
+        </LinearLayout>
+
+        <Button
+            android:layout_gravity="center"
+            style="@style/list_text_style"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:singleLine="true"
+            android:background="@drawable/online"
+            android:text="@string/main_operator"
+            android:ellipsize="marquee"
+            android:layout_marginBottom="12dip"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/activity_main.xml -->

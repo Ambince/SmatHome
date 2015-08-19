@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\pre-dexed\debug\classes-caaba5b3bd2245217c64087d5f8f968cc0f98107.jar" />
+    </item>
+    <item
+        jar="E:\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-22322aab69119b54291eff680d23e8ca2537f3e9.jar" />
+    </item>
+    <item
+        jar="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-38c7a23275844f33b64a842ac7b7b99b68b26bd2.jar" />
+    </item>
+    <item
+        jar="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\exploded-aar\com.github.johnkil.print\print\1.2.2\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3423c4e8a6526948045ac0290c0b5ab753ff5ee6">
+        <dex dex="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\pre-dexed\debug\classes-320170bf3ad10059e8f7b23914a87ed941477fcd.jar" />
+    </item>
+    <item
+        jar="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\exploded-aar\SmartHome\library\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="93421b867ced5fda1e875988344a9af33547e55c">
+        <dex dex="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\pre-dexed\debug\classes-d3eaa1353d2bc92783c545496439f9d48bef5df0.jar" />
+    </item>
+    <item
+        jar="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\dell\AndroidStudioProjects\SmartHome\app\build\intermediates\pre-dexed\debug\classes-7dc60cd05e1711ef82a8476a59516c417244c139.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/title_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="right"
+            android:padding="10dp"
+            android:text="记录步骤 (" />
+
+        <TextView
+            android:id="@+id/recordstepinfo_currentstep_txt"
+            style="@style/title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:text="2" />
+
+        <TextView
+            style="@style/title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:text="/" />
+
+        <TextView
+            android:id="@+id/recordstepinfo_totalstep_txt"
+            style="@style/title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:text="5" />
+
+        <TextView
+            style="@style/title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=")" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/cooklist_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10sp"
+                android:text="节点编号:" />
+
+            <TextView
+                android:id="@+id/recordstepinfo_nodenum_txt"
+                style="@style/cooklist_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:padding="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/cooklist_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10sp"
+                android:text="节点时长:" />
+
+            <TextView
+                android:id="@+id/recordstepinfo_nodetime_txt"
+                style="@style/cooklist_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:padding="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/cooklist_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10sp"
+                android:text="提示信息:" />
+
+            <EditText
+                android:id="@+id/recordstepinfo_tips_edt"
+                style="@style/cooklist_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:maxLength="1000"
+                android:padding="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/recordstepinfo_back_btn"
+            style="@style/cooklist_text_style"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@layout/btnstyle"
+            android:padding="2dp"
+            android:text="上一步" />
+
+        <Button
+            android:id="@+id/recordstepinfo_next_btn"
+            style="@style/cooklist_text_style"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@layout/btnstyle"
+            android:padding="2dp"
+            android:text="下一步" />
+
+        <Button
+            android:id="@+id/recordstepinfo_save_btn"
+            style="@style/cooklist_text_style"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:background="@layout/btnstyle"
+            android:padding="2dp"
+            android:text="保存并编辑下一节点" >
+        </Button>
+        <Button
+                android:id="@+id/recordstepinfo_last_btn"
+                style="@style/cooklist_text_style"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:background="@layout/btnstyle"
+                android:padding="2dp"
+                android:text="返回上一节点" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

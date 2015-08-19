@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+        <TextView
+                android:id="@+id/light_name"
+                style="@style/cooklist_text_style"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="2dp"
+
+                />
+
+        <TextView
+                android:id="@+id/light_state"
+                style="@style/cooklist_text_style"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="2dp"
+                />
+
+        <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                >
+
+            <Button android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="42dp"
+                    android:id="@+id/light_increase"
+                    android:textSize="12sp"
+                    android:text="加大"/>
+
+            <Button android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="42dp"
+                    android:layout_marginLeft="2dp"
+                    android:id="@+id/light_reduce"
+                    android:textSize="12sp"
+                    android:text="降低"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+<!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/lightcontrol_item.xml -->

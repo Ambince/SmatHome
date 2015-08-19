@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/title_text_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="编辑原料制作表" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="材料名称：" />
+
+                <EditText
+                    android:id="@+id/materialtable_materialname_txt"
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:maxLength="15"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="材料类别：" />
+
+                <Spinner
+                    android:id="@+id/materialtable_materitype_spn"
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="材料数量：" />
+
+                <EditText
+                    android:id="@+id/materialtable_materinumber_txt"
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="5"
+                    android:layout_weight="4"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="加工方法：" />
+
+                <EditText
+                    android:id="@+id/materialtable_cookmothod_txt"
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:maxLength="1000"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="加工序号：" />
+
+                <EditText
+                    android:id="@+id/materialtable_cooknumber_txt"
+                    style="@style/cooklist_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:inputType="number"
+                    android:padding="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/materialtable_back_btn"
+            style="@style/cooklist_text_style"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:background="@layout/btnstyle"
+            android:padding="2dp"
+            android:text="上一步" />
+
+            <Button
+                android:id="@+id/materialtable_ok_btn"
+                style="@style/cooklist_text_style"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:background="@layout/btnstyle"
+                android:padding="2dp"
+                android:text="下一步" />
+
+            <Button
+                android:id="@+id/materialtable_save_btn"
+                style="@style/cooklist_text_style"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@layout/btnstyle"
+                android:padding="2dp"
+                android:text="保存并编辑下一节点">
+
+            </Button>
+
+            <Button
+                    android:id="@+id/materialtable_last_btn"
+                    style="@style/cooklist_text_style"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:background="@layout/btnstyle"
+                    android:padding="2dp"
+                    android:text="上一节点" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

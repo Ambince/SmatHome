@@ -1,0 +1,55 @@
+package com.xiaye.smarthome.bean;
+
+import java.io.Serializable;
+
+/**
+ * 
+ * @description 记录步骤表
+ * 
+ */
+public class CookingRcdStepBean implements Serializable {
+
+	private static final long serialVersionUID = -4099002684097867556L;
+	
+	private int foodProcessingId;
+	private int nodenumber;
+	private int timeOfNode;
+	private String tips;
+
+	public CookingRcdStepBean() {
+
+	}
+
+	public int getFoodProcessingId() {
+		return foodProcessingId;
+	}
+
+	public void setFoodProcessingId(int foodProcessingId) {
+		this.foodProcessingId = foodProcessingId;
+	}
+
+	public int getNodenumber() {
+		return nodenumber;
+	}
+
+	public void setNodenumber(int nodenumber) {
+		this.nodenumber = nodenumber;
+	}
+
+	public String getTips() {
+		return tips;
+	}
+
+	public void setTips(String tips) {
+		this.tips = tips;
+	}
+
+	public int getTimeOfNode() {
+		return timeOfNode;
+	}
+
+	public void setTimeOfNode(int timeOfNode) {
+		this.timeOfNode = timeOfNode;
+	}
+
+}
