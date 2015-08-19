@@ -12,6 +12,14 @@
         android:orientation="horizontal"
         android:gravity="center" >
 
+        <TextView
+                android:id="@+id/lightsetting_item_no"
+                style="@style/cooklist_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                />
 
         <TextView
             android:id="@+id/lightsetting_item_type"

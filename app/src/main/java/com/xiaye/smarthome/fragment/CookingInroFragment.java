@@ -38,6 +38,8 @@ import com.xiaye.smarthome.util.ParseJson;
  */
 public class CookingInroFragment extends Fragment {
 
+	public static String TAG = CookingInroFragment.class.getSimpleName();
+
 	private TextView tv_cooking_name;
 	private TextView tv_cooking_intro;
 	private TextView tv_make_intro;
@@ -129,7 +131,7 @@ public class CookingInroFragment extends Fragment {
 				if (receive != null) {
 					cRecordBeanList = ParseJson
 							.parseCookingRecordBean2(receive);
-					Log.i("CookingInroFragment  r132", cRecordBeanList.size()
+					Log.i("CookingInroFg r132", cRecordBeanList.size()
 							+ "");
 
 				}
@@ -200,13 +202,15 @@ public class CookingInroFragment extends Fragment {
 					bundle.putString(UI_Constant.FLAG, exctCookingFlag);
 					bundle.putString("machineShapeCode", getArguments().getString("machineShapeCode", ""));
 					Log.e("ttttttt", bundle.getString("machineShapeCode", ""));
-					Log.i("CookingInroFragment  row 194", "exctCookingFlag = "
+					Log.i("CookingInroFg row 194", "exctCookingFlag = "
 							+ exctCookingFlag);
 				}
 				materialFragment.setArguments(bundle);
+				getFragmentManager().beginTransaction().addToBackStack(TAG);
 				getActivity().getFragmentManager().beginTransaction()
 						.replace(R.id.xiaye_fragment, materialFragment)
 						.commit();
+
 			} else {
 				Toast.makeText(getActivity(), "适用人数为空！无法获取原料制作记录！",
 						Toast.LENGTH_LONG).show();
@@ -217,28 +221,29 @@ public class CookingInroFragment extends Fragment {
 	OnClickListener backClickListener = new OnClickListener() {
 		@Override
 		public void onClick(View arg0) {
-			CookingItemFragment cookingFragment = new CookingItemFragment();
-			Bundle bundle = new Bundle();
-
-			bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
-			bundle.putString(UI_Constant.COOKING_SCHEMA, getArguments()
-					.getString(UI_Constant.COOKING_SCHEMA));
-			if (exctCookingFlag != null && "cooking".equals(exctCookingFlag)) {
-				bundle.putString(UI_Constant.FLAG, exctCookingFlag);
-				bundle.putInt("useNum", useNum);
-				bundle.putString("cuisinesName",
-						getArguments().getString("cuisinesName"));
-				bundle.putString("machineShapeCode",
-						getArguments().getString("machineShapeCode"));
-			}
-			
-			Log.e("uri...", getArguments().getString(UI_Constant.COOKING_URI));
-			bundle.putString(UI_Constant.COOKING_URI,
-					getArguments().getString(UI_Constant.COOKING_URI));
-
-			cookingFragment.setArguments(bundle);
-			getActivity().getFragmentManager().beginTransaction()
-					.replace(R.id.xiaye_fragment, cookingFragment).commit();
+//			CookingItemFragment cookingFragment = new CookingItemFragment();
+//			Bundle bundle = new Bundle();
+//
+//			bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
+//			bundle.putString(UI_Constant.COOKING_SCHEMA, getArguments()
+//					.getString(UI_Constant.COOKING_SCHEMA));
+//			if (exctCookingFlag != null && "cooking".equals(exctCookingFlag)) {
+//				bundle.putString(UI_Constant.FLAG, exctCookingFlag);
+//				bundle.putInt("useNum", useNum);
+//				bundle.putString("cuisinesName",
+//						getArguments().getString("cuisinesName"));
+//				bundle.putString("machineShapeCode",
+//						getArguments().getString("machineShapeCode"));
+//			}
+//
+//			Log.e("uri...", getArguments().getString(UI_Constant.COOKING_URI));
+//			bundle.putString(UI_Constant.COOKING_URI,
+//					getArguments().getString(UI_Constant.COOKING_URI));
+//
+//			cookingFragment.setArguments(bundle);
+//			getActivity().getFragmentManager().beginTransaction()
+//					.replace(R.id.xiaye_fragment, cookingFragment).commit();
+			getFragmentManager().popBackStackImmediate();
 		}
 	};
 

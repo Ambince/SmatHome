@@ -27,198 +27,181 @@ import com.xiaye.smarthome.util.JsonParse;
 import com.xiaye.smarthome.util.ParseJson;
 
 /**
- * 
- * @ClassName: CoookingItemFragment
- * @Description: 具体菜品名称
  * @author Android组-ChengBin/ChenSir
  * @version 1.0
+ * @ClassName: CoookingItemFragment
+ * @Description: 具体菜品名称
  * @date 2014-11-29 上午11:35:49
- * 
  */
 public class CookingItemFragment extends Fragment {
 
-	private ListView lv_cooking;
-	private Button btn_back;
-	private InfoDealIF info;
-	private String recieve_localcuisine;
-	private String cooking_name;
-	private String schema;
-	private List<CookMenuBean> datas;
+    public static String TAG = CookingItemFragment.class.getSimpleName();
 
-	private int[] cooking_code = { 0x80201004, 0x80201002, 0x80201006,
-			0x80201007, 0x80201008, 0x80201009, 0x8020100a, 0x8020100b };
+    private ListView lv_cooking;
+    private Button btn_back;
+    private InfoDealIF info;
+    private String recieve_localcuisine;
+    private String cooking_name;
+    private String schema;
+    private List<CookMenuBean> datas;
 
-	String exctCookingFlag = null;
-	int useNum = 0;
-	String machineShapeCode = null;
-	String cuisinesName = null;
-	String uriString = null;
+    private int[] cooking_code = {0x80201004, 0x80201002, 0x80201006,
+            0x80201007, 0x80201008, 0x80201009, 0x8020100a, 0x8020100b};
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+    String exctCookingFlag = null;
+    int useNum = 0;
+    String machineShapeCode = null;
+    String cuisinesName = null;
+    String uriString = null;
 
-		if (MainActivity.header_category != null) {
-			MainActivity.header_category.removeAllViews();
-		}
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-		schema = getArguments().getString(UI_Constant.COOKING_SCHEMA, "");
-		cooking_name = getArguments().getString(UI_Constant.COOKING_NAME, "");
-		Log.e("CookingItem", cooking_name);
-		exctCookingFlag = getArguments().getString(UI_Constant.FLAG, "");
+//		if (MainActivity.header_category != null) {
+//			MainActivity.header_category.removeAllViews();
+//		}
 
-		return inflater.inflate(R.layout.fragfment_cooking_item_list, null);
-	}
+        schema = getArguments().getString(UI_Constant.COOKING_SCHEMA, "");
+        cooking_name = getArguments().getString(UI_Constant.COOKING_NAME, "");
+        Log.e("CookingItem", cooking_name);
+        exctCookingFlag = getArguments().getString(UI_Constant.FLAG, "");
 
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
+        return inflater.inflate(R.layout.fragfment_cooking_item_list, null);
+    }
 
-		info = new InfoDealIF();
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-		initView(view);
+        info = new InfoDealIF();
 
-		setListener();
+        initView(view);
 
-		bindData();
-	}
+        setListener();
 
-	private void initView(View view) {
+        bindData();
+    }
 
-		// btn_back = (Button) view.findViewById(R.id.btn_back);
+    private void initView(View view) {
 
-		lv_cooking = (ListView) view.findViewById(R.id.lv_list_item);
+        btn_back = (Button) view.findViewById(R.id.btn_back);
 
-	}
+        lv_cooking = (ListView) view.findViewById(R.id.lv_list_item);
 
-	/**
-	 * 
-	 * @Description:(这里用一句话描述这个方法的作用)
-	 * 
-	 * @author ChengBin
-	 * @version 1.0
-	 * @date 2014-11-29 下午7:04:14
-	 */
-	private void setListener() {
-		// btn_back.setOnClickListener(backListener);
-		lv_cooking.setOnItemClickListener(itemClickListener);
-	}
+    }
 
-	/**
-	 * 
-	 * @Description: 绑定数据到控件
-	 * 
-	 * @author ChengSir
-	 * @version 1.0
-	 * @date 2014-11-29 下午7:03:50
-	 */
-	private void bindData() {
-		uriString = getArguments().getString(UI_Constant.COOKING_URI, "");
-		
-		Uri uri = Uri.parse(uriString);
-		String authority = uri.getAuthority();
-		datas = loadDataFromDB(authority);
-		if (datas != null && datas.size() != 0) {
-			lv_cooking.setAdapter(new CookingItemAdapter(getActivity(), datas));
-		}
-	}
+    /**
+     * @Description:(这里用一句话描述这个方法的作用)
+     * @author ChengBin
+     * @version 1.0
+     * @date 2014-11-29 下午7:04:14
+     */
+    private void setListener() {
+        btn_back.setOnClickListener(backListener);
+        lv_cooking.setOnItemClickListener(itemClickListener);
+    }
 
-	/**
-	 * 
-	 * @Description: 从数据库加载数据
-	 * 
-	 * @author ChengBin/ChenSir
-	 * @version 1.0
-	 * @date 2014-11-29 下午7:01:39
-	 * @param authority
-	 * @return
-	 */
-	private List<CookMenuBean> loadDataFromDB(String authority) {
+    /**
+     * @Description: 绑定数据到控件
+     * @author ChengSir
+     * @version 1.0
+     * @date 2014-11-29 下午7:03:50
+     */
+    private void bindData() {
+        uriString = getArguments().getString(UI_Constant.COOKING_URI, "");
 
-		int pos = Integer.parseInt(authority);
-		// 判断是否为执行烹调流程
-		if (exctCookingFlag != null && exctCookingFlag.startsWith("cooking")) {
-			cuisinesName = getArguments().getString("cuisinesName");
-			useNum = getArguments().getInt("useNum");
-			machineShapeCode = getArguments().getString("machineShapeCode");
-			
-			Log.e("imp_info", cuisinesName +" "+ useNum +" "+ machineShapeCode);
-			JsonParse jParse = new JsonParse();
-			String condition = jParse.threeConditionsQuery(0, 0, useNum,
-					machineShapeCode, cuisinesName);
-			recieve_localcuisine = info.inquire(MainActivity.interfaceId,
-					Type.SELECT_PROCESS3, condition);
-			Log.i("CookingItemFragment", "recieve_localcuisine = "
-					+ recieve_localcuisine);
-		} else {
-			recieve_localcuisine = info.inquire(MainActivity.interfaceId,
-					cooking_code[pos], null);
-		}
-		try {
-			if (recieve_localcuisine != null) {
-				datas = ParseJson.parseCookbookbean(recieve_localcuisine);
-			} else {
-				Toast.makeText(getActivity(), "没有符合条件的记录!", Toast.LENGTH_LONG)
-						.show();
-			}
-		} catch (Exception e) {
-			Toast.makeText(getActivity(), "解析信息失败!", Toast.LENGTH_LONG).show();
-			e.printStackTrace();
-		}
+        Uri uri = Uri.parse(uriString);
+        String authority = uri.getAuthority();
+        datas = loadDataFromDB(authority);
+        if (datas != null && datas.size() != 0) {
+            lv_cooking.setAdapter(new CookingItemAdapter(getActivity(), datas));
+        }
+    }
 
-		return datas;
-	}
+    /**
+     * @param authority
+     * @return
+     * @Description: 从数据库加载数据
+     * @author ChengBin/ChenSir
+     * @version 1.0
+     * @date 2014-11-29 下午7:01:39
+     */
+    private List<CookMenuBean> loadDataFromDB(String authority) {
 
-	OnItemClickListener itemClickListener = new OnItemClickListener() {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
+        int pos = Integer.parseInt(authority);
+        // 判断是否为执行烹调流程
+        if (exctCookingFlag != null && exctCookingFlag.startsWith("cooking")) {
+            cuisinesName = getArguments().getString("cuisinesName");
+            useNum = getArguments().getInt("useNum");
+            machineShapeCode = getArguments().getString("machineShapeCode");
 
-			CookMenuBean itemBean = datas.get(position);
-			Bundle bundle = new Bundle();
-			bundle.putSerializable("cookMenuBean", itemBean);
-			bundle.putString(UI_Constant.COOKING_URI, uriString);
-			
-			if (exctCookingFlag.startsWith("cooking")) {
-				Log.e("CookingItemFg 171", "exctCookingFlag = "
-						+ exctCookingFlag);
-				bundle.putInt("useNum", useNum);
-				bundle.putString(UI_Constant.FLAG, exctCookingFlag);
-				bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
-				bundle.putString(UI_Constant.COOKING_SCHEMA, schema);
-				bundle.putString(UI_Constant.FLAG, exctCookingFlag);
-				bundle.putInt("useNum", useNum);
-				bundle.putString("cuisinesName", cuisinesName);
-				bundle.putString("machineShapeCode", machineShapeCode);
-				bundle.putString(UI_Constant.COOKING_URI, uriString);
-			}
+            Log.e("imp_info", cuisinesName + " " + useNum + " " + machineShapeCode);
+            JsonParse jParse = new JsonParse();
+            String condition = jParse.threeConditionsQuery(0, 0, useNum,
+                    machineShapeCode, cuisinesName);
+            recieve_localcuisine = info.inquire(MainActivity.interfaceId,
+                    Type.SELECT_PROCESS3, condition);
+            Log.i("CookingItemFragment", "recieve_localcuisine = "
+                    + recieve_localcuisine);
+        } else {
+            recieve_localcuisine = info.inquire(MainActivity.interfaceId,
+                    cooking_code[pos], null);
+        }
+        try {
+            if (recieve_localcuisine != null) {
+                datas = ParseJson.parseCookbookbean(recieve_localcuisine);
+            } else {
+                Toast.makeText(getActivity(), "没有符合条件的记录!", Toast.LENGTH_LONG)
+                        .show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "解析信息失败!", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
 
-			CookingInroFragment fragment = new CookingInroFragment();
-			fragment.setArguments(bundle);
+        return datas;
+    }
 
-			getFragmentManager().beginTransaction()
-					.replace(R.id.xiaye_fragment, fragment).commit();
-		}
-	};
+    OnItemClickListener itemClickListener = new OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                long id) {
 
-	OnClickListener backListener = new OnClickListener() {
+            CookMenuBean itemBean = datas.get(position);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("cookMenuBean", itemBean);
+            bundle.putString(UI_Constant.COOKING_URI, uriString);
 
-		@Override
-		public void onClick(View view) {
+            if (exctCookingFlag.startsWith("cooking")) {
+                Log.e("CookingItemFg 171", "exctCookingFlag = "
+                        + exctCookingFlag);
+                bundle.putInt("useNum", useNum);
+                bundle.putString(UI_Constant.FLAG, exctCookingFlag);
+                bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
+                bundle.putString(UI_Constant.COOKING_SCHEMA, schema);
+                bundle.putString(UI_Constant.FLAG, exctCookingFlag);
+                bundle.putInt("useNum", useNum);
+                bundle.putString("cuisinesName", cuisinesName);
+                bundle.putString("machineShapeCode", machineShapeCode);
+                bundle.putString(UI_Constant.COOKING_URI, uriString);
+            }
 
-			CookingFragment fragment = new CookingFragment();
-			Bundle bundle = new Bundle();
+            CookingInroFragment fragment = new CookingInroFragment();
+            fragment.setArguments(bundle);
+            getFragmentManager().beginTransaction().addToBackStack(TAG);
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.xiaye_fragment, fragment).commit();
 
-			bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
-			bundle.putString(UI_Constant.COOKING_SCHEMA, schema);
-			bundle.putString(UI_Constant.FLAG, exctCookingFlag);
-			bundle.putString(UI_Constant.COOKING_URI, uriString);
-			fragment.setArguments(bundle);
+        }
+    };
 
-			getFragmentManager().beginTransaction()
-					.replace(R.id.xiaye_fragment, fragment).commit();
+    OnClickListener backListener = new OnClickListener() {
 
-		}
-	};
+        @Override
+        public void onClick(View view) {
+            getFragmentManager().popBackStackImmediate();
+        }
+    };
 
 }
