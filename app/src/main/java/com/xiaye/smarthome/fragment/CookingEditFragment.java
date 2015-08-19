@@ -3,7 +3,6 @@ package com.xiaye.smarthome.fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,8 +17,6 @@ import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
 import com.xiaye.smarthome.R;
 import com.xiaye.smarthome.bean.CookMenuBean;
-import com.xiaye.smarthome.constant.Type;
-import com.xiaye.smarthome.main.MainActivity;
 import com.xiaye.smarthome.main.SmartHomeApplication;
 import com.xiaye.smarthome.view.IconTreeItemHolder;
 import com.xiaye.smarthome.view.SelectableHeaderHolder;
@@ -43,8 +40,9 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
      */
     private AndroidTreeView tView;
     private boolean selectionModeEnabled = true;
-    private int i=0;//父结点索引
-    private  int j=0;//子结点索引
+    private Button msave, mback;//分类保存，返回按钮
+    private int i = 0;//父结点索引
+    private int j = 0;//子结点索引
 
     private Spinner cuisine_spn;
     private Spinner color_spn;
@@ -79,6 +77,8 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cooking_edit_treeview, null, false);
+        mback = (Button) view.findViewById(R.id.btn_tv_back);
+        msave = (Button) view.findViewById(R.id.btn_tv_save);
         ViewGroup containerView = (ViewGroup) view.findViewById(R.id.container_treeview);
         TreeNode root = TreeNode.root();
 
@@ -95,13 +95,15 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
         TreeNode folder7 = new TreeNode(new IconTreeItemHolder.IconTreeItem(R.string.ic_folder, "禽类")).setViewHolder(new SelectableHeaderHolder(getActivity()));
         TreeNode folder8 = new TreeNode(new IconTreeItemHolder.IconTreeItem(R.string.ic_folder, "菌类")).setViewHolder(new SelectableHeaderHolder(getActivity()));
         TreeNode folder9 = new TreeNode(new IconTreeItemHolder.IconTreeItem(R.string.ic_folder, "制品类")).setViewHolder(new SelectableHeaderHolder(getActivity()));
-
         TreeNode menu1 = new TreeNode("鲁菜").setViewHolder(new SelectableItemHolder(getActivity()));
-        TreeNode menu2 = new TreeNode("浙江菜").setViewHolder(new SelectableItemHolder(getActivity()));
-        TreeNode menu3 = new TreeNode("东北菜").setViewHolder(new SelectableItemHolder(getActivity()));
-        TreeNode menu4 = new TreeNode("西北菜").setViewHolder(new SelectableItemHolder(getActivity()));
-        TreeNode menu5 = new TreeNode("京菜菜").setViewHolder(new SelectableItemHolder(getActivity()));
-        folder1.addChildren(menu1, menu2, menu3, menu4, menu5);
+        TreeNode menu2 = new TreeNode("川菜").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu3 = new TreeNode("闽菜").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu4 = new TreeNode("浙江菜").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu5 = new TreeNode("黔菜").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu6 = new TreeNode("微菜").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu7 = new TreeNode("东北菜").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu8 = new TreeNode("港台菜").setViewHolder(new SelectableItemHolder(getActivity()));
+        folder1.addChildren(menu1, menu2, menu3, menu4, menu5, menu6, menu7, menu8);
 
         TreeNode menu11 = new TreeNode("荤").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu21 = new TreeNode("素").setViewHolder(new SelectableItemHolder(getActivity()));
@@ -139,10 +141,10 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
         TreeNode menu28 = new TreeNode("否").setViewHolder(new SelectableItemHolder(getActivity()));
         folder9.addChildren(menu18, menu28);//制品类
 
-        root.addChildren(folder1, folder2, folder3, folder4, folder5, folder6,folder7,folder8,folder9);
+        root.addChildren(folder1, folder2, folder3, folder4, folder5, folder6, folder7, folder8, folder9);
 
         tView = new AndroidTreeView(getActivity(), root);
-        tView.setSelectionModeEnabled(selectionModeEnabled,j,i);
+        tView.setSelectionModeEnabled(selectionModeEnabled, j, i);
         tView.setDefaultAnimation(true);
         containerView.addView(tView.getView());
         if (savedInstanceState != null) {
@@ -240,39 +242,40 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.btn_next) {
+        if (id == R.id.btn_tv_save) {
+            Toast.makeText(getActivity(), SmartHomeApplication.menuBean.getTheCuisine() + SmartHomeApplication.menuBean.getColor(), Toast.LENGTH_LONG).show();
             // 分类保存
-            CookMenuBean menu = getDataByView();
-
-            info = new InfoDealIF();
-
-            String insertData = changeBeanToJsonString(menu);
-
-            if (insertData != null) {
-                int flag = info.control(MainActivity.interfaceId,
-                        Type.EDIT_MENU, insertData.getBytes(), null);
-                if (flag == 0) {
-                    Toast.makeText(getActivity(), "保存成功！", Toast.LENGTH_LONG)
-                            .show();
-                    // CookingAddFragment cRecordFg = new CookingAddFragment();
-                    // Bundle bundle = new Bundle();
-                    // bundle.putString("menuId", menuId);
-                    // bundle.putInt("foodProcessingId", foodProcessingId);
-                    // cRecordFg.setArguments(bundle);
-                    getActivity().getFragmentManager().beginTransaction()
-                            .replace(R.id.xiaye_fragment, new CoverFragment())
-                            .commit();
-                } else {
-                    Log.e("CookingEditFragment", "flag = " + flag);
-                    Toast.makeText(getActivity(), "保存失败！", Toast.LENGTH_SHORT)
-                            .show();
-                }
-            }
-
-        } else {
-            // 返回
-            // getActivity().getFragmentManager().beginTransaction().remove(this)
-            // .commit();
+//            CookMenuBean menu = getDataByView();
+//
+//            info = new InfoDealIF();
+//
+//            String insertData = changeBeanToJsonString(menu);
+//
+//            if (insertData != null) {
+//                int flag = info.control(MainActivity.interfaceId,
+//                        Type.EDIT_MENU, insertData.getBytes(), null);
+//                if (flag == 0) {
+//                    Toast.makeText(getActivity(), "保存成功！", Toast.LENGTH_LONG)
+//                            .show();
+//                    // CookingAddFragment cRecordFg = new CookingAddFragment();
+//                    // Bundle bundle = new Bundle();
+//                    // bundle.putString("menuId", menuId);
+//                    // bundle.putInt("foodProcessingId", foodProcessingId);
+//                    // cRecordFg.setArguments(bundle);
+//                    getActivity().getFragmentManager().beginTransaction()
+//                            .replace(R.id.xiaye_fragment, new CoverFragment())
+//                            .commit();
+//                } else {
+//                    Log.e("CookingEditFragment", "flag = " + flag);
+//                    Toast.makeText(getActivity(), "保存失败！", Toast.LENGTH_SHORT)
+//                            .show();
+//                }
+//            }
+//
+//        } else {
+//            // 返回
+//            // getActivity().getFragmentManager().beginTransaction().remove(this)
+//            // .commit();
         }
     }
 

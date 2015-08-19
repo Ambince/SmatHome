@@ -1,10 +1,12 @@
 package com.xiaye.smarthome.main;
 
-import java.util.HashMap;
-
 import android.app.Application;
 import android.os.Environment;
 import android.util.Log;
+
+import com.xiaye.smarthome.bean.CookMenuBean;
+
+import java.util.HashMap;
 
 /**
  * 
@@ -26,6 +28,7 @@ public class SmartHomeApplication extends Application {
 	public static int machineId = 0;
 
 	public static int mUpdateUIFlag = 0;
+	public  static CookMenuBean  menuBean;
 
 	public static String mHTMLPath = Environment.getExternalStorageDirectory()
 			+ "/smart/apk/html/";
@@ -40,5 +43,6 @@ public class SmartHomeApplication extends Application {
 		exctCookingFlag = "";
 		appMap = new HashMap<String, Object>();
 		machineId = 0;
+		menuBean = new CookMenuBean();
 	}
 }
