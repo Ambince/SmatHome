@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import com.jni.info.InfoDealIF;
 import com.xiaye.smarthome.R;
 import com.xiaye.smarthome.adapter.LightGroupAdapter;
 
@@ -18,11 +19,20 @@ public class GroupSettingFragment extends Fragment {
 
     ListView mListView;
 
+    InfoDealIF info;
+
+    String dbResult;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.lightgroup_setting, null);
+
+        info = new InfoDealIF();
+
+
         mListView = (ListView) view.findViewById(R.id.lightgroup_list);
         mListView.setAdapter(new LightGroupAdapter(getActivity()));
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

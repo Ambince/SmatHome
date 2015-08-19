@@ -33,6 +33,8 @@ import java.util.List;
  */
 public class CookingFragment extends Fragment {
 
+    public static String TAG = CookingFragment.class.getSimpleName();
+
     private GridView gridview;
     private String cooking_name;
     private String schema;
@@ -149,8 +151,8 @@ public class CookingFragment extends Fragment {
             FragmentTransaction transaction = getActivity()
                     .getFragmentManager().beginTransaction();
             transaction.replace(R.id.xiaye_fragment, itemFragment);
+            transaction.addToBackStack(TAG);
             transaction.commit();
-
         }
     };
 
@@ -234,5 +236,4 @@ public class CookingFragment extends Fragment {
         }
         return list;
     }
-
 }

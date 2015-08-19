@@ -26,91 +26,6 @@ import com.xiaye.smarthome.bean.UserBean;
 
 public class ParseJson {
 
-	// public static CookbookDetailMenubean parseCookbookDetailMenubean(String
-	// js)
-	// throws Exception {
-	//
-	// CookbookDetailMenubean cookbookDetailMenubean = null;
-	// new String("[{" + "\"summarize\":\"宫保鸡丁\","
-	// + "\"introduceMakeMethod\":\"大庆油田\"," + "\"times\":\"1.24\","
-	// + "\"Nodes\":\"6\"," + "\"usenumber\":\"2\","
-	// + "\"materialId\":\"大庆油田\"," + "\"foodProcessingId\":\"1\","
-	// + "\"materialName\":\"大庆油田\"," + "\"typeId\":\"配料\","
-	// + "\"materialNumber\":\"180g\","
-	// + "\"materialProcessingMethod\":\"大庆油田\","
-	// + "\"materialProcessingNumber\":\"3\","
-	// + "\"machineId\":\"3\"," + "\"machineName\":\"智能烹调机\"}," +
-	//
-	// "{\"summarize\":\"咸烧白\"," + "\"introduceMakeMethod\":\"大庆油田\","
-	// + "\"times\":\"1.24\"," + "\"Nodes\":\"6\","
-	// + "\"usenumber\":\"2\"," + "\"materialId\":\"大庆油田\","
-	// + "\"foodProcessingId\":\"1\"," + "\"materialName\":\"大庆油田\","
-	// + "\"typeId\":\"配料\"," + "\"materialNumber\":\"180g\","
-	// + "\"materialProcessingMethod\":\"大庆油田\","
-	// + "\"materialProcessingNumber\":\"3\","
-	// + "\"machineId\":\"3\"," + "\"machineName\":\"智能烹调机\"}]");
-	//
-	// JSONArray jsonArray = new JSONArray(js);
-	// // JSONArray jsonArray = new JSONArray(json);
-	// for (int i = 0; i < jsonArray.length(); i++) {
-	// JSONObject jsonObject = jsonArray.getJSONObject(i);
-	// summarize = jsonObject.getString("summarize");
-	// System.out.println(summarize);
-	// introduceMakeMethod = jsonObject.getString("introduceMakeMethod");
-	// System.out.println(introduceMakeMethod);
-	// cookbookDetailMenubean = new CookbookDetailMenubean(summarize,
-	// introduceMakeMethod);
-	//
-	// }
-	// return cookbookDetailMenubean;
-	// }
-	//
-	// public static CookMenu parseCookMenubean(String js) {
-	// String menuName;
-	// String theCuisineString;
-	// boolean isDry;
-	// boolean isMeat;
-	// boolean isFish;
-	// boolean isMeatType;
-	// boolean isBirds;
-	// boolean isFood;
-	// boolean isMushroom;
-	// boolean isProductsClass;
-	// String colorString;
-	// String summarize;
-	// String introduceMakeMethod;
-	//
-	// JSONArray jsonArray;
-	// try {
-	// jsonArray = new JSONArray(js);
-	// for (int i = 0; i < jsonArray.length();) {
-	// JSONObject jsonObject = jsonArray.getJSONObject(i);
-	// menuName = jsonObject.getString("menuName");
-	// theCuisineString = jsonObject.getString("theCuisine");
-	// isDry = jsonObject.getBoolean("dry");
-	// isMeat = jsonObject.getBoolean("meat");
-	// isFish = jsonObject.getBoolean("fish");
-	// isMeatType = jsonObject.getBoolean("meatType");
-	// isBirds = jsonObject.getBoolean("birds");
-	// isFood = jsonObject.getBoolean("food");
-	// isMushroom = jsonObject.getBoolean("mushroom");
-	// isProductsClass = jsonObject.getBoolean("productsClass");
-	// colorString = jsonObject.getString("usenumber");
-	// summarize = jsonObject.getString("machineShapeCode");
-	// introduceMakeMethod = jsonObject.getString("machineShapeCode");
-	//
-	// CookMenu cm = new CookMenu(menuName, theCuisineString, isDry,
-	// isMeat, isFish, isMeatType, isBirds, isFood,
-	// isMushroom, isProductsClass, colorString, summarize,
-	// introduceMakeMethod);
-	// return cm;
-	// }
-	// } catch (JSONException e) {
-	// e.printStackTrace();
-	// }
-	// return null;
-	// }
-	//
 	public static List<CookingRecordBean> parseCookingRecordBean(String js)
 			throws Exception {
 		List<CookingRecordBean> cookbookDetailMorebeans = new ArrayList<CookingRecordBean>();
@@ -246,38 +161,6 @@ public class ParseJson {
 		}
 		return list;
 	}
-
-	// // public static List<Timingbean> parseTimingbean(String js) throws
-	// // Exception {
-	// //
-	// // List<Timingbean> timingbeans = new ArrayList<Timingbean>();
-	// // new String("[{" + "\"fuctionCode\":\"01\","
-	// // + "\"checkCode\":\"01\"," + "\"digitCode\":\"14\","
-	// // + "\"tips\":\"智能烹调机\"}," +
-	// //
-	// // "{\"fuctionCode\":\"00\"," + "\"checkCode\":\"01\","
-	// // + "\"digitCode\":\"01\"," + "\"tips\":\"智能烹调机\"}," +
-	// //
-	// // "{\"fuctionCode\":\"03\"," + "\"checkCode\":\"01\","
-	// // + "\"digitCode\":\"05\"," + "\"tips\":\"智能烹调机\"}," +
-	// //
-	// // "{\"fuctionCode\":\"06\"," + "\"checkCode\":\"01\","
-	// // + "\"digitCode\":\"01\"," + "\"tips\":\"智能烹调机\"}]");
-	// // //
-	// // // JSONArray jsonArray = new JSONArray(js);
-	// // // // JSONArray jsonArray = new JSONArray(json);
-	// // // for (int i = 0; i < jsonArray.length(); i++) {
-	// // // JSONObject jsonObject = jsonArray.getJSONObject(i);
-	// // // fuctionCode = jsonObject.getString("fuctionCode");
-	// // // checkCode = jsonObject.getString("checkCode");
-	// // // digitCode = jsonObject.getString("digitCode");
-	// // // tips = jsonObject.getString("tips");
-	// // // Timingbean timingbean = new Timingbean(fuctionCode, checkCode,
-	// // // digitCode, tips);
-	// // // timingbeans.add(timingbean);
-	// // // }
-	// // // return timingbeans;
-	// // // }
 
 	public static List<CookMenuBean> parseCookbookbean(String js)
 			throws Exception {
@@ -634,5 +517,4 @@ public class ParseJson {
 		}
 		return apkUrl;
 	}
-
 }

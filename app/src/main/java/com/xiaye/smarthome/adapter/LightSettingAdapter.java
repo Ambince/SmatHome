@@ -43,7 +43,7 @@ public class LightSettingAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.light_setting_item, null);
             mHolder = new Holder();
-            //            mHolder.mid = (TextView) convertView.findViewById(R.id.lightgroup_item_id);
+            mHolder.mNo = (TextView) convertView.findViewById(R.id.lightsetting_item_no);
             mHolder.mAddr = (TextView) convertView.findViewById(R.id.lightsetting_item_addr);
             mHolder.mType = (TextView) convertView.findViewById(R.id.lightsetting_item_type);
             mHolder.mPort = (TextView) convertView.findViewById(R.id.lightsetting_item_port);
@@ -56,7 +56,7 @@ public class LightSettingAdapter extends BaseAdapter {
             mHolder = (Holder) convertView.getTag();
         }
 
-//        mHolder.mid.setText(position+"");
+        mHolder.mNo.setText(position+1+"");
         mHolder.mAddr.setText("地址 " + position);
         mHolder.mType.setText("类型 " + position);
         mHolder.mPort.setText("端口 " + position);
@@ -68,7 +68,7 @@ public class LightSettingAdapter extends BaseAdapter {
 
     private class Holder {
 
-        //        public TextView mid;
+        public TextView mNo;
         public TextView mType;
         public TextView mAddr;
         public TextView mPort;
