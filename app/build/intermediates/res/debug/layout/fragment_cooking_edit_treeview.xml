@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container_treeview"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"></RelativeLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-<!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/fragment_cooking_edit_treeview.xml -->
+    <RelativeLayout
+        android:id="@+id/container_treeview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btn_tv_save"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:background="@layout/btnstyle"
+            android:padding="4dp"
+            android:text="分类保存"></Button>
+
+        <Button
+            android:id="@+id/btn_tv_back"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@id/btn_tv_save"
+            android:background="@layout/btnstyle"
+            android:padding="4dp"
+            android:text="返回"></Button>
+    </RelativeLayout>
+
+
+</LinearLayout><!-- From: file:/C:/Users/hemingli/Desktop/XiaYeSmartHome/app/src/main/res/layout/fragment_cooking_edit_treeview.xml -->

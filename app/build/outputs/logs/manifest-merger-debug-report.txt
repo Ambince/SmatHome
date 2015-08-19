@@ -19,7 +19,7 @@ uses-sdk
 ADDED from AndroidManifest.xml:8:5
 MERGED from com.android.support:support-v4:22.2.0:20:5
 MERGED from com.github.johnkil.print:print:1.2.2:8:5
-MERGED from SmartHome:library:unspecified:7:5
+MERGED from XiaYeSmartHome:library:unspecified:7:5
 MERGED from com.android.support:appcompat-v7:21.0.3:15:5
 MERGED from com.android.support:support-v4:22.2.0:20:5
 	android:targetSdkVersion
@@ -58,7 +58,7 @@ application
 ADDED from AndroidManifest.xml:23:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
 MERGED from com.github.johnkil.print:print:1.2.2:12:5
-MERGED from SmartHome:library:unspecified:11:5
+MERGED from XiaYeSmartHome:library:unspecified:11:5
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
 	android:screenOrientation

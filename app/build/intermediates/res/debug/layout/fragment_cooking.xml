@@ -9,4 +9,4 @@
     android:columnWidth="90dp"  
     android:stretchMode="columnWidth"  
     android:gravity="center" 
-    android:padding="10dip"/><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/fragment_cooking.xml -->
+    android:padding="10dip"/><!-- From: file:/C:/Users/hemingli/Desktop/XiaYeSmartHome/app/src/main/res/layout/fragment_cooking.xml -->
