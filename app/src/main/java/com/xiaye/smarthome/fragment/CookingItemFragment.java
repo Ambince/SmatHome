@@ -3,8 +3,10 @@ package com.xiaye.smarthome.fragment;
 import java.util.List;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -189,10 +191,10 @@ public class CookingItemFragment extends Fragment {
 
             CookingInroFragment fragment = new CookingInroFragment();
             fragment.setArguments(bundle);
-            getFragmentManager().beginTransaction().addToBackStack(TAG);
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.xiaye_fragment, fragment).commit();
-
+            FragmentTransaction transition = getFragmentManager().beginTransaction();
+            transition.addToBackStack(TAG);
+            transition.replace(R.id.xiaye_fragment, fragment);
+            transition.commit();
         }
     };
 

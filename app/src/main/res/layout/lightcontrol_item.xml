@@ -16,16 +16,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="2dp"
-
-                />
-
-        <TextView
-                android:id="@+id/light_state"
-                style="@style/cooklist_text_style"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="2dp"
                 />
 
         <LinearLayout

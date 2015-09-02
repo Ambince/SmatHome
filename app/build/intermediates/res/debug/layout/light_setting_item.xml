@@ -22,14 +22,6 @@
                 />
 
         <TextView
-            android:id="@+id/lightsetting_item_type"
-            style="@style/cooklist_text_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-             />
-        <TextView
                 android:id="@+id/lightsetting_item_addr"
                 style="@style/cooklist_text_style"
                 android:layout_width="0dp"
@@ -64,9 +56,11 @@
                     android:id="@+id/lightsetting_item_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/trash" />
+                    android:background="@drawable/trash"
+                    android:clickable="true"
+                    android:focusable="false"/>
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout><!-- From: file:/C:/Users/hemingli/Desktop/XiaYeSmartHome/app/src/main/res/layout/light_setting_item.xml -->
+</LinearLayout><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/light_setting_item.xml -->

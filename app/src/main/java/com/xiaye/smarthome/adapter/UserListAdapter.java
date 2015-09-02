@@ -70,11 +70,7 @@ public class UserListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final int id = position;
 
-//		LayoutInflater vi = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-		
-		convertView = layoutInflater.inflate(R.layout.fragment_user_list_item,
-				null);
+		convertView = layoutInflater.inflate(R.layout.fragment_user_list_item, null);
 		
 		holder = new Holder();
 		holder.cb_selected = (CheckBox) convertView

@@ -45,6 +45,13 @@
         <item>furniture3_3://大厅  </item>
         <item>furniture3_4://厨房  </item>
         <item>furniture3_5://会议室 </item>
+        <item>furniture3_6://茶室 </item>
+        <item>furniture3_7://机房 </item>
+        <item>furniture3_8://休息室 </item>
+        <item>furniture3_9://机房通道 </item>
+        <item>furniture3_10://厕所 </item>
+        <item>furniture3_11://洗手盆 </item>
+
     </string-array>
 
     <string-array name="header">

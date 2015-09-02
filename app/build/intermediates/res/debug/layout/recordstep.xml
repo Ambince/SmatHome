@@ -83,7 +83,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="bottom"
             android:gravity="bottom"
             android:orientation="horizontal" >
 
@@ -106,4 +105,5 @@
                 android:text="返回" />
         </LinearLayout>
     </LinearLayout>
-</LinearLayout><!-- From: file:/C:/Users/hemingli/Desktop/XiaYeSmartHome/app/src/main/res/layout/recordstep.xml -->
+
+</LinearLayout><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/recordstep.xml -->

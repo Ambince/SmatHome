@@ -1,5 +1,6 @@
 package com.xiaye.smarthome.fragment;
 
+import android.app.FragmentTransaction;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +33,8 @@ import android.widget.Toast;
  * @date 2014-11-26 下午5:50:52
  */
 public class CookingAddFragment extends Fragment implements OnClickListener {
+
+    public static String TAG = CookingAddFragment.class.getSimpleName();
 
     private TextView mMenuId_txt;
     private TextView mTimes_txt;
@@ -162,8 +165,11 @@ public class CookingAddFragment extends Fragment implements OnClickListener {
                                 Integer.parseInt((mNodes_txt.getText().toString())));
                         fg.setArguments(bundle);
 
-                        getActivity().getFragmentManager().beginTransaction()
-                                .replace(R.id.xiaye_fragment, fg).commit();
+                        FragmentTransaction transaction = getActivity()
+                                .getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.xiaye_fragment, fg);
+                        transaction.addToBackStack(TAG);
+                        transaction.commit();
                     } else {
                         Toast.makeText(getActivity(), "更新失败!", Toast.LENGTH_SHORT)
                                 .show();
@@ -174,12 +180,13 @@ public class CookingAddFragment extends Fragment implements OnClickListener {
                         .show();
             }
         } else if (id == R.id.btn_back) {
-            CookMenuEditFragment fg = new CookMenuEditFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt("foodProcessingId", foodProcessingId);
-            fg.setArguments(bundle);
-            getActivity().getFragmentManager().beginTransaction()
-                    .replace(R.id.xiaye_fragment, fg).commit();
+//            CookMenuEditFragment fg = new CookMenuEditFragment();
+//            Bundle bundle = new Bundle();
+//            bundle.putInt("foodProcessingId", foodProcessingId);
+//            fg.setArguments(bundle);
+//            getActivity().getFragmentManager().beginTransaction()
+//                    .replace(R.id.xiaye_fragment, fg).commit();
+            getActivity().getFragmentManager().popBackStackImmediate();
         } else {
 
         }

@@ -141,7 +141,6 @@ public class SlideMenuFragment extends Fragment {
 		layoutMenu.setOrientation(LinearLayout.VERTICAL);
 		layoutMenu.setGravity(Gravity.CENTER_VERTICAL);
 
-		
 		// 手机竖屏		
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,  height);
 		layoutMenu.setLayoutParams(params);

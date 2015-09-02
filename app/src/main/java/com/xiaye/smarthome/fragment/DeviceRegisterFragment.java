@@ -25,7 +25,7 @@ import com.xiaye.smarthome.constant.Type;
 import com.xiaye.smarthome.main.MainActivity;
 
 public class DeviceRegisterFragment extends Fragment implements OnClickListener {
-	private String[] typeNames = {"插座及控制面板", "智能家电", "烹调器具", "安防设备", "其它"};
+	private String[] typeNames = {"插座及控制面板", "智能家电", "烹调器具", "安防设备",  "开关（群组）","其它"};
 	InfoDealIF info = null;
 	TextView dvTypeId_txt = null;
 	TextView machineShapeCode_txt = null;

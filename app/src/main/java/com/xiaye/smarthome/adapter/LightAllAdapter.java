@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.xiaye.smarthome.R;
+import com.xiaye.smarthome.bean.LightGroupMemberBean;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by ChenSir on 2015/8/10 0010.
@@ -14,20 +18,32 @@ public class LightAllAdapter extends BaseAdapter {
 
     private Holder mHolder;
 
+    public List<LightGroupMemberBean> mList;
     public LayoutInflater inflater;
 
-    public LightAllAdapter(Context context) {
+    public static HashMap<Integer, Boolean> isSelected;
+
+    public LightAllAdapter(Context context,List<LightGroupMemberBean> list) {
         inflater = LayoutInflater.from(context);
+        mList = list;
+        isSelected = new HashMap<>();
+        initData();
+    }
+
+    private void initData() {
+        for (int i = 0; i < mList.size(); i++) {
+            getIsSelected().put(i, false);
+        }
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return mList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mList.get(position);
     }
 
     @Override
@@ -36,36 +52,46 @@ public class LightAllAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.lights_all_item, null);
             mHolder = new Holder();
             mHolder.mCheckBox = (CheckBox) convertView.findViewById(R.id.al_selected);
             mHolder.mAddr = (TextView) convertView.findViewById(R.id.al_selected_addr);
             mHolder.mid = (TextView) convertView.findViewById(R.id.al_selected_id);
-            mHolder.mType = (TextView) convertView.findViewById(R.id.al_selected_type);
             mHolder.mPort = (TextView) convertView.findViewById(R.id.al_selected_port);
 
             convertView.setTag(mHolder);
-
         } else {
             mHolder = (Holder) convertView.getTag();
         }
 
-        mHolder.mAddr.setText("地址 "+position);
-        mHolder.mType.setText("类型 "+position);
-        mHolder.mid.setText(position+"");
-        mHolder.mPort.setText("端口 "+position);
+        LightGroupMemberBean bean = mList.get(position);
+
+        mHolder.mAddr.setText(bean.getGroupAddress()+"");
+        mHolder.mid.setText(bean.getGroupId()+"");
+        mHolder.mPort.setText(bean.getGroupPort()+"");
+
+        mHolder.mCheckBox.setSelected(isSelected.get(position));
+        mHolder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                getIsSelected().put(position, isChecked);
+            }
+        });
 
         return convertView;
+
     }
 
 
-    private class Holder {
+    public static HashMap<Integer, Boolean> getIsSelected() {
+        return isSelected;
+    }
 
+    private class Holder {
         public CheckBox mCheckBox;
         public TextView mid;
-        public TextView mType;
         public TextView mAddr;
         public TextView mPort;
     }

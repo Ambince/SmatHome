@@ -36,6 +36,8 @@ import com.xiaye.smarthome.main.MainActivity;
  */
 public class UploadCookRcdFragment extends Fragment implements OnClickListener {
 
+	public static String TAG = UploadCookRcdFragment.class.getSimpleName();
+
 	ListView listView = null;
 	Button confirm_btn = null;
 	Button back_btn = null;
@@ -132,36 +134,36 @@ public class UploadCookRcdFragment extends Fragment implements OnClickListener {
 			data[length] = Type.COOKING_RECORD_TYPE;// 文件类型
 
 			isSelected = RecordStepListAdapter.isSelected;
+			if (isSelected != null) {
 
-			Iterator iter = isSelected.entrySet().iterator();
-			while (iter.hasNext()) {
+				Iterator iter = isSelected.entrySet().iterator();
+				while (iter.hasNext()) {
 
-				Map.Entry entry = (Map.Entry) iter.next();
-				if ((Boolean) entry.getValue()) {
-					int position = (Integer) entry.getKey();
-					// 设备记录号（附加数据）
-					int dr = recordList.get(position).getRecordNo();
-					data[length + 1] = (byte) (0xff & dr);
-					data[length + 2] = (byte) ((0xff00 & dr) >> 8);
-					data[length + 3] = (byte) ((0xff0000 & dr) >> 16);
-					data[length + 4] = (byte) ((0xff000000 & dr) >> 24);
-					// 调用接口，上传记录
-					if (info.control(MainActivity.interfaceId,
-							Type.PROTO_FILE_DEVICEUP, data, null) == 0) {
-						Toast.makeText(getActivity(), "正在上传..请等待....",
-								Toast.LENGTH_SHORT).show();
-					} else {
-						Toast.makeText(getActivity(), "操作失败！",
-								Toast.LENGTH_LONG).show();
+					Map.Entry entry = (Map.Entry) iter.next();
+					if ((Boolean) entry.getValue()) {
+						int position = (Integer) entry.getKey();
+						// 设备记录号（附加数据）
+						int dr = recordList.get(position).getRecordNo();
+						data[length + 1] = (byte) (0xff & dr);
+						data[length + 2] = (byte) ((0xff00 & dr) >> 8);
+						data[length + 3] = (byte) ((0xff0000 & dr) >> 16);
+						data[length + 4] = (byte) ((0xff000000 & dr) >> 24);
+						// 调用接口，上传记录
+						if (info.control(MainActivity.interfaceId,
+								Type.PROTO_FILE_DEVICEUP, data, null) == 0) {
+							Toast.makeText(getActivity(), "正在上传..请等待....",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(getActivity(), "操作失败！",
+									Toast.LENGTH_LONG).show();
+						}
 					}
 				}
 			}
 
 		} else {
 			// 返回按钮
-			getActivity().getFragmentManager().beginTransaction()
-					.replace(R.id.xiaye_fragment, new DvinfoListFragment())
-					.commit();
+			getActivity().getFragmentManager().popBackStackImmediate();
 		}
 	}
 }

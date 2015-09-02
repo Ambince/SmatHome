@@ -1,5 +1,6 @@
 package com.xiaye.smarthome.fragment;
 
+import android.app.FragmentTransaction;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +29,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MaterialEditFragment extends Fragment implements OnClickListener {
+
+    public static String TAG = MaterialEditFragment.class.getSimpleName();
 
     private EditText materialName_edt;
     private Spinner typeId_spn;
@@ -115,15 +118,16 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
         switch (id) {
             case R.id.materialtable_back_btn:
                 //返回
-                RecordStepEditFragment mFg = new RecordStepEditFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("foodProcessingId", foodProcessingId);
-                bundle.putString("menuId", menuId);
-                bundle.putInt("totalNodes", totalNodes);
-                mFg.setArguments(bundle);
-                RecordStepEditFragment backFg = new RecordStepEditFragment();
-                getActivity().getFragmentManager().beginTransaction()
-                        .replace(R.id.xiaye_fragment, backFg).commit();
+//                RecordStepEditFragment mFg = new RecordStepEditFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("foodProcessingId", foodProcessingId);
+//                bundle.putString("menuId", menuId);
+//                bundle.putInt("totalNodes", totalNodes);
+//                mFg.setArguments(bundle);
+//                RecordStepEditFragment backFg = new RecordStepEditFragment();
+//                getActivity().getFragmentManager().beginTransaction()
+//                        .replace(R.id.xiaye_fragment, backFg).commit();
+                getActivity().getFragmentManager().popBackStackImmediate();
                 break;
 
             case R.id.materialtable_save_btn:
@@ -137,10 +141,12 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
                 break;
 
             case R.id.materialtable_ok_btn:
-                // 分类保存
-                getActivity().getFragmentManager().beginTransaction()
-                        .replace(R.id.xiaye_fragment, new CookingEditFragment())
-                        .commit();
+                // 下一步
+                FragmentTransaction transaction = getActivity()
+                        .getFragmentManager().beginTransaction();
+                transaction.replace(R.id.xiaye_fragment, new CookingEditFragment());
+                transaction.addToBackStack(TAG);
+                transaction.commit();
                 break;
 
             default:
@@ -220,7 +226,7 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
         } else {
             material.setTypeId(3);
         }
-        if (materialProcessingNumber_edt.getText() != null) {
+        if (!materialProcessingNumber_edt.getText().toString().equals("")) {
             material.setMaterialProcessingNumber(Integer
                     .parseInt(materialProcessingNumber_edt.getText().toString()));
             return material;
@@ -268,5 +274,4 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
             typeId_spn.setSelection(3);
         }
     }
-
 }

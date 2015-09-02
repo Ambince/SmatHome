@@ -129,31 +129,34 @@ public class MaterialFragment extends Fragment {
 		@Override
 		public void onClick(View view) {
 
-			CookingInroFragment fragment = new CookingInroFragment();
-			Bundle bundle = new Bundle();
+			getFragmentManager().popBackStackImmediate();
 
-			bundle.putString(UI_Constant.COOKING_ITEM_NAME, cooking_item_name);
-			bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
-			
-			bundle.putInt("useNum", getArguments().getInt("useNum"));
-			bundle.putString(UI_Constant.FLAG, exctCookingFlag);
-			bundle.putString(UI_Constant.COOKING_SCHEMA, getArguments()
-					.getString(UI_Constant.COOKING_SCHEMA));
-			bundle.putString("cuisinesName",
-					getArguments().getString("cuisinesName"));
-			bundle.putString("machineShapeCode",
-					getArguments().getString("machineShapeCode"));
-			bundle.putString(UI_Constant.COOKING_URI,
-					getArguments().getString(UI_Constant.COOKING_URI));
-			bundle.putSerializable("cookMenuBean", getArguments()
-					.getSerializable("cookMenuBean"));
-			bundle.putString(getArguments().getString(
-							UI_Constant.COOKING_URI, ""), getArguments()
-							.getString(UI_Constant.COOKING_URI, ""));
+//			CookingInroFragment fragment = new CookingInroFragment();
+//			Bundle bundle = new Bundle();
+//
+//			bundle.putString(UI_Constant.COOKING_ITEM_NAME, cooking_item_name);
+//			bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
+//
+//			bundle.putInt("useNum", getArguments().getInt("useNum"));
+//			bundle.putString(UI_Constant.FLAG, exctCookingFlag);
+//			bundle.putString(UI_Constant.COOKING_SCHEMA, getArguments()
+//					.getString(UI_Constant.COOKING_SCHEMA));
+//			bundle.putString("cuisinesName",
+//					getArguments().getString("cuisinesName"));
+//			bundle.putString("machineShapeCode",
+//					getArguments().getString("machineShapeCode"));
+//			bundle.putString(UI_Constant.COOKING_URI,
+//					getArguments().getString(UI_Constant.COOKING_URI));
+//			bundle.putSerializable("cookMenuBean", getArguments()
+//					.getSerializable("cookMenuBean"));
+//			bundle.putString(getArguments().getString(
+//							UI_Constant.COOKING_URI, ""), getArguments()
+//							.getString(UI_Constant.COOKING_URI, ""));
+//
+//			fragment.setArguments(bundle);
+//			getActivity().getFragmentManager().beginTransaction()
+//					.replace(R.id.xiaye_fragment, fragment).commit();
 
-			fragment.setArguments(bundle);
-			getActivity().getFragmentManager().beginTransaction()
-					.replace(R.id.xiaye_fragment, fragment).commit();
 		}
 	};
 
@@ -168,7 +171,7 @@ public class MaterialFragment extends Fragment {
 				MainActivity.downloadFlag = 1;
 				// 设备虚拟地址
 				int machineId = SmartHomeApplication.machineId;
-				Log.e("MaterialFragment row:152", "machineId = " + machineId);
+				Log.e("MaterialFg row:152", "machineId = " + machineId);
 				// 记录号
 				int record = sBean.getRecord();
 				String dataFilePath = sBean.getDatafilestoragepath();

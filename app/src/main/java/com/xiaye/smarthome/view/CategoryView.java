@@ -156,10 +156,10 @@ public class CategoryView extends LinearLayout implements
 					RadioGroup.LayoutParams.WRAP_CONTENT);
 
 		} else {
-			float width = MobilePhoneDeviceInfo.width;
 			float height = MobilePhoneDeviceInfo.height;
 			height = height / 5 - 37;
-			params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, (int)height);
+			float width = 80;
+			params = new RadioGroup.LayoutParams((int) width, (int)height);
 
 		}
 

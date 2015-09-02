@@ -1,6 +1,7 @@
 package com.xiaye.smarthome.main;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
@@ -36,6 +37,8 @@ public class SmartHomeApplication extends Application {
 	// 智能烹调提示信息数组
 	public static byte[][] tips = null;
 
+	public static Context mAppContext;
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -44,5 +47,6 @@ public class SmartHomeApplication extends Application {
 		appMap = new HashMap<String, Object>();
 		machineId = 0;
 		menuBean = new CookMenuBean();
+		mAppContext = getApplicationContext();
 	}
 }

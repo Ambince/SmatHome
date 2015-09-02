@@ -24,8 +24,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             />
-
-
     <TextView
             android:id="@+id/al_selected_type"
             style="@style/list_text_style"
@@ -51,4 +49,4 @@
             />
 
 </LinearLayout>
-<!-- From: file:/C:/Users/hemingli/Desktop/XiaYeSmartHome/app/src/main/res/layout/lights_all_item.xml -->
+<!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/lights_all_item.xml -->

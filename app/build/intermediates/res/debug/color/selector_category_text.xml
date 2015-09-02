@@ -4,4 +4,4 @@
     <item android:state_checked="true" android:color="@color/white"/>
     <item android:state_focused="true" android:color="@color/white"/>
     <item android:color="@color/white"/>
-</selector><!-- From: file:/C:/Users/hemingli/Desktop/XiaYeSmartHome/app/src/main/res/color/selector_category_text.xml -->
+</selector><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/color/selector_category_text.xml -->

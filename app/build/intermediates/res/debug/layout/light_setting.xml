@@ -1,102 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#eeeeee"
-        android:orientation="vertical">
-
-    <TextView
-            style="@style/title_text_style"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="灯光列表"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical" >
 
         <TextView
-                style="@style/cooklist_text_style"
-                android:layout_width="0dip"
+                style="@style/title_text_style"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/text"
+                android:gravity="center"
                 android:padding="5dp"
-                android:text="序号"/>
+                android:text="灯光列表"/>
 
-        <TextView
-                style="@style/cooklist_text_style"
-                android:layout_width="0dip"
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/text"
-                android:padding="5dp"
-                android:text="硬件类型"/>
-        <TextView
-                style="@style/cooklist_text_style"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/text"
-                android:padding="5dp"
-                android:text="地址"/>
-        <TextView
-                style="@style/cooklist_text_style"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/text"
-                android:padding="5dp"
-                android:text="端口"/>
-        <TextView
-                style="@style/cooklist_text_style"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/text"
-                android:padding="5dp"
-                android:text="备注"/>
+                android:orientation="horizontal">
 
-        <TextView
-                style="@style/cooklist_text_style"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/text"
-                android:padding="5dp"
-                android:text="删除"/>
+            <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/text"
+                    android:padding="5dp"
+                    android:text="序号"/>
 
-    </LinearLayout>
+            <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/text"
+                    android:padding="5dp"
+                    android:text="地址"/>
+            <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/text"
+                    android:padding="5dp"
+                    android:text="端口"/>
+            <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/text"
+                    android:padding="5dp"
+                    android:text="备注"/>
 
+            <TextView
+                    style="@style/cooklist_text_style"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/text"
+                    android:padding="5dp"
+                    android:text="删除"/>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical"
-                  android:background="#eeeeee"
+        </LinearLayout>
 
-            >
         <ListView
                 android:id="@+id/light_setting_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="10"
-                android:background="#ffffffff"
-                android:cacheColorHint="#ffffffff"
-                android:scrollbars="none">
+                android:layout_weight="1" >
         </ListView>
 
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="0dip"
-                android:layout_weight="3"
-                android:text="添加灯光"
-                android:textSize="12sp"
-                android:id="@+id/lightsetting_addlight"
-                />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                >
+
+            <Button
+                    android:id="@+id/lightsetting_addlight"
+                    style="@style/cooklist_text_style"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:background="@layout/btnstyle"
+                    android:padding="4dp"
+                    android:text="添加灯光" />
+
+            <Button
+                    android:id="@+id/lightsetting_back"
+                    style="@style/cooklist_text_style"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:background="@layout/btnstyle"
+                    android:padding="4dp"
+                    android:text="返回" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
-<!-- From: file:/C:/Users/hemingli/Desktop/XiaYeSmartHome/app/src/main/res/layout/light_setting.xml -->
+
+</LinearLayout><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/light_setting.xml -->

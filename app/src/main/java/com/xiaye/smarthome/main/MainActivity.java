@@ -1,12 +1,7 @@
 package com.xiaye.smarthome.main;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.*;
 import android.app.AlertDialog.Builder;
-import android.app.Fragment;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -258,6 +253,8 @@ public class MainActivity extends Activity {
         @Override
         public void click(RadioGroup group, int checkedId) {
 
+//            clearBackStack();
+
             replaceFragmentWith(CoverFragment.class);
             // 点击了那一组菜单（一级、二级、三级、头部、尾部）
             String categoryName = (String) group.getTag();
@@ -362,20 +359,10 @@ public class MainActivity extends Activity {
         } else if (btnTag.equals(UI_Constant.USER_ADD)) {
             // 添加用户
             replaceFragmentWith(UserAddFragment.class);
-            // } else if (btnTag.equals(UI_Constant.COOKING_RECORD_VIEW)) {
-            // // 查看烹调记录
-            // replaceFragmentWith(CookingRecordFragment.class);
-            // } else if (btnTag.equals(UI_Constant.COOKING_RECORD_DOWNLOAD)) {
-            // // 下载烹调记录
-            // replaceFragmentWith(DvinfoloadFragment.class);
-            // } else if (btnTag.equals(UI_Constant.COOKING_RECORD_UPLOAD)) {
-            // // 上传烹调记录
-            // replaceFragmentWith(DvinfoListFragment.class);
+
         } else if (btnTag.equals(UI_Constant.COOKING_MACHINE)) {
             // 烹调器具
-            //TODO
             replaceFragmentWith(CookUtensilFragment.class);
-//            replaceFragmentWith(CookingEditFragment.class);
         } else if (btnTag.equals(UI_Constant.COOKING_NATIVE)
                 || btnTag.equals(UI_Constant.COOKING_STORE)
                 || btnTag.equals(UI_Constant.COOKING_ONLINE)
@@ -422,14 +409,32 @@ public class MainActivity extends Activity {
         } else if (btnTag.equals(UI_Constant.GROUP_SETTINGS)) {
             //群组设置
             replaceFragmentWith(GroupSettingFragment.class);
-        } else if (btnTag.equals(UI_Constant.LIGHT_PASSAGEWAY)) {
-            //入门通道
-            replaceFragmentWith(LightControlFragment.class);
+        } else if (btnTag.equals(UI_Constant.LIGHT_PASSAGEWAY) ||
+                btnTag.equals(UI_Constant.LIGHT_MANAGER) ||
+                btnTag.equals(UI_Constant.LIGHT_HALL) ||
+                btnTag.equals(UI_Constant.LIGHT_KITCHEN) ||
+                btnTag.equals(UI_Constant.LIGHT_MEETING) ||
+                btnTag.equals(UI_Constant.LIGHT_TEA) ||
+                btnTag.equals(UI_Constant.LIGHT_PCROOM) ||
+                btnTag.equals(UI_Constant.LIGHT_REST) ||
+                btnTag.equals(UI_Constant.LIGHT_PCPASS) ||
+                btnTag.equals(UI_Constant.LIGHT_TOILET) ||
+                btnTag.equals(UI_Constant.LIGHT_WASHING)) {
+            //入门通道等
+            replaceFragmentWith(LightControlFragment.class, "", "", "", category3_name);
 
         } else {
 
         }
     }
+
+    private void clearBackStack() {
+        final FragmentManager fragmentManager = getFragmentManager();
+        while (fragmentManager.getBackStackEntryCount() != 0) {
+            fragmentManager.popBackStackImmediate();
+        }
+    }
+
 
     /**
      * @param cooking_name
@@ -505,6 +510,10 @@ public class MainActivity extends Activity {
                 }
                 bundle.putString(UI_Constant.COOKING_SCHEMA, name[1]);
                 bundle.putString(UI_Constant.COOKING_NAME, name[2]);
+                if (name.length > 3) {
+                    //如果长度大于3，则是灯光控制界面（带“位置”参数）
+                    bundle.putString(UI_Constant.LIGHT_LOCATION, name[3]);
+                }
                 fragment.setArguments(bundle);
             }
             android.app.FragmentTransaction ft = getFragmentManager()
@@ -618,6 +627,13 @@ public class MainActivity extends Activity {
                                     Toast.LENGTH_LONG).show();
                         }
 
+                        break;
+
+
+                    case SYSTM_FUN_REGISTER_GROUP:
+                        //通知新建群组的群组id
+                        int groupId = ChangeByteAndInt.bytesToInt(callmsg.getPara(), 0);
+                        showGroupRegisterFragment(groupId);
                         break;
 
                     case SYSTM_FUN_DEVICE_ONLINE:// 家电上线
@@ -837,8 +853,8 @@ public class MainActivity extends Activity {
                         break;
 
                     case DRIVER_DRIVER_REPLY_SETTING:
-					/*
-					 * 设备状态变化报告（自定义）
+                    /*
+                     * 设备状态变化报告（自定义）
 					 */
                         break;
 
@@ -1131,7 +1147,7 @@ public class MainActivity extends Activity {
 
             int what = msg.what;
             if (what == 1) {
-				/*
+                /*
 				 * 查询和控制信息
 				 */
 
@@ -1389,6 +1405,50 @@ public class MainActivity extends Activity {
         manager.notify(0, notification);
     }
 
+    /**
+     * 群组注册通知
+     *
+     * @param groupId
+     */
+    public void showGroupRegisterFragment(int groupId) {
+
+        NotificationManager manager = (NotificationManager) this
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+        // 创建一个Notification
+        Notification notification = new Notification();
+        // 设置显示在手机最上边的状态栏的图标
+        notification.icon = R.drawable.ic_launcher;
+        // 当当前的notification被放到状态栏上的时候，提示内容
+        notification.tickerText = "烹调记录更新成功！点击进入编辑！";
+
+        /***
+         * notification.contentIntent:一个PendingIntent对象，当用户点击了状态栏上的图标时，
+         * 该Intent会被触发 notification.contentView:我们可以不在状态栏放图标而是放一个view
+         * notification.deleteIntent 当当前notification被移除时执行的intent
+         * notification.vibrate 当手机震动时，震动周期设置
+         */
+        // 添加声音提示
+        notification.defaults = Notification.DEFAULT_SOUND;
+        // audioStreamType的值必须AudioManager中的值，代表着响铃的模式
+        notification.audioStreamType = android.media.AudioManager.ADJUST_LOWER;
+        // 用户点击通知后删除该通知
+        notification.flags = Notification.FLAG_AUTO_CANCEL;
+
+        Intent intent = new Intent();
+        // 群组ID
+        intent.putExtra("groupId", groupId);
+
+        intent.putExtra("id", 3);
+        intent.setClass(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                intent, PendingIntent.FLAG_ONE_SHOT);
+        // 点击状态栏的图标出现的提示信息设置
+        notification.setLatestEventInfo(this, "请完善菜谱相关信息", "点击进行完善",
+                pendingIntent);
+        manager.notify(0, notification);
+    }
+
+
     @Override
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -1415,8 +1475,20 @@ public class MainActivity extends Activity {
             int upfpID = intent.getIntExtra("foodProcessingId", 0);
             bundle.putInt("foodProcessingId", upfpID);
             cEditFragment.setArguments(bundle);
+
             this.getFragmentManager().beginTransaction()
                     .replace(R.id.xiaye_fragment, cEditFragment).commit();
+        } else if (id == 3) {
+            Log.i("Main", "群组注册通知");
+            GroupRegisterFragment fragment = new GroupRegisterFragment();
+            Bundle bundle = new Bundle();
+            int groupId = intent.getIntExtra("groupId", 0);
+            bundle.putInt("groupId", groupId);
+            fragment.setArguments(bundle);
+            this.getFragmentManager().beginTransaction()
+                    .replace(R.id.xiaye_fragment, fragment).commit();
+        } else {
+
         }
     }
 
