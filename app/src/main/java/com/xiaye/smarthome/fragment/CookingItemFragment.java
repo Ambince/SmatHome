@@ -66,8 +66,9 @@ public class CookingItemFragment extends Fragment {
 
         schema = getArguments().getString(UI_Constant.COOKING_SCHEMA, "");
         cooking_name = getArguments().getString(UI_Constant.COOKING_NAME, "");
-        Log.e("CookingItem", cooking_name);
+        Log.e(TAG, cooking_name);
         exctCookingFlag = getArguments().getString(UI_Constant.FLAG, "");
+        Log.e(TAG, "exctCookingFlag = "+exctCookingFlag);
 
         return inflater.inflate(R.layout.fragfment_cooking_item_list, null);
     }

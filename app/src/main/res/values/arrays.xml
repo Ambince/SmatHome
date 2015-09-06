@@ -111,8 +111,8 @@
     <string-array name="meat">
         <item>cook3_1-荤 ://0</item>
         <item>cook3_1-素://1</item>
-        <item>cook3_2-荤://4</item>
-        <item>cook3_2-素://5</item>
+        <item>cook3_2-荤://0</item>
+        <item>cook3_2-素://1</item>
     </string-array>
 
     <string-array name="isdry">

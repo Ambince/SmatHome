@@ -83,8 +83,8 @@ public class CtrlFragment extends Fragment implements ProtocolInfo {
 
         OnlineOperationActivity.machineID = getActivity().getIntent().getIntExtra("machineId", 0);
 
-        // JSON测试
-        byte[] d = {0};
+        // 获取状态信息界面数据
+        byte[] d = {0};//数据data可无，只需通信code
         SingleData data = new SingleData(GETSTATEINFOTYPE, d.length, d, 0);
         ShareData.SetdataFromPlugin(data);
 
@@ -114,7 +114,6 @@ public class CtrlFragment extends Fragment implements ProtocolInfo {
             System.out.println("tips = " + tips);
 
             // 解析字符串，变为二维数组
-
             tipsData = ParseJson.parseCookingRcdStepBeanByteArrary(tips);
             System.out.println(" tipsData = " + new String(tipsData[0]));
 
@@ -249,7 +248,6 @@ public class CtrlFragment extends Fragment implements ProtocolInfo {
                                 }
                                 blockCount++;
                             }
-
                         }
                         break;
 

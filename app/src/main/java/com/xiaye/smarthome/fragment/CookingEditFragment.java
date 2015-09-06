@@ -49,18 +49,6 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
     private int j = 0;//子结点索引
 
     private Button msave, mback;//分类保存，返回按钮
-    // 存放数据
-    private String theCuisineString;
-    private String colorString;
-    private boolean isDry;
-    private boolean isMeat;
-    private boolean isFish;
-    private boolean isVegetable;
-    private boolean isBird;
-    private boolean isMushroom;
-    private boolean isProductsClass;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -172,8 +160,7 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
             menu.setSummarize(SmartHomeApplication.appMap.get("summarize")
                     .toString());
             // 制作介绍
-            menu.setIntroduceMakeMethod(SmartHomeApplication.appMap.get(
-                    "makingMethod").toString());
+            menu.setIntroduceMakeMethod(SmartHomeApplication.appMap.get("makingMethod").toString());
 
             String insertData = changeBeanToJsonString(menu);
 //

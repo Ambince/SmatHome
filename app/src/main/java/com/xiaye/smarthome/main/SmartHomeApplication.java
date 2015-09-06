@@ -42,7 +42,6 @@ public class SmartHomeApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		Log.i(TAG, "Application:onCreate()");
 		exctCookingFlag = "";
 		appMap = new HashMap<String, Object>();
 		machineId = 0;

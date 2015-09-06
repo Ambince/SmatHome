@@ -41,6 +41,8 @@ import com.xiaye.smarthome.util.PluginBeanService;
  */
 public class CookUtensilFragment extends Fragment {
 
+    public final static String TAG = CookbookDetailFragment.class.getSimpleName();
+
     ListView mListView = null;
     Button look = null;
     public static List<CookUtensilBean> mCookUtensilBeanList = null;
@@ -69,12 +71,12 @@ public class CookUtensilFragment extends Fragment {
                     Type.SELECT_MACHINE1,
                     jsonParse.pagingJsonParse(0, 0, Type.SORT_HOMEAPP));
             if (infoReceive != null) {
+                Log.i(TAG, "infoReceive = " + infoReceive);
                 mCookUtensilBeanList = ParseJson
                         .parseCookUtensilList(infoReceive);
 
-                Log.e("exctCookingFlag", exctCookingFlag);
-
                 if ("cooking".equals(exctCookingFlag)) {
+                    Log.i(TAG, "exctCookingFlag is " + exctCookingFlag);
                     CookUtensilAdapter = new CookUtensilListAdapter(
                             getActivity(), mCookUtensilBeanList, getArguments()
                             .getInt(UI_Constant.USER_COUNT, 0));

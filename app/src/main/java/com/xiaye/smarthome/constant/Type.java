@@ -123,14 +123,16 @@ public interface Type {
 
     public static final int INSERT_MEMBER_INFORMATION = 0x80102014; // 插入成员信息表所有
 
-    public static final int UPDATE_GROUPIN =0x10000033;//更新群组列表（更新群组名称，位置，根据群组id）
+    public static final int UPDATE_GROUPIN = 0x10000033;//更新群组列表（更新群组名称，位置，根据群组id）
 
     //灯光部分操作
     public static final int SYSTM_FUN_REGISTER_GROUP = 0x40000038;//通知新建群组的群组id
     public static final int SELECT_GROUP3 = 0x80201051;//查询群组列表所有
     public static final int SELECT_GROUP4 = 0x80201052;//查询群组列表（群组ID，名称，状态根据位置）
     public static final int SELECT_GROUPMEMBER4 = 0x80201053;//查询群成员列表所有（根据群组ID）
-    public static final int SELECT_GROUPMEMBER5 = 0x80201054;//查询设备信息表中的所有灯光（所有）
+    public static final int SELECT_GROUPMEMBER5 = 0x80201054;//查询设备别名，虚拟地址，地址，端口（包括加入群组和没加入群组）
+    public static final int SELECT_GROUPMEMBER6 = 0x80201055;//查询群组id，地址，端口（加入群组的灯光）
+
 
     public static final int PROTO_FUN_NEW_GROUP = 0x10000029; // 新增群组(暂时废除)
     public static final int PROTO_FUN_GROUPIN = 0x10000024;  // 将设备加入到群组

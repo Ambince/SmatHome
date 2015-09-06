@@ -58,7 +58,7 @@ public class LightAllAdapter extends BaseAdapter {
             mHolder = new Holder();
             mHolder.mCheckBox = (CheckBox) convertView.findViewById(R.id.al_selected);
             mHolder.mAddr = (TextView) convertView.findViewById(R.id.al_selected_addr);
-            mHolder.mid = (TextView) convertView.findViewById(R.id.al_selected_id);
+            mHolder.mName = (TextView) convertView.findViewById(R.id.al_selected_id);
             mHolder.mPort = (TextView) convertView.findViewById(R.id.al_selected_port);
 
             convertView.setTag(mHolder);
@@ -68,8 +68,8 @@ public class LightAllAdapter extends BaseAdapter {
 
         LightGroupMemberBean bean = mList.get(position);
 
-        mHolder.mAddr.setText(bean.getGroupAddress()+"");
-        mHolder.mid.setText(bean.getGroupId()+"");
+        mHolder.mAddr.setText(bean.getDv_addrs()+"");
+        mHolder.mName.setText(bean.getGroupId()+"");
         mHolder.mPort.setText(bean.getGroupPort()+"");
 
         mHolder.mCheckBox.setSelected(isSelected.get(position));
@@ -91,7 +91,7 @@ public class LightAllAdapter extends BaseAdapter {
 
     private class Holder {
         public CheckBox mCheckBox;
-        public TextView mid;
+        public TextView mName;
         public TextView mAddr;
         public TextView mPort;
     }

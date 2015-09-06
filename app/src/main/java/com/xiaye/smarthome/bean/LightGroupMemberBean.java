@@ -11,8 +11,11 @@ public class LightGroupMemberBean {
      * 端口
      * 备注
      */
-    private int groupId;
+
     private int device_Vaddrs;// 设备虚拟地址
+    private int dv_addrs;// 设备地址
+
+    private int groupId;
     private String group_Hardware_Type;
     private int groupAddress;
     private int groupPort;
@@ -74,5 +77,13 @@ public class LightGroupMemberBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getDv_addrs() {
+        return dv_addrs;
+    }
+
+    public void setDv_addrs(int dv_addrs) {
+        this.dv_addrs = dv_addrs;
     }
 }

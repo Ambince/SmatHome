@@ -61,10 +61,7 @@ public class SelectableItemHolder extends TreeNode.BaseNodeViewHolder<String> {
                 String mtext = micontree.text;
                 for (int i = 0; i < node.getParent().size(); i++) {
                     if (!node.equals(node.getParent().getChildren().get(i))) {
-                        Log.i("123124124", node.getParent().getChildren().get(i).toString());
                         tView.deselectById(node.getParent().getId(), i);
-
-
                     } else {
                         node.setSelected(isChecked);
                         if (node.isSelected()) {
@@ -75,22 +72,18 @@ public class SelectableItemHolder extends TreeNode.BaseNodeViewHolder<String> {
 
                     }
                 }
-
-
             }
         });
 
         if (node.isLastChild()) {
             view.findViewById(R.id.bot_line).setVisibility(View.INVISIBLE);
         }
-
         return view;
     }
 
     private void changedate(String parent, String child) {
         if (parent.equals("菜系")) {
             SmartHomeApplication.menuBean.setTheCuisine(child);
-
         } else if (parent.equals("荤素")) {
             SmartHomeApplication.menuBean.setMeat(true);
 

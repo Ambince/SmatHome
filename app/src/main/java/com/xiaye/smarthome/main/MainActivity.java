@@ -629,7 +629,6 @@ public class MainActivity extends Activity {
 
                         break;
 
-
                     case SYSTM_FUN_REGISTER_GROUP:
                         //通知新建群组的群组id
                         int groupId = ChangeByteAndInt.bytesToInt(callmsg.getPara(), 0);
@@ -639,6 +638,7 @@ public class MainActivity extends Activity {
                     case SYSTM_FUN_DEVICE_ONLINE:// 家电上线
                         // 获取家电上线时返回的设备信息数组
                         deviceinfoByteArray = callmsg.getPara();
+                        Log.i(TAG, "家电信息：" + new String(deviceinfoByteArray));
 
                     case SYSTM_FUN_DEVICE_OFFLINE:// 家电下线
                         try {
@@ -650,6 +650,7 @@ public class MainActivity extends Activity {
                         }
                         // 用于获得设备名称
                         registerUpname = deviceinfobean.getMachineName();
+
 
                         int state;
                         if (temp == SYSTM_FUN_DEVICE_ONLINE) {
@@ -967,7 +968,6 @@ public class MainActivity extends Activity {
                     // 局域网下成功搜索到总控
                     case SERACH_OK:
                         Log.i(TAG, "局域网下成功搜索到总控");
-                        // TODO
                         byte[] back = callmsg.getPara();
                         // 总控ID
                         byte[] contrId = new byte[4];
@@ -1148,9 +1148,8 @@ public class MainActivity extends Activity {
             int what = msg.what;
             if (what == 1) {
                 /*
-				 * 查询和控制信息
+                 * 查询和控制信息
 				 */
-
                 byte[] data1 = (byte[]) msg.obj;
                 // 获取插件对应的设备虚拟地址
                 int machineId = OnlineOperationActivity.machineID;

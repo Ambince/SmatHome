@@ -34,6 +34,8 @@ import java.util.Map;
  */
 public class LightAllFragment extends Fragment {
 
+    public final static String TAG = LightAllFragment.class.getSimpleName();
+
     ListView mListView;
 
     Button mAddbtn;
@@ -76,7 +78,7 @@ public class LightAllFragment extends Fragment {
                         int content = Integer.parseInt(mEditText.getText().toString().trim());
                         for (int i = 0; i < aList.size(); i++) {
                             LightGroupMemberBean bean = aList.get(i);
-                            if (content == bean.getGroupAddress() || content == bean.getGroupPort()) {
+                            if (content == bean.getDv_addrs() || content == bean.getGroupPort()) {
                                 mListView.smoothScrollToPosition(i);
                             } else {
                                 Toast.makeText(getActivity().getApplicationContext(), "未查询到相关灯光！", Toast.LENGTH_LONG).show();
@@ -94,7 +96,6 @@ public class LightAllFragment extends Fragment {
                                 if (entry.getValue()) {
                                     int position = entry.getKey();
                                     LightGroupMemberBean bean = aList.get(position);
-                                    int groupId = bean.getGroupId();
                                     int device_Vaddrs = bean.getDevice_Vaddrs();
                                     byte[] input = Connect2ByteArrays.conn2ByteArrays(ChangeByteAndInt.intToBytes(groupId), ChangeByteAndInt.intToBytes(device_Vaddrs));
                                     InfoDealIF.OutPut output = new InfoDealIF.OutPut();
@@ -103,18 +104,16 @@ public class LightAllFragment extends Fragment {
                                                 Type.PROTO_FUN_GROUPIN, input, output);
 
                                         if (flag != -1 && (output.getOutput()[0] == 0)) {
-                                            Toast.makeText(getActivity().getApplicationContext(), "保存成功！", Toast.LENGTH_LONG)
-                                                    .show();
-                                            getActivity().getFragmentManager().popBackStackImmediate();
-
+                                            Log.i(TAG, "添加成功");
                                         } else {
-                                            Log.e("LightAllFragment", "flag = " + flag);
-                                            Toast.makeText(getActivity(), "保存失败！", Toast.LENGTH_SHORT)
-                                                    .show();
+                                            Log.e(TAG, "添加失败，flag = " + flag);
                                         }
                                     }
                                 }
                             }
+                            Toast.makeText(getActivity().getApplicationContext(), "保存成功！", Toast.LENGTH_SHORT)
+                                    .show();
+                            getActivity().getFragmentManager().popBackStackImmediate();
                         }
                     }
                 });
@@ -135,31 +134,5 @@ public class LightAllFragment extends Fragment {
 
 
         return view;
-    }
-
-
-    public String changeBeanToJsonString(LightGroupMemberBean bean) {
-
-        JSONObject stoneObject = new JSONObject();
-
-        int groupId = bean.getGroupId();
-        String group_Hardware_Type = bean.getGroup_Hardware_Type();
-        int groupAddress = bean.getGroupAddress();
-        int groupPort = bean.getGroupPort();
-        String remarks = bean.getRemarks();
-
-        try {
-            stoneObject.put("groupId", groupId);
-            stoneObject.put("group_Hardware_Type", group_Hardware_Type);
-            stoneObject.put("groupAddress", groupAddress);
-            stoneObject.put("groupPort", groupPort);
-            stoneObject.put("remarks", remarks);
-            return stoneObject.toString();
-
-        } catch (Exception e) {
-            Toast.makeText(getActivity(), "保存记录出错！", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-        return null;
     }
 }

@@ -68,7 +68,7 @@ public class CookingFragment extends Fragment {
         initView(view);
 
         cooking_name = (String) getArguments().get(UI_Constant.COOKING_NAME);
-        Log.e("cookingFG", "cooking_name= " + cooking_name);
+        Log.e(TAG, "cooking_name= " + cooking_name);
         if (cooking_name != null) {
             int pos = Integer.parseInt(cooking_name);
             if (pos < cooking_array.length && pos != -1) {
@@ -136,6 +136,8 @@ public class CookingFragment extends Fragment {
             bundle.putString(UI_Constant.COOKING_URI, uri);
             bundle.putString(UI_Constant.COOKING_SCHEMA, schema);
             bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
+
+            Log.e(TAG,"exctCookingFlag = " + exctCookingFlag);
 
             // 传递“执行烹调”Flag
             if (exctCookingFlag.startsWith("cooking")) {
