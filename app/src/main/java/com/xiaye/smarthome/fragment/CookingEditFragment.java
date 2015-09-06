@@ -85,8 +85,7 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
 
         TreeNode menu12 = new TreeNode("干菜").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu22 = new TreeNode("湿").setViewHolder(new SelectableItemHolder(getActivity()));
-        TreeNode menu32 = new TreeNode("汤").setViewHolder(new SelectableItemHolder(getActivity()));
-        folder3.addChildren(menu12, menu22, menu32);
+        folder3.addChildren(menu12, menu22);
 
         TreeNode menu13 = new TreeNode("红").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu23 = new TreeNode("橙").setViewHolder(new SelectableItemHolder(getActivity()));

@@ -118,9 +118,8 @@
     <string-array name="isdry">
         <item>cook3_1-干菜 ://0</item>
         <item>cook3_1-湿://1</item>
-        <item>cook3_1-汤://2</item>
-        <item>cook3_2-汤://0</item>
-        <item>cook3_2-素://1</item>
+        <item>cook3_2-干://0</item>
+        <item>cook3_2-湿://1</item>
     </string-array>
 
     <string-array name="color">
@@ -133,7 +132,6 @@
         <item>cook3_1-蓝://6</item>
         <item>cook3_1-紫://7</item>
     </string-array>
-
 
     <string-array name="taste">
         <item>cook3_1-酸://0</item>
