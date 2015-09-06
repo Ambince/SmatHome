@@ -1,6 +1,5 @@
 package com.xiaye.smarthome.fragment;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jni.info.InfoDealIF;
@@ -85,15 +82,18 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
 
         TreeNode menu12 = new TreeNode("干菜").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu22 = new TreeNode("湿").setViewHolder(new SelectableItemHolder(getActivity()));
-        TreeNode menu32 = new TreeNode("汤").setViewHolder(new SelectableItemHolder(getActivity()));
-        folder3.addChildren(menu12, menu22, menu32);
+        folder3.addChildren(menu12, menu22);
 
         TreeNode menu13 = new TreeNode("红").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu23 = new TreeNode("橙").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu33 = new TreeNode("黄").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu43 = new TreeNode("绿").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu53 = new TreeNode("蓝").setViewHolder(new SelectableItemHolder(getActivity()));
-        folder4.addChildren(menu13, menu23, menu33, menu43, menu53);
+        TreeNode menu63 = new TreeNode("黑").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu73 = new TreeNode("紫").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu83 = new TreeNode("棕").setViewHolder(new SelectableItemHolder(getActivity()));
+
+        folder4.addChildren(menu13, menu23, menu33, menu43, menu53, menu63, menu73, menu83);
 
         TreeNode menu14 = new TreeNode("是").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu24 = new TreeNode("否").setViewHolder(new SelectableItemHolder(getActivity()));

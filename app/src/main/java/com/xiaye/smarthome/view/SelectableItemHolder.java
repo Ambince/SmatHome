@@ -1,7 +1,6 @@
 package com.xiaye.smarthome.view;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -85,28 +84,53 @@ public class SelectableItemHolder extends TreeNode.BaseNodeViewHolder<String> {
         if (parent.equals("菜系")) {
             SmartHomeApplication.menuBean.setTheCuisine(child);
         } else if (parent.equals("荤素")) {
-            SmartHomeApplication.menuBean.setMeat(true);
-
+            if (child.equals("荤")) {
+                SmartHomeApplication.menuBean.setMeat(true);
+            } else if (child.equals("素")) {
+                SmartHomeApplication.menuBean.setMeat(false);
+            }
         } else if (parent.equals("干湿")) {
-            SmartHomeApplication.menuBean.setDry(true);
+            if (child.equals("干菜")) {
+                SmartHomeApplication.menuBean.setDry(true);
+            } else if (child.equals("湿")) {
+                SmartHomeApplication.menuBean.setDry(false);
+            }
 
         } else if (parent.equals("颜色")) {
             SmartHomeApplication.menuBean.setColor(child);
 
         } else if (parent.equals("菜类")) {
-            SmartHomeApplication.menuBean.setFood(true);
+            if (child.equals("是")) {
+                SmartHomeApplication.menuBean.setFood(true);
+            } else if (child.equals("否")) {
+                SmartHomeApplication.menuBean.setFood(false);
+            }
         } else if (parent.equals("鱼类")) {
-            SmartHomeApplication.menuBean.setFish(true);
+            if (child.equals("是")) {
+                SmartHomeApplication.menuBean.setFish(true);
+            } else if (child.equals("否")) {
+                SmartHomeApplication.menuBean.setFish(false);
+            }
 
         } else if (parent.equals("禽类")) {
-            SmartHomeApplication.menuBean.setBirds(true);
+            if (child.equals("是")) {
+                SmartHomeApplication.menuBean.setBirds(true);
+            } else if (child.equals("否")) {
+                SmartHomeApplication.menuBean.setBirds(false);
+            }
 
         } else if (parent.equals("菌类")) {
-            SmartHomeApplication.menuBean.setMushroom(true);
-
+            if (child.equals("是")) {
+                SmartHomeApplication.menuBean.setMushroom(true);
+            } else if (child.equals("否")) {
+                SmartHomeApplication.menuBean.setMushroom(false);
+            }
         } else if (parent.equals("制品类")) {
-            SmartHomeApplication.menuBean.setProductsClass(true);
-
+            if (child.equals("是")) {
+                SmartHomeApplication.menuBean.setProductsClass(true);
+            } else if (child.equals("否")) {
+                SmartHomeApplication.menuBean.setProductsClass(false);
+            }
         } else {
 
         }
