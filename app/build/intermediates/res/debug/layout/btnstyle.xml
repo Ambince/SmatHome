@@ -6,4 +6,4 @@
     <item android:drawable="@drawable/btn" android:state_enabled="true"/>
     <item android:drawable="@drawable/btn" android:state_focused="true"/>
 
-</selector><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/btnstyle.xml -->
+</selector><!-- From: file:/C:/Users/hemingli/Desktop/SmartHome/app/src/main/res/layout/btnstyle.xml -->

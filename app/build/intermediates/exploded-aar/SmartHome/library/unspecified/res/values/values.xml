@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/library/src/main/res/values/ids.xml -->
+    <!-- From: file:/C:/Users/hemingli/Desktop/SmartHome/library/src/main/res/values/ids.xml -->
     <eat-comment/>
     <item name="node_header" type="id"/>
     <item name="node_items" type="id"/>
     <item name="tree_items" type="id"/>
-    <!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/library/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/hemingli/Desktop/SmartHome/library/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="TreeNodeStyle">
         <item name="android:paddingLeft">20dp</item>
