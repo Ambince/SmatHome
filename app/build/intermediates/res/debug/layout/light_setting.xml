@@ -4,11 +4,6 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
         <TextView
                 style="@style/title_text_style"
                 android:layout_width="match_parent"
@@ -64,14 +59,16 @@
                     android:background="@drawable/text"
                     android:padding="5dp"
                     android:text="删除"/>
-
         </LinearLayout>
 
         <ListView
                 android:id="@+id/light_setting_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="1" >
+                android:layout_weight="1"
+                android:cacheColorHint="#ffffffff"
+                android:scrollbars="none"
+                >
         </ListView>
 
         <LinearLayout
@@ -81,25 +78,25 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp"
                 >
-
             <Button
+                    android:textSize="12sp"
                     android:id="@+id/lightsetting_addlight"
                     style="@style/cooklist_text_style"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:background="@layout/btnstyle"
                     android:padding="4dp"
-                    android:text="添加灯光" />
+                    android:text="添加灯光"/>
 
             <Button
+                    android:textSize="12sp"
                     android:id="@+id/lightsetting_back"
                     style="@style/cooklist_text_style"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:background="@layout/btnstyle"
                     android:padding="4dp"
-                    android:text="返回" />
+                    android:text="返回"/>
         </LinearLayout>
-    </LinearLayout>
 
-</LinearLayout><!-- From: file:/C:/Users/hemingli/Desktop/SmartHome/app/src/main/res/layout/light_setting.xml -->
+</LinearLayout><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/light_setting.xml -->

@@ -58,7 +58,6 @@ public class CookingItemAdapter extends BaseAdapter {
 		}
 
 		CookMenuBean data = datas.get(position);
-		Log.e("CookingItemAdapter", data+"");
 		StringBuilder attribute = new StringBuilder();
 		if (data.isMeat()) {
 			attribute.append("荤菜");
@@ -73,7 +72,6 @@ public class CookingItemAdapter extends BaseAdapter {
 		int i = 0;
 		holder.tv_id.setText((i++)+"");
 		holder.tv_name.setText(data.getMenuName());
-		Log.e("CookingItemAdapter", data.getMenuName());
 		attribute.append(","+data.getColor());
 		holder.tv_attribute.setText(attribute.toString());
 		return convertView;

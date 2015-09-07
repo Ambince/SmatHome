@@ -484,7 +484,10 @@ public class MainActivity extends Activity {
             category3_name = "本地";
             list = getCategoryById(R.array.header, "cook3_1");
         }
-
+        if (SmartHomeApplication.exctCookingFlag.startsWith("cooking")) {
+            Log.e(TAG,"666666666666666");
+            flag = "1";
+        }
         int pos = getPosByText(header_name);
         String schema = getSchemaByName(category3_name);
         Log.e("category3_name", category3_name + "..." + header_name + pos);
@@ -1204,7 +1207,7 @@ public class MainActivity extends Activity {
             String g = jsonObject.getInt("registerWay") + "";
 
 			/*
-			 * 根据协议 设备名称:0x30 生产日期:0x31 设备虚拟地址:0x32 设备序列号:0x33 程序版本:0x34
+             * 根据协议 设备名称:0x30 生产日期:0x31 设备虚拟地址:0x32 设备序列号:0x33 程序版本:0x34
 			 * 生产厂家:0x35 注册方式:0x36
 			 */
             JSONObject resultJson = new JSONObject();

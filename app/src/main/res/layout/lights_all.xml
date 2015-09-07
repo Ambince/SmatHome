@@ -90,7 +90,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#ffffffff"
             android:cacheColorHint="#ffffffff"
             android:scrollbars="none">
     </ListView>

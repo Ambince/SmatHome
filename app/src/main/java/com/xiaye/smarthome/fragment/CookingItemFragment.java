@@ -68,7 +68,7 @@ public class CookingItemFragment extends Fragment {
         cooking_name = getArguments().getString(UI_Constant.COOKING_NAME, "");
         Log.e(TAG, cooking_name);
         exctCookingFlag = getArguments().getString(UI_Constant.FLAG, "");
-        Log.e(TAG, "exctCookingFlag = "+exctCookingFlag);
+        Log.e(TAG, "exctCookingFlag = " + exctCookingFlag);
 
         return inflater.inflate(R.layout.fragfment_cooking_item_list, null);
     }
@@ -134,6 +134,7 @@ public class CookingItemFragment extends Fragment {
 
         int pos = Integer.parseInt(authority);
         // 判断是否为执行烹调流程
+
         if (exctCookingFlag != null && exctCookingFlag.startsWith("cooking")) {
             cuisinesName = getArguments().getString("cuisinesName");
             useNum = getArguments().getInt("useNum");
@@ -145,8 +146,7 @@ public class CookingItemFragment extends Fragment {
                     machineShapeCode, cuisinesName);
             recieve_localcuisine = info.inquire(MainActivity.interfaceId,
                     Type.SELECT_PROCESS3, condition);
-            Log.i("CookingItemFragment", "recieve_localcuisine = "
-                    + recieve_localcuisine);
+            Log.i(TAG, "recieve_localcuisine = " + recieve_localcuisine);
         } else {
             recieve_localcuisine = info.inquire(MainActivity.interfaceId,
                     cooking_code[pos], null);
@@ -175,7 +175,7 @@ public class CookingItemFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putSerializable("cookMenuBean", itemBean);
             bundle.putString(UI_Constant.COOKING_URI, uriString);
-
+            Log.e(TAG, "exctCookingFlag 178 = " + exctCookingFlag);
             if (exctCookingFlag.startsWith("cooking")) {
                 Log.e("CookingItemFg 171", "exctCookingFlag = "
                         + exctCookingFlag);

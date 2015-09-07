@@ -90,7 +90,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#ffffffff"
             android:cacheColorHint="#ffffffff"
             android:scrollbars="none">
     </ListView>
@@ -118,4 +117,4 @@
                 android:background="@layout/btnstyle"
                 />
     </LinearLayout>
-</LinearLayout><!-- From: file:/C:/Users/hemingli/Desktop/SmartHome/app/src/main/res/layout/lights_all.xml -->
+</LinearLayout><!-- From: file:/C:/Users/dell/AndroidStudioProjects/SmartHome/app/src/main/res/layout/lights_all.xml -->

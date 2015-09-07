@@ -60,7 +60,6 @@ public class CookUtensilFragment extends Fragment {
         super.onAttach(activity);
 
         exctCookingFlag = SmartHomeApplication.exctCookingFlag;
-        SmartHomeApplication.exctCookingFlag = "";
 
         try {
             info = new InfoDealIF();
@@ -110,13 +109,13 @@ public class CookUtensilFragment extends Fragment {
                 CookUtensilBean mCookUtensil = mCookUtensilBeanList
                         .get(position);
 
-                // 生成插件快捷入口(以后封装更新的UI的方法)
-                SmartHomeApplication.mUpdateUIFlag = 1;
-                SmartHomeApplication.appMap.put(
-                        UI_Constant.PLUGIN_SHORTCUT_KEY, mCookUtensil);
-
                 if (mCookUtensil.getMachineState() == 1) {
+                    // 生成插件快捷入口
+                    SmartHomeApplication.mUpdateUIFlag = 1;
+                    SmartHomeApplication.appMap.put(UI_Constant.PLUGIN_SHORTCUT_KEY, mCookUtensil);
+
                     if ("cooking".equals(exctCookingFlag)) {
+
                         SmartHomeApplication.machineId = mCookUtensil
                                 .getMachineId();
                         // 执行烹调
@@ -148,8 +147,7 @@ public class CookUtensilFragment extends Fragment {
                             String pckgName = pService.getPackageName(
                                     machineShapeCode, getActivity()
                                             .getApplicationContext());
-                            Log.i("CookUtensilFragment", "pckgName=="
-                                    + pckgName);
+                            Log.i("CookUtensilFragment", "pckgName==" + pckgName);
                             if (pckgName != null) {
 
                                 Log.i("CookUtensilFragment", "进入在线操作");

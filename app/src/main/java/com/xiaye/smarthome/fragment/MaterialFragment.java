@@ -164,7 +164,7 @@ public class MaterialFragment extends Fragment {
 
 		@Override
 		public void onClick(View view) {
-			if ("cooking".equals(exctCookingFlag)) {
+			if ("cooking1".equals(exctCookingFlag)) {
 				/*
 				 * 执行烹调
 				 */
@@ -198,9 +198,9 @@ public class MaterialFragment extends Fragment {
 						Type.PROTO_FILE_TODEVICE, data3, null);
 				Log.e("materialFG", "flag = " + flag);
 				if (flag == 0) {
+					SmartHomeApplication.exctCookingFlag = "";
 					Toast.makeText(getActivity(), "正在下载烹调记录.....",
 							Toast.LENGTH_SHORT).show();
-
 					// 通过烹调记录ID查询记录节点表 提示信息和节点编号
 					JsonParse jsonParse = new JsonParse();
 					String tipString = info.inquire(
