@@ -408,7 +408,7 @@ public class ParseJson {
                 tips = jsonObject.getString("tips");
 
                 CookingRcdStepBean cRcdStepBean = new CookingRcdStepBean();
-                cRcdStepBean.setNodenumber(nodenumber);
+                cRcdStepBean.setNodeNumber(nodenumber);
                 cRcdStepBean.setTimeOfNode(timenode);
                 cRcdStepBean.setTips(tips);
                 cRcdStepBeans.add(cRcdStepBean);

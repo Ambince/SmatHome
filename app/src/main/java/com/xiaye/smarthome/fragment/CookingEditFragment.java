@@ -241,7 +241,6 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
             stoneObject.put("color", color);
             stoneObject.put("summarize", summarize);
             stoneObject.put("introduceMakeMethod", introduceMakeMethod);
-            Log.i(TAG, "需更新的JSON数据：" + stoneObject.toString());
             return stoneObject.toString();
 
         } catch (Exception e) {

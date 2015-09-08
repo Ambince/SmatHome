@@ -69,12 +69,11 @@ public class CookingItemAdapter extends BaseAdapter {
         } else {
             attribute.append(",湿菜");
         }
-        int i = 0;
-        holder.tv_id.setText(i + "");
+        holder.tv_id.setText(position + 1 + "");
         holder.tv_name.setText(data.getMenuName());
         attribute.append("," + data.getColor());
         holder.tv_attribute.setText(attribute.toString());
-        i++;
+
         return convertView;
     }
 

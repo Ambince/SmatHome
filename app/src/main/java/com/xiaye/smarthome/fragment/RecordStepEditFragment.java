@@ -176,12 +176,11 @@ public class RecordStepEditFragment extends Fragment implements OnClickListener 
             case R.id.recordstepinfo_save_btn:
                 if (sNum < stepCount) {
                     tips = tips_edt.getText().toString();
-                    CookingRcdStepBean cRcdStepbean = new CookingRcdStepBean();
-                    cRcdStepbean.setNodenumber(sNum);
+                    CookingRcdStepBean cRcdStepbean;
                     Log.e(TAG, "sNum = " + sNum);
-                    cRcdStepbean.setFoodProcessingId(foodProcessingId);
-                    cRcdStepbean.setTips(tips);
-                    rStepList.set(sNum, cRcdStepbean);
+                    rStepList.get(sNum).setFoodProcessingId(foodProcessingId);
+                    rStepList.get(sNum).setTips(tips);
+                    cRcdStepbean =  rStepList.get(sNum);
                     // 更新数据库
                     if ((info.control(MainActivity.interfaceId,
                             Type.UPDATE_TIMING2, changeObjToJson(cRcdStepbean)
@@ -215,7 +214,7 @@ public class RecordStepEditFragment extends Fragment implements OnClickListener 
         try {
             jsonToDB.put("foodProcessingId", cRcdStepbean.getFoodProcessingId());
             jsonToDB.put("tips", cRcdStepbean.getTips());
-            jsonToDB.put("nodenumber", cRcdStepbean.getNodenumber());
+            jsonToDB.put("nodenumber", cRcdStepbean.getNodeNumber());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -225,8 +224,8 @@ public class RecordStepEditFragment extends Fragment implements OnClickListener 
     public void updateView() {
 
         if (sNum < rStepList.size()) {
-            currentNo_txt.setText(rStepList.get(sNum).getNodenumber() + "");
-            nodeNo_txt.setText(rStepList.get(sNum).getNodenumber() + "");
+            currentNo_txt.setText(rStepList.get(sNum).getNodeNumber() + "");
+            nodeNo_txt.setText(rStepList.get(sNum).getNodeNumber() + "");
             nodeTime_txt.setText(rStepList.get(sNum).getTimeOfNode() + "");
             tips_edt.setText(rStepList.get(sNum).getTips());
         }

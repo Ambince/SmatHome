@@ -193,6 +193,8 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
                 .getText().toString());
 
         String type = typeId_spn.getSelectedItem().toString();
+        Log.i(TAG, "type = " + type);
+
         // "原料", "辅料", "配料"
         if (type.equals("原料")) {
             material.setTypeId(1);
@@ -235,22 +237,24 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
      */
     public void showLastNodeView() {
         count--;
-        if (count >= 0){
+        if (count >= 0) {
             materialName_edt.setText(materialBeans.get(count).getMaterialName());
             materialNumber_edt.setText(materialBeans.get(count).getMaterialNumber());
             materialProcessingMethod_edt.setText(materialBeans.get(count).getMaterialProcessingMethod());
-            materialProcessingNumber_edt.setText(materialBeans.get(count).getMaterialProcessingNumber()+"");
+            materialProcessingNumber_edt.setText(materialBeans.get(count).getMaterialProcessingNumber() + "");
 
             int typeId = materialBeans.get(count).getTypeId();
+            Log.i(TAG, "typeId = " + typeId);
             if (typeId == 1) {
-                typeId_spn.setSelection(1);
+                typeId_spn.setSelection(0);
             } else if (typeId == 2) {
-                typeId_spn.setSelection(2);
+                typeId_spn.setSelection(1);
             } else {
-                typeId_spn.setSelection(3);
+                typeId_spn.setSelection(2);
             }
-        }else{
-            Toast.makeText(getActivity().getApplicationContext(),"已是第1步！",Toast.LENGTH_LONG).show();;
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(), "已是第1步！", Toast.LENGTH_LONG).show();
+
         }
 
     }
