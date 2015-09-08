@@ -123,7 +123,7 @@ public interface Type {
 
     public static final int INSERT_MEMBER_INFORMATION = 0x80102014; // 插入成员信息表所有
 
-    public static final int UPDATE_GROUPIN = 0x10000033;//更新群组列表（更新群组名称，位置，根据群组id）
+    public static final int UPDATE_GROUPIN = 0x10000033;//更新群组列表（更新群组名称，位置，备注，根据群组id）
 
     //灯光部分操作
     public static final int SYSTM_FUN_REGISTER_GROUP = 0x40000038;//通知新建群组的群组id

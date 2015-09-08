@@ -1572,7 +1572,6 @@ containing a value of this type.
         public static final int dialog_list=0x7f0c0071;
         public static final int disableHome=0x7f0c0012;
         public static final int dropdown=0x7f0c0026;
-        public static final int dv_register_cancle_btn=0x7f0c00bf;
         public static final int dv_register_confirm_btn=0x7f0c00be;
         public static final int dvdetail_back_btn=0x7f0c007f;
         public static final int dvdetail_edit_btn=0x7f0c0080;
@@ -1725,7 +1724,8 @@ containing a value of this type.
         public static final int register_dvtypeid_txt=0x7f0c00b7;
         public static final int register_gloc_edt=0x7f0c00c2;
         public static final int register_gname_edt=0x7f0c00c1;
-        public static final int register_groupid_txt=0x7f0c00c0;
+        public static final int register_gremark_edt=0x7f0c00c0;
+        public static final int register_groupid_txt=0x7f0c00bf;
         public static final int right=0x7f0c0022;
         public static final int scrollView=0x7f0c00f1;
         public static final int scrollview=0x7f0c000a;

@@ -474,7 +474,6 @@ int id dialog 0x7f0c0025
 int id dialog_list 0x7f0c0071
 int id disableHome 0x7f0c0012
 int id dropdown 0x7f0c0026
-int id dv_register_cancle_btn 0x7f0c00bf
 int id dv_register_confirm_btn 0x7f0c00be
 int id dvdetail_back_btn 0x7f0c007f
 int id dvdetail_edit_btn 0x7f0c0080
@@ -627,7 +626,8 @@ int id register_dvremark_edt 0x7f0c00bd
 int id register_dvtypeid_txt 0x7f0c00b7
 int id register_gloc_edt 0x7f0c00c2
 int id register_gname_edt 0x7f0c00c1
-int id register_groupid_txt 0x7f0c00c0
+int id register_gremark_edt 0x7f0c00c0
+int id register_groupid_txt 0x7f0c00bf
 int id right 0x7f0c0022
 int id scrollView 0x7f0c00f1
 int id scrollview 0x7f0c000a

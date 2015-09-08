@@ -73,7 +73,7 @@ public class RecordStepEditFragment extends Fragment implements OnClickListener 
         totalNodes = getArguments().getInt("totalNodes");
         menuId = getArguments().getString("menuId");
 
-        Log.i("RecordStep", "foodProcessingId = " + foodProcessingId
+        Log.i(TAG, "foodProcessingId = " + foodProcessingId
                 + "  totalNodes = " + totalNodes);
 
     }
@@ -168,6 +168,7 @@ public class RecordStepEditFragment extends Fragment implements OnClickListener 
                 if (sNum >= 0) {
                     updateView();
                 } else {
+                    sNum = sNum + 1;
                     Toast.makeText(getActivity(), "已是第0步！", Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -175,7 +176,7 @@ public class RecordStepEditFragment extends Fragment implements OnClickListener 
             case R.id.recordstepinfo_save_btn:
                 if (sNum < stepCount) {
                     tips = tips_edt.getText().toString();
-				    CookingRcdStepBean cRcdStepbean = new CookingRcdStepBean();
+                    CookingRcdStepBean cRcdStepbean = new CookingRcdStepBean();
                     cRcdStepbean.setNodenumber(sNum);
                     Log.e(TAG, "sNum = " + sNum);
                     cRcdStepbean.setFoodProcessingId(foodProcessingId);
@@ -185,8 +186,7 @@ public class RecordStepEditFragment extends Fragment implements OnClickListener 
                     if ((info.control(MainActivity.interfaceId,
                             Type.UPDATE_TIMING2, changeObjToJson(cRcdStepbean)
                                     .getBytes(), null)) == 0) {
-                        Toast.makeText(getActivity(), "更新成功!", Toast.LENGTH_SHORT)
-                                .show();
+                        Toast.makeText(getActivity(), "更新成功!", Toast.LENGTH_SHORT).show();
                         sNum = sNum + 1;
                         updateView();
                     } else {
@@ -225,7 +225,6 @@ public class RecordStepEditFragment extends Fragment implements OnClickListener 
     public void updateView() {
 
         if (sNum < rStepList.size()) {
-            Log.e(TAG, "rStepList.get(sNum) = " + rStepList.get(sNum));
             currentNo_txt.setText(rStepList.get(sNum).getNodenumber() + "");
             nodeNo_txt.setText(rStepList.get(sNum).getNodenumber() + "");
             nodeTime_txt.setText(rStepList.get(sNum).getTimeOfNode() + "");

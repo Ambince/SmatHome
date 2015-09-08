@@ -148,15 +148,6 @@
             android:background="@layout/btnstyle"
             android:text="@string/confirm"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/dv_register_cancle_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:background="@layout/btnstyle"
-            android:text="@string/cancle"
-            android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>

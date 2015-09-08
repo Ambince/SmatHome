@@ -166,10 +166,13 @@ public class ParseJson {
             String summarize = jsonObject.getString("summarize");
             String introduceMakeMethod = jsonObject
                     .getString("introduceMakeMethod");
-            boolean isMeat = Boolean.valueOf(jsonObject.getString("meat"));
-            boolean isDry = Boolean.valueOf(jsonObject.getString("dry"));
+
+            String meat = jsonObject.getString("meat");
+            boolean isMeat = meat.equals("y");
+            String dry = jsonObject.getString("dry");
+            boolean isDry = dry.equals("y");
+
             String color = jsonObject.getString("color");
-            Log.e("ParseJson", color);
             String taste = jsonObject.getString("test");
 
             CookMenuBean bean = new CookMenuBean(cookbook_listName, menuId,

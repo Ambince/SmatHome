@@ -29,6 +29,7 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
 
     EditText gName_edt = null;
     EditText gLoc_edt = null;
+    EditText gRemark_edt = null;
 
     Button determine = null;
 
@@ -58,11 +59,13 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
         int id = view.getId();
         String name = gName_edt.getText().toString().trim();
         String loc = gLoc_edt.getText().toString().trim();
+        String remark = gRemark_edt.getText().toString().trim();
         if (id == R.id.dv_register_confirm_btn) {
             JSONObject stoneObject = new JSONObject();
             try {
                 stoneObject.put("groupName", name);
                 stoneObject.put("groupLocation", loc);
+                stoneObject.put("remarks", remark);//
                 stoneObject.put("groupId", groupId);
 
                 String sendRegist = stoneObject.toString();
@@ -100,6 +103,7 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
         groupId_txt = (TextView) view.findViewById(R.id.register_groupid_txt);
         gName_edt = (EditText) view.findViewById(R.id.register_gname_edt);
         gLoc_edt = (EditText) view.findViewById(R.id.register_gloc_edt);
+        gRemark_edt= (EditText) view.findViewById(R.id.register_gremark_edt);
         determine = (Button) view.findViewById(R.id.dv_register_confirm_btn);
 
         determine.setOnClickListener(this);
@@ -113,6 +117,5 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
      */
     public void bindData() {
         groupId_txt.setText(groupId);
-
     }
 }

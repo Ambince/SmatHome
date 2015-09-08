@@ -34,7 +34,6 @@ public class DeviceRegisterFragment extends Fragment implements OnClickListener 
 	EditText dvName_edt = null;
 
 	Button determine = null;
-	Button cancel = null;
 
 	DeviceInformationBean registerBean = null;
 	int machineId = 0;
@@ -113,10 +112,8 @@ public class DeviceRegisterFragment extends Fragment implements OnClickListener 
 		dvName_edt = (EditText) view.findViewById(R.id.register_dvoname_edt);
 
 		determine = (Button) view.findViewById(R.id.dv_register_confirm_btn);
-		cancel = (Button) view.findViewById(R.id.dv_register_cancle_btn);
 
 		determine.setOnClickListener(this);
-		cancel.setOnClickListener(this);
 	}
 
 	/**

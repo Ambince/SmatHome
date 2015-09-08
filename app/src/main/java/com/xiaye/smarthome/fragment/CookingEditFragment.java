@@ -170,6 +170,10 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
                 if (flag == 0) {
                     Toast.makeText(getActivity(), "保存成功！", Toast.LENGTH_LONG)
                             .show();
+
+                    SmartHomeApplication.menuBean = null;
+                    SmartHomeApplication.menuBean = new CookMenuBean();
+
                     getActivity().getFragmentManager().beginTransaction()
                             .replace(R.id.xiaye_fragment, new CoverFragment())
                             .commit();
@@ -237,6 +241,7 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
             stoneObject.put("color", color);
             stoneObject.put("summarize", summarize);
             stoneObject.put("introduceMakeMethod", introduceMakeMethod);
+            Log.i(TAG, "需更新的JSON数据：" + stoneObject.toString());
             return stoneObject.toString();
 
         } catch (Exception e) {
