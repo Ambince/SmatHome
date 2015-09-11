@@ -140,7 +140,7 @@ public class MainActivity extends Activity {
         controllerListView = (ListView) controllerListlayout
                 .findViewById(R.id.controller_list);
 
-        setDataToSharePreference();//Test Code
+//        setDataToSharePreference();//Test Code
 
         // 初始化控件
         initViews();
@@ -485,7 +485,6 @@ public class MainActivity extends Activity {
             list = getCategoryById(R.array.header, "cook3_1");
         }
         if (SmartHomeApplication.exctCookingFlag.startsWith("cooking")) {
-            Log.e(TAG,"666666666666666");
             flag = "1";
         }
         int pos = getPosByText(header_name);
@@ -567,7 +566,6 @@ public class MainActivity extends Activity {
      * @version 1.0
      * @date 2014-11-28 下午9:19:25
      */
-    static int i = 0;
 
     public void refreshMachineList() {
 
@@ -721,7 +719,6 @@ public class MainActivity extends Activity {
 
                             File file = new File(zipPath);
                             String fileName = file.getName();
-                            Log.i(TAG, "fileName == " + fileName);
                             if (fileName.equals(zipPath))
                                 return;
                             String mcSCode = fileName.split("\\.")[0];
@@ -750,7 +747,7 @@ public class MainActivity extends Activity {
                         break;
 
                     case SYSTM_INTERFACE_LOAD_FAIL:
-                        Log.e("Main Handler", "界面插件程序下载失败!");
+                        Log.e(TAG, "界面插件程序下载失败!");
                         Toast.makeText(mainContext, "界面插件程序下载失败！",
                                 Toast.LENGTH_LONG).show();
                         break;
