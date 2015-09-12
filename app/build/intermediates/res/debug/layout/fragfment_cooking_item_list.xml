@@ -50,4 +50,4 @@
         android:background="@layout/btnstyle"
         android:text="@string/back" />
 
-</LinearLayout><!-- From: file:/C:/Users/hemingli/Desktop/XiaYeSmartHome/app/src/main/res/layout/fragfment_cooking_item_list.xml -->
+</LinearLayout><!-- From: file:/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/src/main/res/layout/fragfment_cooking_item_list.xml -->

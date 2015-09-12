@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\pre-dexed\debug\classes-11dd924c7230b0aea6cc8594cd145f6fa223add7.jar" />
-    </item>
-    <item
-        jar="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\pre-dexed\debug\classes-72b87f8885028c18199247394cff1d8e96d88a9b.jar" />
-    </item>
-    <item
-        jar="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\exploded-aar\XiaYeSmartHome\library\unspecified\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="018c9eff17dbe9fe8ce720e3e056f41fc07426d3">
-        <dex dex="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\pre-dexed\debug\classes-d53e3eb176616db56b8d3bd61c73ae6ee0aa3c27.jar" />
-    </item>
-    <item
-        jar="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-d1b59082cd16c6e2f8f81bf519783ac35e470868.jar" />
-    </item>
-    <item
-        jar="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\exploded-aar\com.github.johnkil.print\print\1.2.2\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="3423c4e8a6526948045ac0290c0b5ab753ff5ee6">
-        <dex dex="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\pre-dexed\debug\classes-22b450addfc65ea8319ea3aa140bb9ded4e8b643.jar" />
-    </item>
-    <item
-        jar="H:\android\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jar="/Users/Chensir/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="C:\Users\hemingli\Desktop\XiaYeSmartHome\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-062a5cf424274b4ad0960eafe4351b08c7d2f8e2.jar" />
+        <dex dex="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-caad859c7e7b0c51835f55a42f2acbf34d1a2f1f.jar" />
+    </item>
+    <item
+        jar="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/exploded-aar/XiaYeSmartHome/library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="568b6f773c32955fdd5665b37e009e814534daeb">
+        <dex dex="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/pre-dexed/debug/classes-af01a569b1f4ae2392d7b964138ff21ad68c6b7d.jar" />
+    </item>
+    <item
+        jar="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-fbbe1ea14873c5da2d2c04639125ae6a8eac5e0d.jar" />
+    </item>
+    <item
+        jar="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/exploded-aar/com.github.johnkil.print/print/1.2.2/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3423c4e8a6526948045ac0290c0b5ab753ff5ee6">
+        <dex dex="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/pre-dexed/debug/classes-92519139fd773343c0eb2d65798acd8ad0285177.jar" />
+    </item>
+    <item
+        jar="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/pre-dexed/debug/classes-45f3bcbb71e54c6bb6afdd855e6d0ae7c1363aa7.jar" />
+    </item>
+    <item
+        jar="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/Chensir/Develop/AndroidStudioProjects/XiaYeSmartHome/app/build/intermediates/pre-dexed/debug/classes-710963e034829308ee1d3327a785f170f378a98d.jar" />
     </item>
 
 </items>
