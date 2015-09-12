@@ -1,6 +1,7 @@
 package com.xiaye.smarthome.fragment;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.xiaye.smarthome.main.SmartHomeApplication;
 import com.xiaye.smarthome.util.GenerationId;
 
 public class CookMenuEditFragment extends Fragment implements OnClickListener {
+
+    public static String TAG = CookMenuEditFragment.class.getSimpleName();
 
     private EditText menuName_edt;
     private EditText summarize_edt;
@@ -69,8 +72,13 @@ public class CookMenuEditFragment extends Fragment implements OnClickListener {
                 bundle.putString("menuId", menuId);
                 bundle.putInt("foodProcessingId", foodProcessingId);
                 cRecordFg.setArguments(bundle);
-                getActivity().getFragmentManager().beginTransaction()
-                        .replace(R.id.xiaye_fragment, cRecordFg).commit();
+
+                FragmentTransaction transaction = getActivity()
+                        .getFragmentManager().beginTransaction();
+                transaction.replace(R.id.xiaye_fragment, cRecordFg);
+                transaction.addToBackStack(TAG);
+                transaction.commit();
+
             } else {
                 Toast.makeText(getActivity().getApplicationContext(), "没有获取到烹调记录ID！请重新上传！",Toast.LENGTH_LONG).show();
             }

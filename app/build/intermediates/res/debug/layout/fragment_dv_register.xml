@@ -130,29 +130,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="10dip" >
-
-                <LinearLayout
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal" >
-
-                    <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="设备位置："
-                            android:textSize="20sp" />
-
-                    <EditText
-                            android:id="@+id/register_dvpos_edt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:maxLength="1000"
-                            android:hint="若没有可不填"/>
-                </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -170,15 +147,6 @@
             android:layout_height="wrap_content"
             android:background="@layout/btnstyle"
             android:text="@string/confirm"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/dv_register_cancle_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:background="@layout/btnstyle"
-            android:text="@string/cancle"
             android:textSize="20sp" />
     </LinearLayout>
 

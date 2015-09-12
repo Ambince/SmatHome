@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,73 +34,78 @@ import com.xiaye.smarthome.util.ParseJson;
  */
 public class DvinfoListFragment extends Fragment {
 
-	ListView listView = null;
-	DvinfoListAdapter mDvinfoListAdapter = null;
-	List<CookUtensilBean> mDeviceList = null;
+    public static String TAG = DvinfoListFragment.class.getSimpleName();
 
-	InfoDealIF info = null;
-	String infoReceive = null;
-	
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
+    ListView listView = null;
+    DvinfoListAdapter mDvinfoListAdapter = null;
+    List<CookUtensilBean> mDeviceList = null;
 
-		try {
-			info = new InfoDealIF();
-			JsonParse jsonParse = new JsonParse();
-			infoReceive = info.inquire(MainActivity.interfaceId,
-					Type.SELECT_MACHINE1,
-					jsonParse.pagingJsonParse(0, 0, Type.SORT_HOMEAPP));
-			if (infoReceive != null) {
-				mDeviceList = ParseJson.parseCookUtensilList(infoReceive);
-				if (mDeviceList != null && mDeviceList.size() != 0) {
+    InfoDealIF info = null;
+    String infoReceive = null;
 
-					mDvinfoListAdapter = new DvinfoListAdapter(getActivity(),
-							mDeviceList);
-				}
-			} else {
-				Toast.makeText(activity.getApplicationContext(), "查询器具列表失败！",
-						Toast.LENGTH_SHORT).show();
-			}
-		} catch (Exception e) {
-			Toast.makeText(activity.getApplicationContext(), "数据解析失败！！",
-					Toast.LENGTH_SHORT).show();
-			e.printStackTrace();
-		}
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
 
-	}
+        try {
+            info = new InfoDealIF();
+            JsonParse jsonParse = new JsonParse();
+            infoReceive = info.inquire(MainActivity.interfaceId,
+                    Type.SELECT_MACHINE1,
+                    jsonParse.pagingJsonParse(0, 0, Type.SORT_HOMEAPP));
+            if (infoReceive != null) {
+                mDeviceList = ParseJson.parseCookUtensilList(infoReceive);
+                if (mDeviceList != null && mDeviceList.size() != 0) {
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+                    mDvinfoListAdapter = new DvinfoListAdapter(getActivity(),
+                            mDeviceList);
+                }
+            } else {
+                Toast.makeText(activity.getApplicationContext(), "查询器具列表失败！",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(activity.getApplicationContext(), "数据解析失败！！",
+                    Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
 
-		View view = View.inflate(getActivity(), R.layout.dvinfolist, null);
+    }
 
-		listView = (ListView) view.findViewById(R.id.dvinfolist_listview);
-		if (mDvinfoListAdapter != null) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-			listView.setAdapter(mDvinfoListAdapter);
+        View view = View.inflate(getActivity(), R.layout.dvinfolist, null);
 
-			listView.setOnItemClickListener(new OnItemClickListener() {
+        listView = (ListView) view.findViewById(R.id.dvinfolist_listview);
+        if (mDvinfoListAdapter != null) {
 
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View view,
-						int position, long arg3) {
+            listView.setAdapter(mDvinfoListAdapter);
 
-						CookUtensilBean bean = mDeviceList.get(position);
-						int machineId = bean.getMachineId();
-						UploadCookRcdFragment uploadFragment = new UploadCookRcdFragment();
+            listView.setOnItemClickListener(new OnItemClickListener() {
 
-						Bundle bundle = new Bundle();
-						bundle.putInt("machineId", machineId);
-						uploadFragment.setArguments(bundle);
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View view,
+                                        int position, long arg3) {
 
-						getActivity().getFragmentManager().beginTransaction()
-								.replace(R.id.xiaye_fragment, uploadFragment)
-								.commit();
-				}
-			});
-		}
-		return view;
-	}
+                    CookUtensilBean bean = mDeviceList.get(position);
+                    int machineId = bean.getMachineId();
+                    UploadCookRcdFragment uploadFragment = new UploadCookRcdFragment();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("machineId", machineId);
+                    uploadFragment.setArguments(bundle);
+
+                    FragmentTransaction transaction = getActivity()
+                            .getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.xiaye_fragment, uploadFragment);
+                    transaction.addToBackStack(TAG);
+                    transaction.commit();
+
+                }
+            });
+        }
+        return view;
+    }
 }

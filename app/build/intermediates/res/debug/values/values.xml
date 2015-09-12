@@ -46,6 +46,13 @@
         <item>furniture3_3://大厅  </item>
         <item>furniture3_4://厨房  </item>
         <item>furniture3_5://会议室 </item>
+        <item>furniture3_6://茶室 </item>
+        <item>furniture3_7://机房 </item>
+        <item>furniture3_8://休息室 </item>
+        <item>furniture3_9://机房通道 </item>
+        <item>furniture3_10://厕所 </item>
+        <item>furniture3_11://洗手盆 </item>
+
     </string-array>
     <string-array name="color">
         <item>cook3_1-绿://0</item>
@@ -98,9 +105,8 @@
     <string-array name="isdry">
         <item>cook3_1-干菜 ://0</item>
         <item>cook3_1-湿://1</item>
-        <item>cook3_1-汤://2</item>
-        <item>cook3_2-汤://0</item>
-        <item>cook3_2-素://1</item>
+        <item>cook3_2-干://0</item>
+        <item>cook3_2-湿://1</item>
     </string-array>
     <string-array name="isfish">
         <item>cook3_1-鱼类 ://0</item>
@@ -125,8 +131,8 @@
     <string-array name="meat">
         <item>cook3_1-荤 ://0</item>
         <item>cook3_1-素://1</item>
-        <item>cook3_2-荤://4</item>
-        <item>cook3_2-素://5</item>
+        <item>cook3_2-荤://0</item>
+        <item>cook3_2-素://1</item>
     </string-array>
     <string-array name="spinnername">
         <item>1</item>

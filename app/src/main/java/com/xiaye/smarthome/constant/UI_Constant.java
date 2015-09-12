@@ -39,6 +39,16 @@ public class UI_Constant {
 	public final static String COOKING_USEFUL = "cook3_4"; //常用
 	public final static String COOKING_EDIT = "cook3_5";	//自编
 	public final static String LIGHT_PASSAGEWAY = "furniture3_1";	//入门通道
+	public final static String LIGHT_MANAGER = "furniture3_2";	//总经理室
+	public final static String LIGHT_HALL = "furniture3_3";	//大厅
+	public final static String LIGHT_KITCHEN= "furniture3_4";	//厨房
+	public final static String LIGHT_MEETING = "furniture3_5";	//会议室
+	public final static String LIGHT_TEA = "furniture3_6";	//茶室
+	public final static String LIGHT_PCROOM = "furniture3_7";	//机房
+	public final static String LIGHT_REST = "furniture3_8";	//休息室
+	public final static String LIGHT_PCPASS = "furniture3_9";	//机房通道
+	public final static String LIGHT_TOILET = "furniture3_10";	//厕所
+	public final static String LIGHT_WASHING = "furniture3_11";	//洗手盆
 
 	
 	public final static String REFIONAL_CUISINES = "cook3_1_1"; // 地方菜系
@@ -64,4 +74,5 @@ public class UI_Constant {
 	public final static String COOKING_NAME = "cooking_name"; //头部菜按钮值
 	public final static String COOKING_SCHEMA = "schema";
 	public final static String COOKING_URI = "cooking_uri";
+	public final static String LIGHT_LOCATION = "light_location";//根据位置查询群组列表
 }

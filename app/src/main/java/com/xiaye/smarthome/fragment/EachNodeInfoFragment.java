@@ -82,7 +82,7 @@ public class EachNodeInfoFragment extends Fragment implements OnClickListener {
 				position++;
 
 				nodeNo_txt.setText(String.valueOf(cRcdStepBeans.get(position)
-						.getNodenumber()));
+						.getNodeNumber()));
 				nodeTime_txt.setText(String.valueOf(cRcdStepBeans.get(position)
 						.getTimeOfNode()));
 				tipInfo_edt.setText(cRcdStepBeans.get(position).getTips());
@@ -92,7 +92,7 @@ public class EachNodeInfoFragment extends Fragment implements OnClickListener {
 			if (position != 0) {
 				position--;
 				nodeNo_txt.setText(String.valueOf(cRcdStepBeans.get(position)
-						.getNodenumber()));
+						.getNodeNumber()));
 				nodeTime_txt.setText(String.valueOf(cRcdStepBeans.get(position)
 						.getTimeOfNode()));
 				tipInfo_edt.setText(cRcdStepBeans.get(position).getTips());
@@ -152,7 +152,7 @@ public class EachNodeInfoFragment extends Fragment implements OnClickListener {
 	public void bindData() {
 
 		nodeNo_txt
-				.setText(String.valueOf(cRcdStepBeans.get(0).getNodenumber()));
+				.setText(String.valueOf(cRcdStepBeans.get(0).getNodeNumber()));
 		nodeTime_txt.setText(String.valueOf(cRcdStepBeans.get(0)
 				.getTimeOfNode()));
 		tipInfo_edt.setText(cRcdStepBeans.get(0).getTips());

@@ -12,7 +12,7 @@ public class CookingRcdStepBean implements Serializable {
 	private static final long serialVersionUID = -4099002684097867556L;
 	
 	private int foodProcessingId;
-	private int nodenumber;
+	private int nodeNumber;
 	private int timeOfNode;
 	private String tips;
 
@@ -28,12 +28,12 @@ public class CookingRcdStepBean implements Serializable {
 		this.foodProcessingId = foodProcessingId;
 	}
 
-	public int getNodenumber() {
-		return nodenumber;
+	public int getNodeNumber() {
+		return nodeNumber;
 	}
 
-	public void setNodenumber(int nodenumber) {
-		this.nodenumber = nodenumber;
+	public void setNodeNumber(int nodeNumber) {
+		this.nodeNumber = nodeNumber;
 	}
 
 	public String getTips() {

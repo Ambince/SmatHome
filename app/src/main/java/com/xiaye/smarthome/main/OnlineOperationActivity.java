@@ -42,9 +42,6 @@ public class OnlineOperationActivity  extends FragmentActivity {
 		mainContext = getApplicationContext();
 		
 	}
-	
-	
-	
 
 	/**
 	 * 
@@ -83,5 +80,4 @@ public class OnlineOperationActivity  extends FragmentActivity {
 		super.onDestroy();
 		Log.i("PluginMain", "onDestroy");
 	}
-
 }

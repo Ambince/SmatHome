@@ -68,7 +68,7 @@ public class CookingFragment extends Fragment {
         initView(view);
 
         cooking_name = (String) getArguments().get(UI_Constant.COOKING_NAME);
-        Log.e("cookingFG", "cooking_name= " + cooking_name);
+        Log.e(TAG, "cooking_name = " + cooking_name);
         if (cooking_name != null) {
             int pos = Integer.parseInt(cooking_name);
             if (pos < cooking_array.length && pos != -1) {
@@ -93,11 +93,11 @@ public class CookingFragment extends Fragment {
                     list.toArray(new String[list.size()]),
                     UI_Constant.CATEGORY_HEADER,
                     UI_Constant.CATEGORY_HORIZONTAL);
-            View view_v0 = MainActivity.header_category.getChildAt(0);
-            RadioGroup group = (RadioGroup) view_v0
-                    .findViewById(R.id.container);
-            RadioButton radioButton = (RadioButton) group.getChildAt(0);
-            radioButton.setChecked(true);
+//            View view_v0 = MainActivity.header_category.getChildAt(0);
+//            RadioGroup group = (RadioGroup) view_v0
+//                    .findViewById(R.id.container);
+//            RadioButton radioButton = (RadioButton) group.getChildAt(0);
+//            radioButton.setChecked(true);
         }
     }
 
@@ -129,13 +129,15 @@ public class CookingFragment extends Fragment {
                                 long size) {
             TextView tv_view = (TextView) view.findViewById(R.id.cooking_item);
             String cooking_item_name = tv_view.getText().toString();
-            Log.e("cookingFG", "cooking_item_name= " + cooking_item_name);
+            Log.e(TAG, "cooking_item_name= " + cooking_item_name);
             Bundle bundle = new Bundle();
             String uri = getUri(cooking_item_name, cooking_name);
 
             bundle.putString(UI_Constant.COOKING_URI, uri);
             bundle.putString(UI_Constant.COOKING_SCHEMA, schema);
             bundle.putString(UI_Constant.COOKING_NAME, cooking_name);
+
+            Log.e(TAG,"exctCookingFlag = " + exctCookingFlag);
 
             // 传递“执行烹调”Flag
             if (exctCookingFlag.startsWith("cooking")) {

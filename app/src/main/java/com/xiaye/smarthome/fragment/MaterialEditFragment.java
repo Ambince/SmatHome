@@ -1,5 +1,6 @@
 package com.xiaye.smarthome.fragment;
 
+import android.app.FragmentTransaction;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +29,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MaterialEditFragment extends Fragment implements OnClickListener {
+
+    public static String TAG = MaterialEditFragment.class.getSimpleName();
 
     private EditText materialName_edt;
     private Spinner typeId_spn;
@@ -115,15 +118,7 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
         switch (id) {
             case R.id.materialtable_back_btn:
                 //返回
-                RecordStepEditFragment mFg = new RecordStepEditFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("foodProcessingId", foodProcessingId);
-                bundle.putString("menuId", menuId);
-                bundle.putInt("totalNodes", totalNodes);
-                mFg.setArguments(bundle);
-                RecordStepEditFragment backFg = new RecordStepEditFragment();
-                getActivity().getFragmentManager().beginTransaction()
-                        .replace(R.id.xiaye_fragment, backFg).commit();
+                getActivity().getFragmentManager().popBackStackImmediate();
                 break;
 
             case R.id.materialtable_save_btn:
@@ -137,10 +132,12 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
                 break;
 
             case R.id.materialtable_ok_btn:
-                // 分类保存
-                getActivity().getFragmentManager().beginTransaction()
-                        .replace(R.id.xiaye_fragment, new CookingEditFragment())
-                        .commit();
+                // 下一步
+                FragmentTransaction transaction = getActivity()
+                        .getFragmentManager().beginTransaction();
+                transaction.replace(R.id.xiaye_fragment, new CookingEditFragment());
+                transaction.addToBackStack(TAG);
+                transaction.commit();
                 break;
 
             default:
@@ -184,22 +181,6 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
 
     public MaterialBean getDataFromView() {
 
-//        if (count < materialBeans.size()) {
-//            materialName_edt.setText(materialBeans.get(count+1).getMaterialName());
-//            materialNumber_edt.setText(materialBeans.get(count+1).getMaterialNumber());
-//            materialProcessingMethod_edt.setText(materialBeans.get(count+1).getMaterialProcessingMethod());
-//            materialProcessingNumber_edt.setText(materialBeans.get(count+1).getMaterialNumber());
-//
-//            int typeId = materialBeans.get(count+1).getTypeId();
-//            if (typeId == 1) {
-//                typeId_spn.setSelection(1);
-//            } else if (typeId == 2) {
-//                typeId_spn.setSelection(2);
-//            } else {
-//                typeId_spn.setSelection(3);
-//            }
-//            return materialBeans.get(count+1);
-//        }else{
         MaterialBean material = new MaterialBean();
 
         material.setFoodProcessingId(foodProcessingId);
@@ -212,6 +193,8 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
                 .getText().toString());
 
         String type = typeId_spn.getSelectedItem().toString();
+        Log.i(TAG, "type = " + type);
+
         // "原料", "辅料", "配料"
         if (type.equals("原料")) {
             material.setTypeId(1);
@@ -220,7 +203,7 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
         } else {
             material.setTypeId(3);
         }
-        if (materialProcessingNumber_edt.getText() != null) {
+        if (!materialProcessingNumber_edt.getText().toString().equals("")) {
             material.setMaterialProcessingNumber(Integer
                     .parseInt(materialProcessingNumber_edt.getText().toString()));
             return material;
@@ -254,19 +237,25 @@ public class MaterialEditFragment extends Fragment implements OnClickListener {
      */
     public void showLastNodeView() {
         count--;
-        materialName_edt.setText(materialBeans.get(count).getMaterialName());
-        materialNumber_edt.setText(materialBeans.get(count).getMaterialNumber());
-        materialProcessingMethod_edt.setText(materialBeans.get(count).getMaterialProcessingMethod());
-        materialProcessingNumber_edt.setText(materialBeans.get(count).getMaterialNumber());
+        if (count >= 0) {
+            materialName_edt.setText(materialBeans.get(count).getMaterialName());
+            materialNumber_edt.setText(materialBeans.get(count).getMaterialNumber());
+            materialProcessingMethod_edt.setText(materialBeans.get(count).getMaterialProcessingMethod());
+            materialProcessingNumber_edt.setText(materialBeans.get(count).getMaterialProcessingNumber() + "");
 
-        int typeId = materialBeans.get(count).getTypeId();
-        if (typeId == 1) {
-            typeId_spn.setSelection(1);
-        } else if (typeId == 2) {
-            typeId_spn.setSelection(2);
+            int typeId = materialBeans.get(count).getTypeId();
+            Log.i(TAG, "typeId = " + typeId);
+            if (typeId == 1) {
+                typeId_spn.setSelection(0);
+            } else if (typeId == 2) {
+                typeId_spn.setSelection(1);
+            } else {
+                typeId_spn.setSelection(2);
+            }
         } else {
-            typeId_spn.setSelection(3);
-        }
-    }
+            Toast.makeText(getActivity().getApplicationContext(), "已是第1步！", Toast.LENGTH_LONG).show();
 
+        }
+
+    }
 }

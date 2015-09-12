@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -201,16 +202,14 @@ public class CookingInroFragment extends Fragment {
 					bundle.putString("cuisinesName", getArguments().getString("cuisinesName", ""));
 					bundle.putString(UI_Constant.FLAG, exctCookingFlag);
 					bundle.putString("machineShapeCode", getArguments().getString("machineShapeCode", ""));
-					Log.e("ttttttt", bundle.getString("machineShapeCode", ""));
 					Log.i("CookingInroFg row 194", "exctCookingFlag = "
 							+ exctCookingFlag);
 				}
 				materialFragment.setArguments(bundle);
-				getFragmentManager().beginTransaction().addToBackStack(TAG);
-				getActivity().getFragmentManager().beginTransaction()
-						.replace(R.id.xiaye_fragment, materialFragment)
-						.commit();
-
+				FragmentTransaction transition = getFragmentManager().beginTransaction();
+				transition.addToBackStack(TAG);
+				transition.replace(R.id.xiaye_fragment, materialFragment);
+				transition.commit();
 			} else {
 				Toast.makeText(getActivity(), "适用人数为空！无法获取原料制作记录！",
 						Toast.LENGTH_LONG).show();

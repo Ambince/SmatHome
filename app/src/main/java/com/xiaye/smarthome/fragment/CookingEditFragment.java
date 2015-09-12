@@ -3,13 +3,12 @@ package com.xiaye.smarthome.fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jni.info.InfoDealIF;
@@ -17,6 +16,8 @@ import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
 import com.xiaye.smarthome.R;
 import com.xiaye.smarthome.bean.CookMenuBean;
+import com.xiaye.smarthome.constant.Type;
+import com.xiaye.smarthome.main.MainActivity;
 import com.xiaye.smarthome.main.SmartHomeApplication;
 import com.xiaye.smarthome.view.IconTreeItemHolder;
 import com.xiaye.smarthome.view.SelectableHeaderHolder;
@@ -33,59 +34,29 @@ import org.json.JSONObject;
  */
 public class CookingEditFragment extends Fragment implements OnClickListener {
 
-    int foodProcessingId = 0;
+    public static String TAG = CookingEditFragment.class.getSimpleName();
+
     InfoDealIF info = null;
     /*
     TreeView
      */
     private AndroidTreeView tView;
     private boolean selectionModeEnabled = true;
-    private Button msave, mback;//分类保存，返回按钮
     private int i = 0;//父结点索引
     private int j = 0;//子结点索引
 
-    private Spinner cuisine_spn;
-    private Spinner color_spn;
-    private Spinner isDry_rg;
-    private Spinner isMeat_rg;
-    private Spinner isFish_rg;
-    private Spinner isBird_rg;
-    private Spinner isMushroom_rg;
-    private Spinner isProducts_rg;
-    // private Button back_btn;
-    private Spinner isVegetable_rg;
-    private Button nextStep_btn;
-    // 存放数据
-    private String theCuisineString;
-    private String colorString;
-    private boolean isDry;
-    private boolean isMeat;
-    private boolean isFish;
-    private boolean isVegetable;
-    private boolean isBird;
-    private boolean isMushroom;
-    private boolean isProductsClass;
-
-
-    // @Override
-    // public void onAttach(Activity activity) {
-    // super.onAttach(activity);
-    // foodProcessingId = getArguments().getInt("foodProcessingId");
-    // }
+    private Button msave, mback;//分类保存，返回按钮
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cooking_edit_treeview, null, false);
-        mback = (Button) view.findViewById(R.id.btn_tv_back);
-        msave = (Button) view.findViewById(R.id.btn_tv_save);
         ViewGroup containerView = (ViewGroup) view.findViewById(R.id.container_treeview);
         TreeNode root = TreeNode.root();
 
-//
-//        initView(view);
-//        bindData();
-//        setListener();
+        initView(view);
+        setListener();
+
         TreeNode folder1 = new TreeNode(new IconTreeItemHolder.IconTreeItem(R.string.ic_folder, "菜系")).setViewHolder(new SelectableHeaderHolder(getActivity()));
         TreeNode folder2 = new TreeNode(new IconTreeItemHolder.IconTreeItem(R.string.ic_folder, "荤素")).setViewHolder(new SelectableHeaderHolder(getActivity()));
         TreeNode folder3 = new TreeNode(new IconTreeItemHolder.IconTreeItem(R.string.ic_folder, "干湿")).setViewHolder(new SelectableHeaderHolder(getActivity()));
@@ -111,15 +82,18 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
 
         TreeNode menu12 = new TreeNode("干菜").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu22 = new TreeNode("湿").setViewHolder(new SelectableItemHolder(getActivity()));
-        TreeNode menu32 = new TreeNode("汤").setViewHolder(new SelectableItemHolder(getActivity()));
-        folder3.addChildren(menu12, menu22, menu32);
+        folder3.addChildren(menu12, menu22);
 
         TreeNode menu13 = new TreeNode("红").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu23 = new TreeNode("橙").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu33 = new TreeNode("黄").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu43 = new TreeNode("绿").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu53 = new TreeNode("蓝").setViewHolder(new SelectableItemHolder(getActivity()));
-        folder4.addChildren(menu13, menu23, menu33, menu43, menu53);
+        TreeNode menu63 = new TreeNode("黑").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu73 = new TreeNode("紫").setViewHolder(new SelectableItemHolder(getActivity()));
+        TreeNode menu83 = new TreeNode("棕").setViewHolder(new SelectableItemHolder(getActivity()));
+
+        folder4.addChildren(menu13, menu23, menu33, menu43, menu53, menu63, menu73, menu83);
 
         TreeNode menu14 = new TreeNode("是").setViewHolder(new SelectableItemHolder(getActivity()));
         TreeNode menu24 = new TreeNode("否").setViewHolder(new SelectableItemHolder(getActivity()));
@@ -164,164 +138,56 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
      * @date 2014-12-6 上午11:22:31
      */
     public void initView(View view) {
-        cuisine_spn = (Spinner) view.findViewById(R.id.edit_cooking);
-        color_spn = (Spinner) view.findViewById(R.id.edit_color);
-        isDry_rg = (Spinner) view.findViewById(R.id.edit_isdrw);
-        isMeat_rg = (Spinner) view.findViewById(R.id.edit_ismeat);
-        isFish_rg = (Spinner) view.findViewById(R.id.edit_isfish);
-        isBird_rg = (Spinner) view.findViewById(R.id.edit_isbird);
-        isMushroom_rg = (Spinner) view.findViewById(R.id.edit_isgerm);
-        isProducts_rg = (Spinner) view.findViewById(R.id.edit_ismake);
-        isVegetable_rg = (Spinner) view.findViewById(R.id.edit_isvegetable);
-
-        nextStep_btn = (Button) view.findViewById(R.id.btn_next);
-        // back_btn = (Button) view.findViewById(R.id.btn_back);
-    }
-
-    /**
-     * @Description:绑定Spinner数据
-     * @author ChenSir
-     * @version 1.0
-     * @date 2014-12-6 上午11:23:09
-     */
-    public void bindData() {
-
-        String[] theCuisines = new String[]{"川菜", "粤菜", "京菜", "鲁菜"
-
-                , "闽菜", "浙江菜", "黔菜", "微菜", "东北菜", "港台菜"};
-
-        String[] colors = new String[]{"红色", "黄色", "蓝色", "黑色", "绿色", "白色"};
-
-        String[] isDry = new String[]{"干", "湿"};
-        String[] isMeat = new String[]{"荤", "素"};
-        String[] isFish = new String[]{"是", "否"};
-        String[] isBird = new String[]{"是", "否"};
-        String[] isMushroom = new String[]{"是", "否"};
-        String[] isProducts = new String[]{"是", "否"};
-        String[] isVegetable = new String[]{"是", "否"};
-
-        ArrayAdapter<String> theCuisinesAdapter = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1, theCuisines);
-
-        ArrayAdapter<String> colorsAdapter = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1, colors);
-
-        ArrayAdapter<String> isDryAdp = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, isDry);
-
-        ArrayAdapter<String> isMeatAdp = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1, isMeat);
-
-        ArrayAdapter<String> isFishAdp = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1, isFish);
-
-        ArrayAdapter<String> isBirdAdp = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1, isBird);
-        ArrayAdapter<String> isMushAdp = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1,
-                isMushroom);
-        ArrayAdapter<String> isProdtAdp = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1,
-                isProducts);
-        ArrayAdapter<String> isVegtAdp = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1,
-                isVegetable);
-
-        cuisine_spn.setAdapter(theCuisinesAdapter);
-        color_spn.setAdapter(colorsAdapter);
-        isDry_rg.setAdapter(isDryAdp);
-        isMeat_rg.setAdapter(isMeatAdp);
-        isFish_rg.setAdapter(isFishAdp);
-        isBird_rg.setAdapter(isBirdAdp);
-        isMushroom_rg.setAdapter(isMushAdp);
-        isProducts_rg.setAdapter(isProdtAdp);
-        isVegetable_rg.setAdapter(isVegtAdp);
+        mback = (Button) view.findViewById(R.id.btn_tv_back);
+        msave = (Button) view.findViewById(R.id.btn_tv_save);
 
     }
+
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.btn_tv_save) {
-            Toast.makeText(getActivity(), SmartHomeApplication.menuBean.getTheCuisine() + SmartHomeApplication.menuBean.getColor(), Toast.LENGTH_LONG).show();
             // 分类保存
-//            CookMenuBean menu = getDataByView();
+            info = new InfoDealIF();
+
+            CookMenuBean menu = SmartHomeApplication.menuBean;
+            // 设置菜谱ID
+            menu.setMenuId(SmartHomeApplication.appMap.get("menuId").toString());
+            // 菜谱名称
+            menu.setMenuName(SmartHomeApplication.appMap.get("menuName").toString());
+            // 菜谱介绍
+            menu.setSummarize(SmartHomeApplication.appMap.get("summarize")
+                    .toString());
+            // 制作介绍
+            menu.setIntroduceMakeMethod(SmartHomeApplication.appMap.get("makingMethod").toString());
+
+            String insertData = changeBeanToJsonString(menu);
 //
-//            info = new InfoDealIF();
-//
-//            String insertData = changeBeanToJsonString(menu);
-//
-//            if (insertData != null) {
-//                int flag = info.control(MainActivity.interfaceId,
-//                        Type.EDIT_MENU, insertData.getBytes(), null);
-//                if (flag == 0) {
-//                    Toast.makeText(getActivity(), "保存成功！", Toast.LENGTH_LONG)
-//                            .show();
-//                    // CookingAddFragment cRecordFg = new CookingAddFragment();
-//                    // Bundle bundle = new Bundle();
-//                    // bundle.putString("menuId", menuId);
-//                    // bundle.putInt("foodProcessingId", foodProcessingId);
-//                    // cRecordFg.setArguments(bundle);
-//                    getActivity().getFragmentManager().beginTransaction()
-//                            .replace(R.id.xiaye_fragment, new CoverFragment())
-//                            .commit();
-//                } else {
-//                    Log.e("CookingEditFragment", "flag = " + flag);
-//                    Toast.makeText(getActivity(), "保存失败！", Toast.LENGTH_SHORT)
-//                            .show();
-//                }
-//            }
-//
-//        } else {
-//            // 返回
-//            // getActivity().getFragmentManager().beginTransaction().remove(this)
-//            // .commit();
+            if (insertData != null) {
+                int flag = info.control(MainActivity.interfaceId,
+                        Type.EDIT_MENU, insertData.getBytes(), null);
+                if (flag == 0) {
+                    Toast.makeText(getActivity(), "保存成功！", Toast.LENGTH_LONG)
+                            .show();
+
+                    SmartHomeApplication.menuBean = null;
+                    SmartHomeApplication.menuBean = new CookMenuBean();
+
+                    getActivity().getFragmentManager().beginTransaction()
+                            .replace(R.id.xiaye_fragment, new CoverFragment())
+                            .commit();
+                } else {
+                    Log.e("CookingEditFragment", "flag = " + flag);
+                    Toast.makeText(getActivity(), "保存失败！", Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+
+        } else {
+            // 返回
+            getActivity().getFragmentManager().popBackStackImmediate();
         }
-    }
-
-    /**
-     * @return
-     * @Description:获取控件中的数据
-     * @author ChenSir
-     * @version 1.0
-     * @date 2014-12-6 上午11:54:17
-     */
-    private CookMenuBean getDataByView() {
-
-        CookMenuBean menu = new CookMenuBean();
-
-        // 设置菜谱ID
-        menu.setMenuId(SmartHomeApplication.appMap.get("menuId").toString());
-        // 菜谱名称
-        menu.setMenuName(SmartHomeApplication.appMap.get("menuName").toString());
-        // 菜谱介绍
-        menu.setSummarize(SmartHomeApplication.appMap.get("summarize")
-                .toString());
-        // 制作介绍
-        menu.setIntroduceMakeMethod(SmartHomeApplication.appMap.get(
-                "makingMethod").toString());
-
-        theCuisineString = cuisine_spn.getSelectedItem().toString().trim();
-        colorString = color_spn.getSelectedItem().toString().trim();
-        isDry = isDry_rg.getSelectedItem().toString().equals("干");
-        isMeat = isMeat_rg.getSelectedItem().toString().equals("荤");
-        isFish = isFish_rg.getSelectedItem().toString().equals("是");
-        isBird = isBird_rg.getSelectedItem().toString().equals("是");
-        isVegetable = isVegetable_rg.getSelectedItem().toString().equals("是");
-        isMushroom = isMushroom_rg.getSelectedItem().toString().equals("是");
-        isProductsClass = isProducts_rg.getSelectedItem().toString().equals("是");
-
-        menu.setTheCuisine(theCuisineString);
-        menu.setColor(colorString);
-        menu.setDry(isDry);
-        menu.setMeat(isMeat);
-        menu.setFish(isFish);
-        menu.setBirds(isBird);
-        menu.setFood(isVegetable);
-        menu.setMushroom(isMushroom);
-        menu.setProductsClass(isProductsClass);
-
-        return menu;
     }
 
     /**
@@ -331,15 +197,14 @@ public class CookingEditFragment extends Fragment implements OnClickListener {
      * @date 2014-12-6 下午1:22:51
      */
     public void setListener() {
-        nextStep_btn.setOnClickListener(this);
-        // back_btn.setOnClickListener(this);
-
+        msave.setOnClickListener(this);
+        mback.setOnClickListener(this);
     }
 
     /**
      * @param
      * @return
-     * @Description:将新建菜谱表数据转化成Json格式字符串
+     * @description:将新建菜谱表数据转化成Json格式字符串
      * @author ChenSir
      * @version 1.0
      * @date 2014-12-6 下午1:37:47

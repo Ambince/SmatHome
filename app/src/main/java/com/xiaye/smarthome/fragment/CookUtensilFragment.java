@@ -41,142 +41,142 @@ import com.xiaye.smarthome.util.PluginBeanService;
  */
 public class CookUtensilFragment extends Fragment {
 
-	ListView mListView = null;
-	Button look = null;
-	public static List<CookUtensilBean> mCookUtensilBeanList = null;
-	public static CookUtensilListAdapter CookUtensilAdapter = null;
+    public final static String TAG = CookbookDetailFragment.class.getSimpleName();
 
-	InfoDealIF info = null;
-	String infoReceive = null;
-	private PluginBeanService pService;
+    ListView mListView = null;
+    Button look = null;
+    public static List<CookUtensilBean> mCookUtensilBeanList = null;
+    public static CookUtensilListAdapter CookUtensilAdapter = null;
 
-	String exctCookingFlag = null; // 是否为cooking
-	int count = 0; // 总人数
+    InfoDealIF info = null;
+    String infoReceive = null;
+    private PluginBeanService pService;
 
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
+    String exctCookingFlag = null; // 是否为cooking
+    int count = 0; // 总人数
 
-		exctCookingFlag = SmartHomeApplication.exctCookingFlag;
-		SmartHomeApplication.exctCookingFlag = "";
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
 
-		try {
-			info = new InfoDealIF();
-			JsonParse jsonParse = new JsonParse();
+        exctCookingFlag = SmartHomeApplication.exctCookingFlag;
 
-			// 查询数据库(智能家电)TODO 待完善查询条件
-			infoReceive = info.inquire(MainActivity.interfaceId,
-					Type.SELECT_MACHINE1,
-					jsonParse.pagingJsonParse(0, 0, Type.SORT_HOMEAPP));
-			if (infoReceive != null) {
-				mCookUtensilBeanList = ParseJson
-						.parseCookUtensilList(infoReceive);
+        try {
+            info = new InfoDealIF();
+            JsonParse jsonParse = new JsonParse();
 
-				Log.e("exctCookingFlag", exctCookingFlag);
+            // 查询数据库(智能家电)TODO 待完善查询条件
+            infoReceive = info.inquire(MainActivity.interfaceId,
+                    Type.SELECT_MACHINE1,
+                    jsonParse.pagingJsonParse(0, 0, Type.SORT_HOMEAPP));
+            if (infoReceive != null) {
+                Log.i(TAG, "infoReceive = " + infoReceive);
+                mCookUtensilBeanList = ParseJson
+                        .parseCookUtensilList(infoReceive);
 
-				if ("cooking".equals(exctCookingFlag)) {
-					CookUtensilAdapter = new CookUtensilListAdapter(
-							getActivity(), mCookUtensilBeanList, getArguments()
-									.getInt(UI_Constant.USER_COUNT, 0));
-				} else {
-					CookUtensilAdapter = new CookUtensilListAdapter(
-							getActivity(), mCookUtensilBeanList);
-				}
-			} else {
-				Toast.makeText(activity.getApplicationContext(), "查询器具列表失败！",
-						Toast.LENGTH_SHORT).show();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+                if ("cooking".equals(exctCookingFlag)) {
+                    Log.i(TAG, "exctCookingFlag is " + exctCookingFlag);
+                    CookUtensilAdapter = new CookUtensilListAdapter(
+                            getActivity(), mCookUtensilBeanList, getArguments()
+                            .getInt(UI_Constant.USER_COUNT, 0));
+                } else {
+                    CookUtensilAdapter = new CookUtensilListAdapter(
+                            getActivity(), mCookUtensilBeanList);
+                }
+            } else {
+                Toast.makeText(activity.getApplicationContext(), "查询器具列表失败！",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-		View view = View.inflate(getActivity(), R.layout.cookingutensil, null);
-		mListView = (ListView) view.findViewById(R.id.cookutensil_list);
-		// 绑定适配器
-		mListView.setAdapter(CookUtensilAdapter);
-		mListView.setOnItemClickListener(new OnItemClickListener() {
+        View view = View.inflate(getActivity(), R.layout.cookingutensil, null);
+        mListView = (ListView) view.findViewById(R.id.cookutensil_list);
+        // 绑定适配器
+        mListView.setAdapter(CookUtensilAdapter);
+        mListView.setOnItemClickListener(new OnItemClickListener() {
 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View view,
-					int position, long arg3) {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View view,
+                                    int position, long arg3) {
 
-				CookUtensilBean mCookUtensil = mCookUtensilBeanList
-						.get(position);
+                CookUtensilBean mCookUtensil = mCookUtensilBeanList
+                        .get(position);
 
-				// 生成插件快捷入口(以后封装更新的UI的方法)
-				SmartHomeApplication.mUpdateUIFlag = 1;
-				SmartHomeApplication.appMap.put(
-						UI_Constant.PLUGIN_SHORTCUT_KEY, mCookUtensil);
+                if (mCookUtensil.getMachineState() == 1) {
+                    // 生成插件快捷入口
+                    SmartHomeApplication.mUpdateUIFlag = 1;
+                    SmartHomeApplication.appMap.put(UI_Constant.PLUGIN_SHORTCUT_KEY, mCookUtensil);
 
-				if (mCookUtensil.getMachineState() == 1) {
-					if ("cooking".equals(exctCookingFlag)) {
-						SmartHomeApplication.machineId = mCookUtensil
-								.getMachineId();
-						// 执行烹调
-						count = getArguments()
-								.getInt(UI_Constant.USER_COUNT, 0);
-						String maCode = mCookUtensil.getMachineShapeCode();
-						CookingFragment fragment = new CookingFragment();
+                    if ("cooking".equals(exctCookingFlag)) {
 
-						Bundle bundle = new Bundle();
-						bundle.putInt("useNum", count);
-						bundle.putString("machineShapeCode", maCode);
-						bundle.putString(UI_Constant.COOKING_SCHEMA, "cook3_1");
-						bundle.putString(UI_Constant.COOKING_NAME, 0 + "");
-						bundle.putString(UI_Constant.FLAG, "cooking1");
+                        SmartHomeApplication.machineId = mCookUtensil
+                                .getMachineId();
+                        // 执行烹调
+                        count = getArguments()
+                                .getInt(UI_Constant.USER_COUNT, 0);
+                        String maCode = mCookUtensil.getMachineShapeCode();
+                        CookingFragment fragment = new CookingFragment();
 
-						fragment.setArguments(bundle);
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("useNum", count);
+                        bundle.putString("machineShapeCode", maCode);
+                        bundle.putString(UI_Constant.COOKING_SCHEMA, "cook3_1");
+                        bundle.putString(UI_Constant.COOKING_NAME, 0 + "");
+                        bundle.putString(UI_Constant.FLAG, "cooking1");
 
-						getActivity().getFragmentManager().beginTransaction()
-								.replace(R.id.xiaye_fragment, fragment)
-								.commit();
-					} else {
-						String machineShapeCode = mCookUtensil
-								.getMachineShapeCode();
-						List<PluginBean> list = PluginBeanService
-								.getAllPluginBean(getActivity()
-										.getApplicationContext());
-						if (list != null && list.size() != 0) {
-							pService = new PluginBeanService();
-							String pckgName = pService.getPackageName(
-									machineShapeCode, getActivity()
-											.getApplicationContext());
-							Log.i("CookUtensilFragment", "pckgName=="
-									+ pckgName);
-							if (pckgName != null) {
+                        fragment.setArguments(bundle);
 
-								Log.i("CookUtensilFragment", "进入在线操作");
-								Intent intentPlugin = new Intent();
-								intentPlugin.putExtra("machineShapeCode",
-										mCookUtensil.getMachineShapeCode());
-								intentPlugin.putExtra("machineId",
-										mCookUtensil.getMachineId());
-								intentPlugin.setClass(getActivity(),
-										OnlineOperationActivity.class);
-								startActivity(intentPlugin);
-							} else {
-								Toast.makeText(
-										getActivity().getApplicationContext(),
-										"未安装对应插件！", Toast.LENGTH_LONG).show();
-							}
-						} else {
-							Toast.makeText(
-									getActivity().getApplicationContext(),
-									"不存在任何插件！", Toast.LENGTH_LONG).show();
-						}
-					}
-				} else {
+                        getActivity().getFragmentManager().beginTransaction()
+                                .replace(R.id.xiaye_fragment, fragment)
+                                .commit();
+                    } else {
+                        String machineShapeCode = mCookUtensil
+                                .getMachineShapeCode();
+                        List<PluginBean> list = PluginBeanService
+                                .getAllPluginBean(getActivity()
+                                        .getApplicationContext());
+                        if (list != null && list.size() != 0) {
+                            pService = new PluginBeanService();
+                            String pckgName = pService.getPackageName(
+                                    machineShapeCode, getActivity()
+                                            .getApplicationContext());
+                            Log.i("CookUtensilFragment", "pckgName==" + pckgName);
+                            if (pckgName != null) {
 
-					Toast.makeText(getActivity().getApplicationContext(),
-							"器具不在线,无法进入操作界面", Toast.LENGTH_SHORT).show();
-				}
-			}
-		});
-		return view;
-	}
+                                Log.i("CookUtensilFragment", "进入在线操作");
+                                Intent intentPlugin = new Intent();
+                                intentPlugin.putExtra("machineShapeCode",
+                                        mCookUtensil.getMachineShapeCode());
+                                intentPlugin.putExtra("machineId",
+                                        mCookUtensil.getMachineId());
+                                intentPlugin.setClass(getActivity(),
+                                        OnlineOperationActivity.class);
+                                startActivity(intentPlugin);
+                            } else {
+                                Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        "未安装对应插件！", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "不存在任何插件！", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                } else {
+
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "器具不在线,无法进入操作界面", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        return view;
+    }
 }
