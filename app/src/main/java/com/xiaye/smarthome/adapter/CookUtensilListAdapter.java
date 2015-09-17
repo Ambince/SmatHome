@@ -105,7 +105,7 @@ public class CookUtensilListAdapter extends BaseAdapter {
 				dvInfoFragment.setArguments(bundle);
 				
 				mactivity.getFragmentManager().beginTransaction()
-						.replace(R.id.xiaye_fragment, dvInfoFragment).commit();
+						.replace(R.id.xiaye_fragment, dvInfoFragment). commitAllowingStateLoss();
 			}
 		});
 

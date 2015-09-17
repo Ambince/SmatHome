@@ -134,7 +134,7 @@ public class UploadCookRcdFragment extends Fragment implements OnClickListener {
 			data[length] = Type.COOKING_RECORD_TYPE;// 文件类型
 
 			isSelected = RecordStepListAdapter.isSelected;
-			if (isSelected != null) {
+			if (isSelected != null && recordList.size() != 0) {
 
 				Iterator iter = isSelected.entrySet().iterator();
 				while (iter.hasNext()) {
