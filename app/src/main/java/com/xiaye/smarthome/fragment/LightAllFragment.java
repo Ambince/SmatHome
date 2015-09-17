@@ -7,23 +7,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import com.jni.info.InfoDealIF;
 import com.xiaye.smarthome.R;
 import com.xiaye.smarthome.adapter.LightAllAdapter;
-import com.xiaye.smarthome.adapter.LightGroupAdapter;
 import com.xiaye.smarthome.adapter.UserListAdapter;
-import com.xiaye.smarthome.bean.CookMenuBean;
-import com.xiaye.smarthome.bean.LightGroupBean;
 import com.xiaye.smarthome.bean.LightGroupMemberBean;
 import com.xiaye.smarthome.constant.Type;
 import com.xiaye.smarthome.main.MainActivity;
 import com.xiaye.smarthome.util.ChangeByteAndInt;
 import com.xiaye.smarthome.util.Connect2ByteArrays;
-import com.xiaye.smarthome.util.JsonParse;
 import com.xiaye.smarthome.util.ParseJson;
+
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -97,7 +97,7 @@ public class LightAllFragment extends Fragment {
                                     int position = entry.getKey();
                                     LightGroupMemberBean bean = aList.get(position);
                                     int device_Vaddrs = bean.getDevice_Vaddrs();
-                                    byte[] input = Connect2ByteArrays.conn2ByteArrays(ChangeByteAndInt.intToBytes(groupId), ChangeByteAndInt.intToBytes(device_Vaddrs));
+                                    byte[] input = Connect2ByteArrays.conn2ByteArrays(ChangeByteAndInt.intToBytes(device_Vaddrs),ChangeByteAndInt.intToBytes(groupId));
                                     InfoDealIF.OutPut output = new InfoDealIF.OutPut();
                                     if (input != null) {
                                         int flag = info.control(MainActivity.interfaceId,
