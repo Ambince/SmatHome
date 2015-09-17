@@ -1,14 +1,24 @@
 package com.xiaye.smarthome.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.util.Log;
 
-import com.xiaye.smarthome.bean.*;
+import com.xiaye.smarthome.bean.ControllerBean;
+import com.xiaye.smarthome.bean.CookMenuBean;
+import com.xiaye.smarthome.bean.CookUtensilBean;
+import com.xiaye.smarthome.bean.CookingRcdStepBean;
+import com.xiaye.smarthome.bean.CookingRecordBean;
+import com.xiaye.smarthome.bean.DeviceInformationBean;
+import com.xiaye.smarthome.bean.LightGroupBean;
+import com.xiaye.smarthome.bean.LightGroupMemberBean;
+import com.xiaye.smarthome.bean.MaterialBean;
+import com.xiaye.smarthome.bean.UserBean;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 解析JSON
@@ -299,32 +309,6 @@ public class ParseJson {
         return registerInquirybean;
     }
 
-    // public static int parseIsMachineOnline(String js) throws Exception {
-    // JSONArray jsonArray = new JSONArray(js);
-    // for (int i = 0; i < jsonArray.length(); i++) {
-    // JSONObject jsonObject = jsonArray.getJSONObject(i);
-    // machineState = jsonObject.getInt("machineState");
-    // System.out.println(machineState);
-    // }
-    // return machineState;
-    // }
-    //
-    // // 设备虚拟地址
-    // public static int parseMachineId(String js) throws Exception {
-    // int mcId = 0;
-    //
-    // System.out.println(js);
-    // JSONArray jsonArray = new JSONArray(js);
-    // // JSONArray jsonArray = new JSONArray(json);
-    // for (int i = 0; i < jsonArray.length(); i++) {
-    // JSONObject jsonObject = jsonArray.getJSONObject(i);
-    // machineId = jsonObject.getString("machineId");
-    // System.out.println(machineId);
-    // mcId = Integer.parseInt(machineId);
-    // }
-    // return mcId;
-    // }
-
     public static List<String> parseMatchMenuName(String js) throws Exception {
         String menuName;
         List<String> list = new ArrayList<String>();
@@ -371,28 +355,6 @@ public class ParseJson {
         return machinebeans;
     }
 
-    //
-    // public static List<DeviceTypebean> parseDeviceType(String js)
-    // throws Exception {
-    //
-    // List<DeviceTypebean> deviceTypebeans = new ArrayList<DeviceTypebean>();
-    //
-    // System.out.println(js);
-    // JSONArray jsonArray = new JSONArray(js);
-    // // JSONArray jsonArray = new JSONArray(json);
-    // for (int i = 0; i < jsonArray.length(); i++) {
-    // JSONObject jsonObject = jsonArray.getJSONObject(i);
-    // typeId = jsonObject.getString("typeId");
-    // System.out.println(typeId + "&&&&&&&&&&&&&&&&&&&");
-    // typeName = jsonObject.getString("typeName");
-    // System.out.println(typeName + "&&&&&&&&&&&&&&&&&&&");
-    //
-    // DeviceTypebean deviceTypebean = new DeviceTypebean(typeId, typeName);
-    // deviceTypebeans.add(deviceTypebean);
-    // }
-    // return deviceTypebeans;
-    // }
-    //
     public static List<CookingRcdStepBean> parseCookingRcdStepBean(String js) {
         List<CookingRcdStepBean> cRcdStepBeans = new ArrayList<CookingRcdStepBean>();
         int nodenumber;
@@ -498,7 +460,7 @@ public class ParseJson {
 
             int groupId = jsonObject.getInt("groupId");
             String groupName = jsonObject.getString("groupName");
-            String groupLocation = jsonObject.getString("groupLocation");
+            String groupLocation = jsonObject.getString("machineLocation");
             int groupAddress = jsonObject.getInt("groupAddress");
             int groupPort = jsonObject.getInt("groupPort");
             int groupState = jsonObject.getInt("groupState");

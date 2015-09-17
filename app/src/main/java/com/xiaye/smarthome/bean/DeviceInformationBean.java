@@ -2,8 +2,6 @@ package com.xiaye.smarthome.bean;
 
 import java.io.Serializable;
 
-import android.R.integer;
-
 /*
  * 
  * @ClassName: DeviceInformationBean
@@ -32,8 +30,15 @@ public class DeviceInformationBean implements Serializable {
 	private int typeId;
 	private String typeName;
 	private String typeOfType;
-	
-	
+	private String mLocation;// 位置
+
+	public String getLocation() {
+		return mLocation;
+	}
+
+	public void setLocation(String location) {
+		mLocation = location;
+	}
 	
 	public String getTypeName() {
 		return typeName;

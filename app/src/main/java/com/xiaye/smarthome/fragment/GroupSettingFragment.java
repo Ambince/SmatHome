@@ -30,6 +30,7 @@ public class GroupSettingFragment extends Fragment {
 
     ListView mListView;
     Button mSearch_btn;
+    Button mNew_btn;
     EditText mContent_edt;
 
 
@@ -48,7 +49,9 @@ public class GroupSettingFragment extends Fragment {
         info = new InfoDealIF();
         mGroupList = new ArrayList<>();
         mSearch_btn = (Button) view.findViewById(R.id.lightgroup_search);
+        mNew_btn = (Button) view.findViewById(R.id.lightgroup_new);
         mContent_edt = (EditText) view.findViewById(R.id.lightgroup_edt);
+        mListView = (ListView) view.findViewById(R.id.lightgroup_list);
 
         //查询数据库 群组列表
         dbResult = info.inquire(MainActivity.interfaceId, Type.SELECT_GROUP3, null);
@@ -60,8 +63,6 @@ public class GroupSettingFragment extends Fragment {
                 e.printStackTrace();
                 Toast.makeText(getActivity().getApplicationContext(), "解析群组列表出错！", Toast.LENGTH_LONG).show();
             }
-
-            mListView = (ListView) view.findViewById(R.id.lightgroup_list);
             if (mGroupList.size() != 0) {
                 mListView.setAdapter(new LightGroupAdapter(getActivity(), mGroupList));
                 mSearch_btn.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +103,15 @@ public class GroupSettingFragment extends Fragment {
         } else {
             Toast.makeText(getActivity().getApplicationContext(), "未获取到群组列表！", Toast.LENGTH_LONG).show();
         }
+
+        mNew_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getFragmentManager().beginTransaction()
+                        .replace(R.id.xiaye_fragment,new GroupNewFragment()).commit();
+            }
+        });
+
         return view;
     }
 }

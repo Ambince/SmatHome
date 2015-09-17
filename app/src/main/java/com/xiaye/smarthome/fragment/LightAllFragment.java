@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.jni.info.InfoDealIF;
 import com.xiaye.smarthome.R;
 import com.xiaye.smarthome.adapter.LightAllAdapter;
-import com.xiaye.smarthome.adapter.UserListAdapter;
 import com.xiaye.smarthome.bean.LightGroupMemberBean;
 import com.xiaye.smarthome.constant.Type;
 import com.xiaye.smarthome.main.MainActivity;
@@ -90,14 +89,13 @@ public class LightAllFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         if (LightAllAdapter.getIsSelected() != null) {
-                            HashMap<Integer, Boolean> checked = UserListAdapter
-                                    .getIsSelected();
+                            HashMap<Integer, Boolean> checked = LightAllAdapter.getIsSelected();
                             for (Map.Entry<Integer, Boolean> entry : checked.entrySet()) {
                                 if (entry.getValue()) {
                                     int position = entry.getKey();
                                     LightGroupMemberBean bean = aList.get(position);
                                     int device_Vaddrs = bean.getDevice_Vaddrs();
-                                    byte[] input = Connect2ByteArrays.conn2ByteArrays(ChangeByteAndInt.intToBytes(device_Vaddrs),ChangeByteAndInt.intToBytes(groupId));
+                                    byte[] input = Connect2ByteArrays.conn2ByteArrays(ChangeByteAndInt.intToBytes(device_Vaddrs), ChangeByteAndInt.intToBytes(groupId));
                                     InfoDealIF.OutPut output = new InfoDealIF.OutPut();
                                     if (input != null) {
                                         int flag = info.control(MainActivity.interfaceId,
@@ -106,13 +104,11 @@ public class LightAllFragment extends Fragment {
                                         if (flag != -1 && (output.getOutput()[0] == 0)) {
                                             Log.i(TAG, "添加成功");
                                         } else {
-                                            Log.e(TAG, "添加失败，flag = " + flag);
+                                            Log.i(TAG, "添加失败");
                                         }
                                     }
                                 }
                             }
-                            Toast.makeText(getActivity().getApplicationContext(), "保存成功！", Toast.LENGTH_SHORT)
-                                    .show();
                             getActivity().getFragmentManager().popBackStackImmediate();
                         }
                     }

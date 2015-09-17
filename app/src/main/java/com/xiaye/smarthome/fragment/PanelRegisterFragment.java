@@ -4,7 +4,6 @@ package com.xiaye.smarthome.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,27 +12,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.jni.info.InfoDealIF;
 import com.jni.info.InfoDealIF.OutPut;
 import com.xiaye.smarthome.R;
-import com.xiaye.smarthome.bean.DeviceInformationBean;
 import com.xiaye.smarthome.constant.Type;
 import com.xiaye.smarthome.main.MainActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class GroupRegisterFragment extends Fragment implements OnClickListener {
+public class PanelRegisterFragment extends Fragment implements OnClickListener {
 
     InfoDealIF info = null;
-    TextView groupId_txt = null;
+    TextView panelAddr_txt = null;
 
-    EditText gName_edt = null;
-    EditText gLoc_edt = null;
-    EditText gRemark_edt = null;
+    EditText pLoc_edt = null;
 
     Button determine = null;
 
-    int groupId = 0;
+    int deviceAddr = 0;
 
     @Override
     public void onAttach(Activity activity) {
@@ -41,7 +39,7 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
 
         info = new InfoDealIF();
 
-        groupId = getArguments().getInt("groupId", 0);
+        deviceAddr = getArguments().getInt("deviceAddr", 0);
     }
 
     @Override
@@ -57,22 +55,18 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        String name = gName_edt.getText().toString().trim();
-        String loc = gLoc_edt.getText().toString().trim();
-        String remark = gRemark_edt.getText().toString().trim();
+        String loc = pLoc_edt.getText().toString().trim();
         if (id == R.id.dv_register_confirm_btn) {
             JSONObject stoneObject = new JSONObject();
             try {
-                stoneObject.put("groupName", name);
-                stoneObject.put("groupLocation", loc);
-                stoneObject.put("remarks", remark);//
-                stoneObject.put("groupId", groupId);
+                stoneObject.put("machineLocation", loc);
+                stoneObject.put("machineAddress", deviceAddr);
 
                 String sendRegist = stoneObject.toString();
                 OutPut output = new OutPut();
 
                 if (!(info.control(MainActivity.interfaceId,
-                        Type.UPDATE_GROUPIN, sendRegist.getBytes(), output) < 0)) {
+                        Type.UPDATE_GROUP, sendRegist.getBytes(), output) < 0)) {
                     Toast.makeText(getActivity(), "信息补充成功！！", Toast.LENGTH_LONG)
                             .show();
 
@@ -85,8 +79,7 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
             }
 
         } else {
-            /*getActivity().getFragmentManager().beginTransaction().remove(this)
-                    .commit();*/
+
         }
 
     }
@@ -100,10 +93,8 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
      */
     public void initView(View view) {
 
-        groupId_txt = (TextView) view.findViewById(R.id.register_groupid_txt);
-        gName_edt = (EditText) view.findViewById(R.id.register_gname_edt);
-        gLoc_edt = (EditText) view.findViewById(R.id.register_gloc_edt);
-        gRemark_edt= (EditText) view.findViewById(R.id.register_gremark_edt);
+        panelAddr_txt = (TextView) view.findViewById(R.id.register_paddr_txt);
+        pLoc_edt = (EditText) view.findViewById(R.id.register_ploc_edt);
         determine = (Button) view.findViewById(R.id.dv_register_confirm_btn);
 
         determine.setOnClickListener(this);
@@ -116,6 +107,6 @@ public class GroupRegisterFragment extends Fragment implements OnClickListener {
      * @date 2015-9-2 下午6:14:03
      */
     public void bindData() {
-        groupId_txt.setText(groupId);
+        panelAddr_txt.setText(deviceAddr);
     }
 }

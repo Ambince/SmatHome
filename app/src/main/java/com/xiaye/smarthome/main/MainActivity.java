@@ -631,9 +631,9 @@ public class MainActivity extends Activity {
                         break;
 
                     case SYSTM_FUN_REGISTER_GROUP:
-                        //通知新建群组的群组id
-                        int groupId = ChangeByteAndInt.bytesToInt(callmsg.getPara(), 0);
-                        showGroupRegisterFragment(groupId);
+                        //通知新建面板的设备地址
+                        int deviceAddr = ChangeByteAndInt.bytesToInt(callmsg.getPara(), 0);
+                        showGroupRegisterFragment(deviceAddr);
                         break;
 
                     case SYSTM_FUN_DEVICE_ONLINE:// 家电上线
@@ -1407,9 +1407,9 @@ public class MainActivity extends Activity {
     /**
      * 群组注册通知
      *
-     * @param groupId
+     * @param addr
      */
-    public void showGroupRegisterFragment(int groupId) {
+    public void showGroupRegisterFragment(int addr) {
 
         NotificationManager manager = (NotificationManager) this
                 .getSystemService(Context.NOTIFICATION_SERVICE);
@@ -1435,7 +1435,7 @@ public class MainActivity extends Activity {
 
         Intent intent = new Intent();
         // 群组ID
-        intent.putExtra("groupId", groupId);
+        intent.putExtra("deviceAddr", addr);
 
         intent.putExtra("id", 3);
         intent.setClass(this, MainActivity.class);
@@ -1478,11 +1478,11 @@ public class MainActivity extends Activity {
             this.getFragmentManager().beginTransaction()
                     .replace(R.id.xiaye_fragment, cEditFragment).commit();
         } else if (id == 3) {
-            Log.i("Main", "群组注册通知");
-            GroupRegisterFragment fragment = new GroupRegisterFragment();
+            Log.i("Main", "面板注册通知");
+            PanelRegisterFragment fragment = new PanelRegisterFragment();
             Bundle bundle = new Bundle();
-            int groupId = intent.getIntExtra("groupId", 0);
-            bundle.putInt("groupId", groupId);
+            int deviceAddr = intent.getIntExtra("deviceAddr", 0);
+            bundle.putInt("deviceAddr", deviceAddr);
             fragment.setArguments(bundle);
             this.getFragmentManager().beginTransaction()
                     .replace(R.id.xiaye_fragment, fragment).commit();
