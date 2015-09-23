@@ -6,10 +6,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
-
 import android.widget.Toast;
+
 import com.jni.info.InfoDealIF;
 import com.xiaye.smarthome.R;
 import com.xiaye.smarthome.adapter.LightControlAdapter;
@@ -19,9 +18,9 @@ import com.xiaye.smarthome.constant.UI_Constant;
 import com.xiaye.smarthome.main.MainActivity;
 import com.xiaye.smarthome.util.JsonParse;
 import com.xiaye.smarthome.util.ParseJson;
+
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,7 +46,12 @@ public class LightControlFragment extends Fragment {
 
         if (!location.equals("")) {
             JsonParse jsonParse = new JsonParse();
-            dbResult = info.inquire(MainActivity.interfaceId, Type.SELECT_GROUP4, jsonParse.pagingJsonParse(0, 0, location));
+            if (!location.equals("其他")) {
+                dbResult = info.inquire(MainActivity.interfaceId, Type.SELECT_GROUP4, jsonParse.pagingJsonParse(0, 0, location));
+            } else {
+                //用户自己新建的群组
+                dbResult = info.inquire(MainActivity.interfaceId, Type.SELECT_GROUP5, jsonParse.pagingJsonParse(0, 0, location));
+            }
             if (dbResult != null) {
                 try {
                     mList = ParseJson.parseLightControlBeans(dbResult);

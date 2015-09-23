@@ -419,7 +419,8 @@ public class MainActivity extends Activity {
                 btnTag.equals(UI_Constant.LIGHT_REST) ||
                 btnTag.equals(UI_Constant.LIGHT_PCPASS) ||
                 btnTag.equals(UI_Constant.LIGHT_TOILET) ||
-                btnTag.equals(UI_Constant.LIGHT_WASHING)) {
+                btnTag.equals(UI_Constant.LIGHT_WASHING) ||
+                btnTag.equals(UI_Constant.LIGHT_OTHER)) {
             //入门通道等
             replaceFragmentWith(LightControlFragment.class, "", "", "", category3_name);
 
@@ -609,31 +610,31 @@ public class MainActivity extends Activity {
                         } catch (Exception e1) {
                             e1.printStackTrace();
                         }
-                        String registerUpname = deviceinfobean.getMachineName();
-                        int ID = deviceinfobean.getDevice_Vaddrs();
-                        // 刷新器具列表
-                        refreshMachineList();
-                        showRegisterActivity(ID);
+                        if (deviceinfobean.getDvType() == 40) {
+                            //面板注册
+                            int deviceAddr = deviceinfobean.getDevice_addrs();
+                            showGroupRegisterFragment(deviceAddr);
 
-                        if (temp == SYSTM_FUN_REPLY_REGISTER) {
-                            Toast.makeText(getApplicationContext(),
-                                    registerUpname + "注册成功！", Toast.LENGTH_LONG)
-                                    .show();
-                        } else if (temp == SYSTM_FUN_REGISTER_LOAD) {
-                            Toast.makeText(getApplicationContext(),
-                                    registerUpname + "注册成功并正在下载插件！",
-                                    Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(mainContext, "设备注册成功！但无法下载！",
-                                    Toast.LENGTH_LONG).show();
+                            String registerUpname = deviceinfobean.getMachineName();
+                            int ID = deviceinfobean.getDevice_Vaddrs();
+                            // 刷新器具列表
+                            refreshMachineList();
+                            showRegisterActivity(ID);
+
+                            if (temp == SYSTM_FUN_REPLY_REGISTER) {
+                                Toast.makeText(getApplicationContext(),
+                                        registerUpname + "注册成功！", Toast.LENGTH_LONG)
+                                        .show();
+                            } else if (temp == SYSTM_FUN_REGISTER_LOAD) {
+                                Toast.makeText(getApplicationContext(),
+                                        registerUpname + "注册成功并正在下载插件！",
+                                        Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(mainContext, "设备注册成功！但无法下载！",
+                                        Toast.LENGTH_LONG).show();
+                            }
                         }
-
-                        break;
-
-                    case SYSTM_FUN_REGISTER_GROUP:
-                        //通知新建面板的设备地址
-                        int deviceAddr = ChangeByteAndInt.bytesToInt(callmsg.getPara(), 0);
-                        showGroupRegisterFragment(deviceAddr);
                         break;
 
                     case SYSTM_FUN_DEVICE_ONLINE:// 家电上线
@@ -650,9 +651,7 @@ public class MainActivity extends Activity {
                             e1.printStackTrace();
                         }
                         // 用于获得设备名称
-                        registerUpname = deviceinfobean.getMachineName();
-
-
+                        String registerUpname = deviceinfobean.getMachineName();
                         int state;
                         if (temp == SYSTM_FUN_DEVICE_ONLINE) {
                             Toast.makeText(getApplicationContext(),
@@ -875,8 +874,7 @@ public class MainActivity extends Activity {
                     case IF_CONNECTAGAIN:
                         tv_status.setText("与总控重新连接成功!");
                         byte[] result2 = callmsg.getPara();
-                        int ifId = ChangeByteAndInt.bytesToInt(result2, 0);
-                        interfaceId = ifId;
+                        interfaceId = ChangeByteAndInt.bytesToInt(result2, 0);
                         Log.i(TAG, "interfaceID == " + interfaceId);
                         break;
 
@@ -1029,9 +1027,7 @@ public class MainActivity extends Activity {
 
                         } else {
                             for (int i = 0; i < controllerList.size(); i++) {
-                                if (controllerList.get(i).getControllerID() == id) {
-                                    continue;
-                                } else {
+                                if (!(controllerList.get(i).getControllerID() == id)) {
                                     controllerList.add(bean);
                                     controllerAdapter.notifyDataSetChanged();
                                 }
@@ -1153,7 +1149,7 @@ public class MainActivity extends Activity {
                 byte[] data1 = (byte[]) msg.obj;
                 // 获取插件对应的设备虚拟地址
                 int machineId = OnlineOperationActivity.machineID;
-                byte[] mIdData = null;
+                byte[] mIdData;
                 if (machineId > 0) {
                     mIdData = ChangeByteAndInt.intToBytes(machineId);
                     byte[] data3 = Connect2ByteArrays.conn2ByteArrays(mIdData,
@@ -1216,8 +1212,8 @@ public class MainActivity extends Activity {
             resultJson.put(0x35 + "", d);
             resultJson.put(0x36 + "", g);
 
-            String result = resultJson.toString();
-            return result;
+
+            return resultJson.toString();
 
         }
 
@@ -1237,7 +1233,7 @@ public class MainActivity extends Activity {
                     String name = bean.getMachineName();
                     int id = bean.getMachineId();
 
-                    LinearLayout lin = null;
+                    LinearLayout lin;
                     if (shortCutIndex < 5) {
                         // 如果小于5，就是第一层按钮
                         lin = (LinearLayout) findViewById(R.id.shortcut_lay1);
@@ -1436,13 +1432,12 @@ public class MainActivity extends Activity {
         Intent intent = new Intent();
         // 群组ID
         intent.putExtra("deviceAddr", addr);
-
         intent.putExtra("id", 3);
         intent.setClass(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 intent, PendingIntent.FLAG_ONE_SHOT);
         // 点击状态栏的图标出现的提示信息设置
-        notification.setLatestEventInfo(this, "请完善菜谱相关信息", "点击进行完善",
+        notification.setLatestEventInfo(this, "面板注册信息", "点击进行完善",
                 pendingIntent);
         manager.notify(0, notification);
     }
@@ -1486,8 +1481,6 @@ public class MainActivity extends Activity {
             fragment.setArguments(bundle);
             this.getFragmentManager().beginTransaction()
                     .replace(R.id.xiaye_fragment, fragment).commit();
-        } else {
-
         }
     }
 

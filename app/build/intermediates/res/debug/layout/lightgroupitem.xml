@@ -31,15 +31,6 @@
                 android:text="123" />
 
         <TextView
-                android:id="@+id/lightgroup_item_pos"
-                style="@style/cooklist_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:padding="10dp"
-                android:text="123" />
-
-        <TextView
                 android:id="@+id/lightgroup_item_addr"
                 style="@style/cooklist_text_style"
                 android:layout_width="0dp"

@@ -85,15 +85,6 @@
                     style="@style/cooklist_text_style"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@drawable/text"
-                    android:padding="5dp"
-                    android:text="位置"/>
-
-            <TextView
-                    style="@style/cooklist_text_style"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/text"
                     android:padding="5dp"

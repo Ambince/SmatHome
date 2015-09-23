@@ -249,10 +249,12 @@ public class ParseJson {
         String date = jsonObject.getString("date");
         String software_v = jsonObject.getString("software");
         int registerWay = jsonObject.getInt("registerWay");
+        int dvType = jsonObject.getInt("machineType");
+        int dvAddr = jsonObject.getInt("machineAddress");
 
         DeviceInformationBean deviceInformationbean = new DeviceInformationBean(
                 device_Vaddrs, device_id, machineName, manufact, date,
-                software_v, registerWay);
+                software_v, registerWay,dvType,dvAddr);
 
         return deviceInformationbean;
     }
@@ -460,19 +462,15 @@ public class ParseJson {
 
             int groupId = jsonObject.getInt("groupId");
             String groupName = jsonObject.getString("groupName");
-            String groupLocation = jsonObject.getString("machineLocation");
             int groupAddress = jsonObject.getInt("groupAddress");
-            int groupPort = jsonObject.getInt("groupPort");
-            int groupState = jsonObject.getInt("groupState");
+            int groupPort = jsonObject.getInt("machinePort");
             String remarks = jsonObject.getString("remarks");
 
             LightGroupBean bean = new LightGroupBean();
             bean.setGroupId(groupId);
             bean.setGroupName(groupName);
-            bean.setGroupLocation(groupLocation);
             bean.setGroupAddress(groupAddress);
             bean.setGroupPort(groupPort);
-            bean.setGroupState(groupState);
             bean.setRemarks(remarks);
 
             list.add(bean);

@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.jni.info.InfoDealIF;
 import com.xiaye.smarthome.R;
 import com.xiaye.smarthome.bean.LightGroupBean;
@@ -16,7 +17,6 @@ import com.xiaye.smarthome.constant.Type;
 import com.xiaye.smarthome.main.MainActivity;
 import com.xiaye.smarthome.main.SmartHomeApplication;
 import com.xiaye.smarthome.util.ChangeByteAndInt;
-import com.xiaye.smarthome.util.Connect2ByteArrays;
 
 import java.util.List;
 
@@ -58,7 +58,6 @@ public class LightGroupAdapter extends BaseAdapter {
             mHolder = new Holder();
             mHolder.mid = (TextView) convertView.findViewById(R.id.lightgroup_item_id);
             mHolder.mName = (TextView) convertView.findViewById(R.id.lightgroup_item_name);
-            mHolder.mPosition = (TextView) convertView.findViewById(R.id.lightgroup_item_pos);
             mHolder.mAddr = (TextView) convertView.findViewById(R.id.lightgroup_item_addr);
             mHolder.mPort = (TextView) convertView.findViewById(R.id.lightgroup_item_port);
             mHolder.mRemark = (TextView) convertView.findViewById(R.id.lightgroup_item_remark);
@@ -83,7 +82,6 @@ public class LightGroupAdapter extends BaseAdapter {
                             .show();
                     mHolder.mid.setTextColor(Color.GRAY);
                     mHolder.mName.setTextColor(Color.GRAY);
-                    mHolder.mPosition.setTextColor(Color.GRAY);
                     mHolder.mAddr.setTextColor(Color.GRAY);
                     mHolder.mPort.setTextColor(Color.GRAY);
                     mHolder.mRemark.setTextColor(Color.GRAY);
@@ -99,7 +97,6 @@ public class LightGroupAdapter extends BaseAdapter {
         });
         mHolder.mid.setText(bean.getGroupId() + "");
         mHolder.mName.setText(bean.getGroupName() + "");
-        mHolder.mPosition.setText(bean.getGroupLocation() + "");
         mHolder.mAddr.setText(bean.getGroupAddress() + "");
         mHolder.mPort.setText(bean.getGroupPort() + "");
         mHolder.mRemark.setText(bean.getRemarks() + "");
@@ -112,7 +109,6 @@ public class LightGroupAdapter extends BaseAdapter {
 
         public TextView mid;
         public TextView mName;
-        public TextView mPosition;
         public TextView mAddr;
         public TextView mPort;
         public TextView mRemark;

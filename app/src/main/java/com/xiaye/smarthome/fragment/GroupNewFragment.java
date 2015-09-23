@@ -48,7 +48,7 @@ public class GroupNewFragment extends Fragment implements OnClickListener {
     public void onClick(View view) {
         int id = view.getId();
         String name = gName_edt.getText().toString().trim();
-        if (id == R.id.group_new_confirm_btn) {
+        if (id == R.id.group_new_confirm_btn && !name.equals("")) {
             OutPut output = new OutPut();
             if (!(info.control(MainActivity.interfaceId,
                     Type.PROTO_FUN_NEW_GROUP, name.getBytes(), output) < 0)) {

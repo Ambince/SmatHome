@@ -32,6 +32,8 @@ public class DeviceInformationBean implements Serializable {
 	private String typeOfType;
 	private String mLocation;// 位置
 
+	private int dvType;
+
 	public String getLocation() {
 		return mLocation;
 	}
@@ -61,21 +63,32 @@ public class DeviceInformationBean implements Serializable {
 	private String manufact;// 生产厂家
 	private String date;// 生产日期
 
-	public DeviceInformationBean() {
+	public DeviceInformationBean(int device_Vaddrs, String device_id, String machineName, String manufact,
+								 String date, String software, int registerWay, int dvType, int dvAddr) {
+		this.device_Vaddrs = device_Vaddrs;
+		this.device_id= device_id;
+		this.machineName = machineName;
+		this.manufact = manufact;
+		this.date = date;
+		this.software = software;
+		this.registerWay = registerWay;
 
+		this.device_addrs = dvAddr;
+		this.dvType = dvType;
 	}
 
 	public DeviceInformationBean(int device_Vaddrs, String device_id,
 			String machineName, String manufact, String date, String software,
 			int registerWay) {
 
-		this.setDevice_Vaddrs(device_Vaddrs);
-		this.setDevice_id(device_id);
+		this.device_Vaddrs = device_Vaddrs;
+		this.device_id= device_id;
 		this.machineName = machineName;
 		this.manufact = manufact;
 		this.date = date;
 		this.software = software;
 		this.registerWay = registerWay;
+
 	}
 
 	public DeviceInformationBean(int device_Vaddrs, String machineName,
@@ -252,5 +265,13 @@ public class DeviceInformationBean implements Serializable {
 
 	public void setTypeId(int typeId) {
 		this.typeId = typeId;
+	}
+
+	public int getDvType() {
+		return dvType;
+	}
+
+	public void setDvType(int dvType) {
+		this.dvType = dvType;
 	}
 }
