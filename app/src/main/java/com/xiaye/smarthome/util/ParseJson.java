@@ -485,8 +485,8 @@ public class ParseJson {
         for (int i = 0; i < jArray.length(); i++) {
             JSONObject jsonObject = jArray.getJSONObject(i);
 
-            int groupAddress = jsonObject.getInt("groupAddress");
-            int groupPort = jsonObject.getInt("groupPort");
+            int groupAddress = jsonObject.getInt("machineId");
+            int groupPort = jsonObject.getInt("machinePort");
             String remarks = jsonObject.getString("remarks");
 
             LightGroupMemberBean bean = new LightGroupMemberBean();
