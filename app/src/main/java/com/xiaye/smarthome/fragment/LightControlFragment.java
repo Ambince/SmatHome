@@ -41,6 +41,7 @@ public class LightControlFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = View.inflate(getActivity(), R.layout.light_control, null);
+        mListView = (ListView) view.findViewById(R.id.light_contral_list);
         info = new InfoDealIF();
         location = getArguments().getString(UI_Constant.LIGHT_LOCATION, "");
 

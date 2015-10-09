@@ -507,11 +507,11 @@ public class ParseJson {
             JSONObject jsonObject = jArray.getJSONObject(i);
 
             int id = jsonObject.getInt("groupId");
-            int groupName = jsonObject.getInt("groupName");
+            String groupName = jsonObject.getString("groupName");
 
             LightGroupBean bean = new LightGroupBean();
             bean.setGroupId(id);
-            bean.setGroupAddress(groupName);
+            bean.setGroupName(groupName);
 
             list.add(bean);
         }
