@@ -56,7 +56,7 @@ public class PanelRegisterFragment extends Fragment implements OnClickListener {
     public void onClick(View view) {
         int id = view.getId();
         String loc = pLoc_edt.getText().toString().trim();
-        if (id == R.id.dv_register_confirm_btn) {
+        if (id == R.id.panel_register_confirm_btn) {
             JSONObject stoneObject = new JSONObject();
             try {
                 stoneObject.put("machineLocation", loc);
@@ -95,7 +95,7 @@ public class PanelRegisterFragment extends Fragment implements OnClickListener {
 
         panelAddr_txt = (TextView) view.findViewById(R.id.register_paddr_txt);
         pLoc_edt = (EditText) view.findViewById(R.id.register_ploc_edt);
-        determine = (Button) view.findViewById(R.id.dv_register_confirm_btn);
+        determine = (Button) view.findViewById(R.id.panel_register_confirm_btn);
 
         determine.setOnClickListener(this);
     }
@@ -107,6 +107,6 @@ public class PanelRegisterFragment extends Fragment implements OnClickListener {
      * @date 2015-9-2 下午6:14:03
      */
     public void bindData() {
-        panelAddr_txt.setText(deviceAddr);
+        panelAddr_txt.setText(deviceAddr+"");
     }
 }

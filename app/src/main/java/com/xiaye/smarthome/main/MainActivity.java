@@ -753,8 +753,7 @@ public class MainActivity extends Activity {
 
                     case SYSTM_INTERFACE_UPDATE_FAIL:// 界面插件程序更新失败
                         Log.e("Main Handler", "界面插件程序更新失败!");
-                        Toast.makeText(mainContext, "界面插件程序更新失败！",
-                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(mainContext, "界面插件程序更新失败！", Toast.LENGTH_LONG).show();
                         break;
 
                     // 手机总控文件同步成功
